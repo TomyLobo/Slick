@@ -17,13 +17,13 @@ public class BasicTriangulator implements Triangulator {
 	private PointList tris = new PointList();
 	/** True if we've tried to triangulate */
 	private boolean tried;
-	
+
 	/**
 	 * Create a new triangulator
 	 */
 	public BasicTriangulator() {
 	}
-	
+
 	/**
 	 * Add a point describing the polygon to be triangulated
 	 * 
@@ -36,7 +36,7 @@ public class BasicTriangulator implements Triangulator {
 			poly.add(p);
 		}
 	}
-	
+
 	/**
 	 * Get the number of points in the polygon
 	 * 
@@ -55,7 +55,7 @@ public class BasicTriangulator implements Triangulator {
 	public float[] getPolyPoint(int index) {
 		return new float[] {poly.get(index).x,poly.get(index).y};
 	}
-	
+
 	/**
 	 * Cause the triangulator to split the polygon
 	 * 
@@ -63,11 +63,11 @@ public class BasicTriangulator implements Triangulator {
 	 */
 	public boolean triangulate() {
 		tried = true;
-		
+
 		boolean worked = process(poly,tris);
 		return worked;
 	}
-	
+
 	/**
 	 * Get a count of the number of triangles produced
 	 * 
@@ -79,7 +79,7 @@ public class BasicTriangulator implements Triangulator {
 		}
 		return tris.size() / 3;
 	}
-	
+
 	/**
 	 * Get a point on a specified generated triangle
 	 * 
@@ -92,11 +92,11 @@ public class BasicTriangulator implements Triangulator {
 		if (!tried) {
 			throw new RuntimeException("Call triangulate() before accessing triangles");
 		}
-		
+
 		return tris.get((tri*3)+i).toArray();
 	}
-	
-	/** 
+
+	/**
 	 * Find the area of a polygon defined by the series of points
 	 * in the list
 	 * 
@@ -159,7 +159,7 @@ public class BasicTriangulator implements Triangulator {
 	}
 
 	/**
-	 * Cut a the contour and add a triangle into V to describe the 
+	 * Cut a the contour and add a triangle into V to describe the
 	 * location of the cut
 	 * 
 	 * @param contour The list of points defining the polygon
@@ -208,13 +208,13 @@ public class BasicTriangulator implements Triangulator {
 	 * Process a list of points defining a polygon
 	 * @param contour The list of points describing the polygon
 	 * @param result The list of points describing the triangles. Groups
-	 * of 3 describe each triangle 
+	 * of 3 describe each triangle
 	 * 
 	 * @return True if we succeeded in completing triangulation
 	 */
 	private boolean process(PointList contour, PointList result) {
 		result.clear();
-		
+
 		/* allocate and initialize list of Vertices in polygon */
 
 		int n = contour.size();
@@ -297,7 +297,7 @@ public class BasicTriangulator implements Triangulator {
 		private float y;
 		/** The points in an array */
 		private float[] array;
-		
+
 		/**
 		 * Create a new point
 		 * 
@@ -327,7 +327,7 @@ public class BasicTriangulator implements Triangulator {
 		public float getY() {
 			return y;
 		}
-	
+
 		/**
 		 * Convert this point into a float array
 		 * 
@@ -336,14 +336,14 @@ public class BasicTriangulator implements Triangulator {
 		public float[] toArray() {
 			return array;
 		}
-		
+
 		/**
 		 * @see java.lang.Object#hashCode()
 		 */
 		public int hashCode() {
 			return (int) (x * y * 31);
 		}
-		
+
 		/**
 		 * @see java.lang.Object#equals(java.lang.Object)
 		 */
@@ -352,11 +352,11 @@ public class BasicTriangulator implements Triangulator {
 				Point p = (Point) other;
 				return (p.x == x) && (p.y == y);
 			}
-			
+
 			return false;
 		}
 	}
-	
+
 	/**
 	 * A list of type <code>Point</code>
 	 * 
@@ -365,13 +365,13 @@ public class BasicTriangulator implements Triangulator {
 	private class PointList {
 		/** The list of points */
 		private ArrayList points = new ArrayList();
-		
+
 		/**
 		 * Create a new empty list
 		 */
 		public PointList() {
 		}
-		
+
 		/**
 		 * Check if the list contains a point
 		 * 
@@ -381,16 +381,16 @@ public class BasicTriangulator implements Triangulator {
 		public boolean contains(Point p) {
 			return points.contains(p);
 		}
-		
+
 		/**
-		 * Add a point to the list 
+		 * Add a point to the list
 		 * 
 		 * @param point The point to add
 		 */
 		public void add(Point point) {
 			points.add(point);
 		}
-		
+
 		/**
 		 * Remove a point from the list
 		 * 
@@ -399,7 +399,7 @@ public class BasicTriangulator implements Triangulator {
 		public void remove(Point point) {
 			points.remove(point);
 		}
-		
+
 		/**
 		 * Get the size of the list
 		 * 
@@ -408,7 +408,7 @@ public class BasicTriangulator implements Triangulator {
 		public int size() {
 			return points.size();
 		}
-		
+
 		/**
 		 * Get a point a specific index in the list
 		 * 
@@ -418,7 +418,7 @@ public class BasicTriangulator implements Triangulator {
 		public Point get(int i) {
 			return (Point) points.get(i);
 		}
-		
+
 		/**
 		 * Clear the list
 		 */
@@ -432,6 +432,6 @@ public class BasicTriangulator implements Triangulator {
 	 */
 	public void startHole() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

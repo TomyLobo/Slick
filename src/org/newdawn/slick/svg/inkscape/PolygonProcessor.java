@@ -31,11 +31,11 @@ public class PolygonProcessor implements ElementProcessor {
 	 */
 	private static int processPoly(Polygon poly, Element element, StringTokenizer tokens) throws ParsingException {
 		int count = 0;
-		
+
 		ArrayList pts = new ArrayList();
 		boolean moved = false;
 		boolean closed = false;
-		
+
 		while (tokens.hasMoreTokens()) {
 			String nextToken = tokens.nextToken();
 			if (nextToken.equals("L")) {
@@ -50,27 +50,27 @@ public class PolygonProcessor implements ElementProcessor {
 					moved = true;
 					continue;
 				}
-				
+
 				return 0;
 			}
 			if (nextToken.equals("C")) {
 				return 0;
 			}
-			
+
 			String tokenX = nextToken;
 			String tokenY = tokens.nextToken();
-			
+
 			try {
 				float x = Float.parseFloat(tokenX);
 				float y = Float.parseFloat(tokenY);
-				
+
 				poly.addPoint(x,y);
 				count++;
 			} catch (NumberFormatException e) {
 				throw new ParsingException(element.getAttribute("id"), "Invalid token in points list", e);
 			}
 		}
-		
+
 		poly.setClosed(closed);
 		return count;
 	}
@@ -81,23 +81,23 @@ public class PolygonProcessor implements ElementProcessor {
 	 */
 	public void process(Loader loader, Element element, Diagram diagram, Transform t) throws ParsingException {
 		Transform transform = Util.getTransform(element);
-		transform = new Transform(t, transform); 
-		
+		transform = new Transform(t, transform);
+
 		String points = element.getAttribute("points");
 		if (element.getNodeName().equals("path")) {
 			points = element.getAttribute("d");
 		}
-		
+
 		StringTokenizer tokens = new StringTokenizer(points, ", ");
 		Polygon poly = new Polygon();
 		int count = processPoly(poly, element, tokens);
-		
+
 		NonGeometricData data = Util.getNonGeometricData(element);
 		if (count > 3) {
 			Shape shape = poly.transform(transform);
-			
+
 			diagram.addFigure(new Figure(Figure.POLYGON, shape, data, transform));
-		} 
+		}
 	}
 
 	/**
@@ -107,13 +107,13 @@ public class PolygonProcessor implements ElementProcessor {
 		if (element.getNodeName().equals("polygon")) {
 			return true;
 		}
-		
+
 		if (element.getNodeName().equals("path")) {
 			if (!"arc".equals(element.getAttributeNS(Util.SODIPODI, "type"))) {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 }

@@ -21,20 +21,20 @@ public class FlashTest extends BasicGame {
 	private boolean flash;
 	/** The container for the test */
 	private GameContainer container;
-	
+
 	/**
 	 * Create a new image rendering test
 	 */
 	public FlashTest() {
 		super("Flash Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
 		this.container = container;
-		
+
 		image = new Image("testdata/logo.tga");
 	}
 

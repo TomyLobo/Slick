@@ -22,14 +22,14 @@ public class CachedRenderTest extends BasicGame {
 	private CachedRender cached;
 	/** True if we're drawing the cached version */
 	private boolean drawCached;
-	
+
 	/**
 	 * Create a new simple test for cached rendering (aka display lists)
 	 */
 	public CachedRenderTest() {
 		super("Cached Render Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -43,7 +43,7 @@ public class CachedRenderTest extends BasicGame {
 				}
 			}
 		};
-		
+
 		cached = new CachedRender(operations);
 	}
 

@@ -17,19 +17,19 @@ public class Space {
 	private float width;
 	/** The height of the space */
 	private float height;
-	
+
 	/** A map from spaces to the links that connect them to this space */
 	private HashMap links = new HashMap();
 	/** A list of the links from this space to others */
 	private ArrayList linksList = new ArrayList();
 	/** The cost to get to this node */
 	private float cost;
-	
+
 	/**
-	 * Create a new space 
+	 * Create a new space
 	 * 
-	 * @param x The x coordinate of the top corner of the space 
-	 * @param y The y coordinate of the top corner of the space 
+	 * @param x The x coordinate of the top corner of the space
+	 * @param y The y coordinate of the top corner of the space
 	 * @param width The width of the space
 	 * @param height The height of the space
 	 */
@@ -39,7 +39,7 @@ public class Space {
 		this.width = width;
 		this.height = height;
 	}
-	
+
 	/**
 	 * Get the width of the space
 	 * 
@@ -75,7 +75,7 @@ public class Space {
 	public float getY() {
 		return y;
 	}
-	
+
 	/**
 	 * Link this space to another by creating a link and finding the point
 	 * at which the spaces link up
@@ -89,11 +89,11 @@ public class Space {
 			if (x+width == other.x) {
 				linkx = x+width;
 			}
-			
+
 			float top = Math.max(y, other.y);
 			float bottom = Math.min(y+height, other.y+other.height);
 			float linky = top + ((bottom-top)/2);
-			
+
 			Link link = new Link(linkx, linky, other);
 			links.put(other,link);
 			linksList.add(link);
@@ -104,17 +104,17 @@ public class Space {
 			if (y+height == other.y) {
 				linky = y+height;
 			}
-			
+
 			float left = Math.max(x, other.x);
 			float right = Math.min(x+width, other.x+other.width);
 			float linkx = left + ((right-left)/2);
-			
+
 			Link link = new Link(linkx, linky, other);
 			links.put(other, link);
 			linksList.add(link);
-		}		
+		}
 	}
-	
+
 	/**
 	 * Check whether two locations are within tolerance distance. This is
 	 * used when finding aligned edges to remove float rounding errors
@@ -126,7 +126,7 @@ public class Space {
 	private boolean inTolerance(float a, float b) {
 		return a == b;
 	}
-	
+
 	/**
 	 * Check if this space has an edge that is joined with another
 	 * 
@@ -164,12 +164,12 @@ public class Space {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
-	 * Merge this space with another 
+	 * Merge this space with another
 	 * 
 	 * @param other The other space to merge with
 	 * @return The result space created by joining the two
@@ -177,7 +177,7 @@ public class Space {
 	public Space merge(Space other) {
 		float minx = Math.min(x, other.x);
 		float miny = Math.min(y, other.y);
-		
+
 		float newwidth = width+other.width;
 		float newheight = height+other.height;
 		if (x == other.x) {
@@ -187,7 +187,7 @@ public class Space {
 		}
 		return new Space(minx, miny, newwidth, newheight);
 	}
-	
+
 	/**
 	 * Check if the given space can be merged with this one. It must have
 	 * an adjacent edge and have the same height or width as this space.
@@ -199,17 +199,17 @@ public class Space {
 		if (!hasJoinedEdge(other)) {
 			return false;
 		}
-		
+
 		if ((x == other.x) && (width == other.width)) {
 			return true;
 		}
 		if ((y == other.y) && (height == other.height)) {
 			return true;
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * Get the number of links
 	 * 
@@ -218,7 +218,7 @@ public class Space {
 	public int getLinkCount() {
 		return linksList.size();
 	}
-	
+
 	/**
 	 * Get the link from this space to another at a particular index
 	 * 
@@ -228,7 +228,7 @@ public class Space {
 	public Link getLink(int index) {
 		return (Link) linksList.get(index);
 	}
-	
+
 	/**
 	 * Check if this space contains a given point
 	 * 
@@ -239,7 +239,7 @@ public class Space {
 	public boolean contains(float xp, float yp) {
 		return (xp >= x) && (xp < x+width) && (yp >= y) && (yp < y+height);
 	}
-	
+
 	/**
 	 * Fill the spaces based on the cost from a given starting point
 	 * 
@@ -256,7 +256,7 @@ public class Space {
 		if (target == this) {
 			return;
 		}
-		
+
 		for (int i=0;i<getLinkCount();i++) {
 			Link link = getLink(i);
 			float extraCost = link.distance2(sx,sy);
@@ -264,7 +264,7 @@ public class Space {
 			link.getTarget().fill(target, link.getX(), link.getY(), nextCost);
 		}
 	}
-	
+
 	/**
 	 * Clear the costing values across the whole map
 	 */
@@ -283,7 +283,7 @@ public class Space {
 
 	/**
 	 * Pick the lowest cost route from this space to another on the path
-	 *  
+	 * 
 	 * @param target The target space we're looking for
 	 * @param path The path to add the steps to
 	 * @return True if the path was found
@@ -296,18 +296,18 @@ public class Space {
 			return false;
 		}
 
-		Link bestLink = null;	
+		Link bestLink = null;
 		for (int i=0;i<getLinkCount();i++) {
 			Link link = getLink(i);
 			if ((bestLink == null) || (link.getTarget().getCost() < bestLink.getTarget().getCost())) {
 				bestLink = link;
 			}
 		}
-		
+
 		path.push(bestLink);
 		return bestLink.getTarget().pickLowestCost(target, path);
 	}
-	
+
 	/**
 	 * Get the string representation of this instance
 	 * 

@@ -18,14 +18,14 @@ public class AlphaMapTest extends BasicGame {
 	private Image alphaMap;
 	/** The texture to apply over the top */
 	private Image textureMap;
-	
+
 	/**
 	 * Create a new tester for the clip plane based clipping
 	 */
 	public AlphaMapTest() {
 		super("AlphaMap Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -66,7 +66,7 @@ public class AlphaMapTest extends BasicGame {
 	 */
 	public void keyPressed(int key, char c) {
 	}
-	
+
 	/**
 	 * Entry point to our test
 	 * 

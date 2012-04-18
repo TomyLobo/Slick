@@ -22,7 +22,7 @@ public class LocatedImage {
 	private float width;
 	/** The height to render the image */
 	private float height;
-	
+
 	/**
 	 * Create a new located image
 	 * 
@@ -37,7 +37,7 @@ public class LocatedImage {
 		this.width = image.getWidth();
 		this.height = image.getHeight();
 	}
-	
+
 	/**
 	 * Get the height the image will be drawn at
 	 * 
@@ -55,7 +55,7 @@ public class LocatedImage {
 	public float getWidth() {
 		return width;
 	}
-	
+
 	/**
 	 * Set the height the image should be drawn at
 	 * 
@@ -73,16 +73,16 @@ public class LocatedImage {
 	public void setWidth(float width) {
 		this.width = width;
 	}
-	
+
 	/**
 	 * Set the colour filter to apply to the image
 	 * 
 	 * @param c The color filter to apply to the image
-	 */ 
+	 */
 	public void setColor(Color c) {
 		this.filter = c;
 	}
-	
+
 	/**
 	 * Get the colour filter being applied
 	 * 
@@ -91,7 +91,7 @@ public class LocatedImage {
 	public Color getColor() {
 		return filter;
 	}
-	
+
 	/**
 	 * Set the x position at which the image should be drawn
 	 * 
@@ -109,7 +109,7 @@ public class LocatedImage {
 	public void setY(int y) {
 		this.y = y;
 	}
-	
+
 	/**
 	 * Get the x position at which the image will be drawn
 	 * 
@@ -127,7 +127,7 @@ public class LocatedImage {
 	public int getY() {
 		return y;
 	}
-	
+
 	/**
 	 * Draw the image based on the current configured state
 	 */

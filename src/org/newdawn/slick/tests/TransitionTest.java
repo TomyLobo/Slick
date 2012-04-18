@@ -36,14 +36,14 @@ public class TransitionTest extends StateBasedGame {
 	};
 	/** The index of the next transition to use */
 	private int index;
-	
+
 	/**
 	 * Test the transitions implemented
 	 */
 	public TransitionTest() {
 		super("Transition Test - Hit Space To Transition");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.state.StateBasedGame#initStatesList(org.newdawn.slick.GameContainer)
 	 */
@@ -60,7 +60,7 @@ public class TransitionTest extends StateBasedGame {
 	 */
 	public Transition[] getNextTransitionPair() {
 		Transition[] pair = new Transition[2];
-		
+
 		try {
 			if (transitions[index][0] != null) {
 				pair[0] = (Transition) transitions[index][0].newInstance();
@@ -71,15 +71,15 @@ public class TransitionTest extends StateBasedGame {
 		} catch (Throwable e) {
 			Log.error(e);
 		}
-		
+
 		index++;
 		if (index >= transitions.length) {
 			index = 0;
 		}
-		
+
 		return pair;
 	}
-	
+
 	/**
 	 * A test state that just displayed one image full scren
 	 * 
@@ -94,7 +94,7 @@ public class TransitionTest extends StateBasedGame {
 		private String ref;
 		/** The loaded image */
 		private Image image;
-		
+
 		/**
 		 * Create a new image state
 		 * 
@@ -141,7 +141,7 @@ public class TransitionTest extends StateBasedGame {
 			}
 		}
 	}
-	
+
 	/**
 	 * Entry point to our test
 	 * 

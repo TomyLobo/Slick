@@ -103,7 +103,7 @@ public class Glyph {
 	}
 
 	/**
-	 * The shape to use to draw this glyph. This is set to null after the glyph is stored 
+	 * The shape to use to draw this glyph. This is set to null after the glyph is stored
 	 * in a GlyphPage.
 	 * 
 	 * @return The shape drawn for this glyph
@@ -122,7 +122,7 @@ public class Glyph {
 	}
 
 	/**
-	 * The image to use for this glyph. This is null until after the glyph is stored in a 
+	 * The image to use for this glyph. This is null until after the glyph is stored in a
 	 * GlyphPage.
 	 * 
 	 * @return The image that has been generated for this glyph
@@ -141,7 +141,7 @@ public class Glyph {
 	}
 
 	/**
-	 * The distance from drawing y location to top of this glyph, causing the glyph to sit 
+	 * The distance from drawing y location to top of this glyph, causing the glyph to sit
 	 * on the baseline.
 	 * 
 	 * @return The offset on the y axis this glyph should be drawn at

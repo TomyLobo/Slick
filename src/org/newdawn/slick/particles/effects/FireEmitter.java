@@ -15,14 +15,14 @@ public class FireEmitter implements ParticleEmitter {
 	private int x;
 	/** The y coordinate of the center of the fire effect */
 	private int y;
-	
+
 	/** The particle emission rate */
 	private int interval = 50;
 	/** Time til the next particle */
 	private int timer;
 	/** The size of the initial particles */
 	private float size = 40;
-	
+
 	/**
 	 * Create a default fire effect at 0,0
 	 */
@@ -52,7 +52,7 @@ public class FireEmitter implements ParticleEmitter {
 		this.y = y;
 		this.size = size;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.particles.ParticleEmitter#update(org.newdawn.slick.particles.ParticleSystem, int)
 	 */

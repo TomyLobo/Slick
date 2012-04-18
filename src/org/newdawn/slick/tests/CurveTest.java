@@ -26,10 +26,10 @@ public class CurveTest extends BasicGame {
 	private Vector2f c2 = new Vector2f(300,100);
 	/** The end point of the curve */
 	private Vector2f p2 = new Vector2f(300,300);
-	
+
 	/** The polygon drawn next done */
 	private Polygon poly;
-	
+
 	/**
 	 * Create a new test for inkscape loading
 	 */
@@ -42,7 +42,7 @@ public class CurveTest extends BasicGame {
 	 */
 	public void init(GameContainer container) throws SlickException {
 		container.getGraphics().setBackground(Color.white);
-		
+
 		curve = new Curve(p2,c2,c1,p1);
 		poly = new Polygon();
 		poly.addPoint(500,200);
@@ -66,7 +66,7 @@ public class CurveTest extends BasicGame {
 	private void drawMarker(Graphics g, Vector2f p) {
 		g.drawRect(p.x-5, p.y-5,10,10);
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
 	 */
@@ -77,15 +77,15 @@ public class CurveTest extends BasicGame {
 		g.setColor(Color.red);
 		drawMarker(g, c1);
 		drawMarker(g, c2);
-		
+
 		g.setColor(Color.black);
 		g.draw(curve);
 		g.fill(curve);
-		
+
 		g.draw(poly);
 		g.fill(poly);
 	}
-	
+
 	/**
 	 * Entry point to our simple test
 	 * 

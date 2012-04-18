@@ -18,12 +18,12 @@ import org.newdawn.slick.opengl.renderer.SGL;
 public class SimpleDiagramRenderer {
 	/** The renderer to use for all GL operations */
 	protected static SGL GL = Renderer.get();
-	
+
 	/** The diagram to be rendered */
 	public Diagram diagram;
 	/** The display list representing the diagram */
 	public int list = -1;
-	
+
 	/**
 	 * Create a new simple renderer
 	 * 
@@ -32,7 +32,7 @@ public class SimpleDiagramRenderer {
 	public SimpleDiagramRenderer(Diagram diagram) {
 		this.diagram = diagram;
 	}
-	
+
 	/**
 	 * Render the diagram to the given graphics context
 	 * 
@@ -43,15 +43,15 @@ public class SimpleDiagramRenderer {
 		if (list == -1) {
 			list = GL.glGenLists(1);
 			GL.glNewList(list, SGL.GL_COMPILE);
-				render(g, diagram);
+			render(g, diagram);
 			GL.glEndList();
 		}
-		
+
 		GL.glCallList(list);
-		
+
 		TextureImpl.bindNone();
 	}
-	
+
 	/**
 	 * Utility method to render a diagram in immediate mode
 	 * 
@@ -70,7 +70,7 @@ public class SimpleDiagramRenderer {
 					g.draw(diagram.getFigure(i).getShape());
 					g.setAntiAlias(false);
 				}
-				
+
 				String fill = figure.getData().getAsReference(NonGeometricData.FILL);
 				if (diagram.getPatternDef(fill) != null){
 					System.out.println("PATTERN");
@@ -80,16 +80,16 @@ public class SimpleDiagramRenderer {
 					Shape shape = diagram.getFigure(i).getShape();
 					TexCoordGenerator fg = null;
 					if (gradient.isRadial()) {
-						fg = new RadialGradientFill(shape, diagram.getFigure(i).getTransform(), gradient);	
+						fg = new RadialGradientFill(shape, diagram.getFigure(i).getTransform(), gradient);
 					} else {
 						fg = new LinearGradientFill(shape, diagram.getFigure(i).getTransform(), gradient);
 					}
-					
-			        Color.white.bind();
+
+					Color.white.bind();
 					ShapeRenderer.texture(shape, gradient.getImage(), fg);
 				}
 			}
-			
+
 			if (figure.getData().isStroked()) {
 				if (figure.getData().isColor(NonGeometricData.STROKE)) {
 					g.setColor(figure.getData().getAsColor(NonGeometricData.STROKE));
@@ -100,12 +100,12 @@ public class SimpleDiagramRenderer {
 					g.resetLineWidth();
 				}
 			}
-	
+
 			// DEBUG VERSION
-//			g.setColor(Color.black);
-//			g.draw(diagram.getFigure(i).getShape());
-//			g.setColor(Color.red);
-//			g.fill(diagram.getFigure(i).getShape());
+			//			g.setColor(Color.black);
+			//			g.draw(diagram.getFigure(i).getShape());
+			//			g.setColor(Color.red);
+			//			g.fill(diagram.getFigure(i).getShape());
 		}
 	}
 }

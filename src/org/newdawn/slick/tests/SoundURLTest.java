@@ -34,14 +34,14 @@ public class SoundURLTest extends BasicGame {
 	private Sound engine;
 	/** The Volume of the playing music */
 	private int volume = 1;
-	
+
 	/**
 	 * Create a new test for sounds
 	 */
 	public SoundURLTest() {
 		super("Sound URL Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -114,7 +114,7 @@ public class SoundURLTest extends BasicGame {
 			} else {
 				music = musica;
 			}
-			
+
 			music.loop();
 		}
 		if (key == Input.KEY_E) {
@@ -124,21 +124,21 @@ public class SoundURLTest extends BasicGame {
 				engine.loop();
 			}
 		}
-		
+
 		if (c == '+') {
 			volume += 1;
 			setVolume();
 		}
-		
+
 		if (c == '-') {
 			volume -= 1;
 			setVolume();
 		}
 
 	}
-	
+
 	/**
-	 *  Convenience routine to set volume of current music 
+	 *  Convenience routine to set volume of current music
 	 */
 	private void setVolume() {
 		// Do bounds checking
@@ -147,10 +147,10 @@ public class SoundURLTest extends BasicGame {
 		} else if(volume < 0) {
 			volume = 0;
 		}
-		
+
 		music.setVolume(volume / 10.0f);
 	}
-	
+
 	/**
 	 * Entry point to the sound test
 	 * 

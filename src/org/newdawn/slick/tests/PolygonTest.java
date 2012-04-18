@@ -20,7 +20,7 @@ public class PolygonTest extends BasicGame {
 	private boolean in;
 	/** The y offset */
 	private float y;
-	
+
 	/**
 	 * Create the test
 	 */
@@ -39,7 +39,7 @@ public class PolygonTest extends BasicGame {
 		poly.addPoint(280, 250);
 		poly.addPoint(300, 200);
 		poly.addPoint(240, 150);
-		
+
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class PolygonTest extends BasicGame {
 	 */
 	public void update(GameContainer container, int delta) throws SlickException {
 		in = poly.contains(container.getInput().getMouseX(), container.getInput().getMouseY());
-		
+
 		poly.setCenterY(0);
 	}
 

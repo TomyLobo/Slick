@@ -103,8 +103,8 @@ public class FontUtils {
 	 * @param alignment The alignment to apply
 	 * @param x The x location to draw at
 	 * @param y The y location to draw at
-	 * @param width The width to fill with the string 
-	 * @param color The color to draw in 
+	 * @param width The width to fill with the string
+	 * @param color The color to draw in
 	 * @return The final x coordinate of the text
 	 */
 	public static final int drawString(Font font, final String s,

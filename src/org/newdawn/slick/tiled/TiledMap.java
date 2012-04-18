@@ -527,11 +527,11 @@ public class TiledMap {
 			if (height > width)
 				min = (startLineTileY < width - 1) ? startLineTileY : (width
 						- currentTileX < height) ? width - currentTileX - 1
-						: width - 1;
+								: width - 1;
 			else
 				min = (startLineTileY < height - 1) ? startLineTileY : (width
 						- currentTileX < height) ? width - currentTileX - 1
-						: height - 1;
+								: height - 1;
 
 			for (int burner = 0; burner <= min; currentTileX++, currentTileY--, burner++) {
 				for (int layerIdx = 0; layerIdx < drawLayers.size(); layerIdx++) {

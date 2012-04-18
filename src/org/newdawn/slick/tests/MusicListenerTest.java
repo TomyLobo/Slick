@@ -23,7 +23,7 @@ public class MusicListenerTest extends BasicGame implements MusicListener {
 	private Music music;
 	/** The music to be streamed */
 	private Music stream;
-	
+
 	/**
 	 * Create a new test
 	 */
@@ -37,7 +37,7 @@ public class MusicListenerTest extends BasicGame implements MusicListener {
 	public void init(GameContainer container) throws SlickException {
 		music = new Music("testdata/restart.ogg", false);
 		stream = new Music("testdata/restart.ogg", false);
-		
+
 		music.addListener(this);
 		stream.addListener(this);
 	}
@@ -61,7 +61,7 @@ public class MusicListenerTest extends BasicGame implements MusicListener {
 	public void musicSwapped(Music music, Music newMusic) {
 		musicSwapped = true;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
 	 */
@@ -91,7 +91,7 @@ public class MusicListenerTest extends BasicGame implements MusicListener {
 			stream.play();
 		}
 	}
-	
+
 	/**
 	 * Entry point to the sound test
 	 * 

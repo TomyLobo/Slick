@@ -27,14 +27,14 @@ public class TestBox extends BasicGame {
 	private int index;
 	/** The game container */
 	private AppGameContainer container;
-	
+
 	/**
 	 * Create a new box containing all the tests
 	 */
 	public TestBox() {
 		super("Test Box");
 	}
-	
+
 	/**
 	 * Add a game to the box
 	 * 
@@ -43,7 +43,7 @@ public class TestBox extends BasicGame {
 	public void addGame(Class game) {
 		games.add(game);
 	}
-	
+
 	/**
 	 * Move to the next game
 	 */
@@ -51,15 +51,15 @@ public class TestBox extends BasicGame {
 		if (index == -1) {
 			return;
 		}
-		
+
 		index++;
 		if (index >= games.size()) {
 			index=0;
 		}
-	
+
 		startGame();
 	}
-	
+
 	/**
 	 * Start a particular game
 	 */
@@ -72,10 +72,10 @@ public class TestBox extends BasicGame {
 		} catch (Exception e) {
 			Log.error(e);
 		}
-		
+
 		container.setTitle(currentGame.getTitle());
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -171,7 +171,7 @@ public class TestBox extends BasicGame {
 	public void controllerRightReleased(int controller) {
 		currentGame.controllerRightReleased(controller);
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#controllerUpPressed(int)
 	 */
@@ -191,7 +191,7 @@ public class TestBox extends BasicGame {
 	 */
 	public void keyPressed(int key, char c) {
 		currentGame.keyPressed(key, c);
-		
+
 		if (key == Input.KEY_ENTER) {
 			nextGame();
 		}
@@ -263,7 +263,7 @@ public class TestBox extends BasicGame {
 			box.addGame(SoundTest.class);
 			box.addGame(SpriteSheetFontTest.class);
 			box.addGame(TransparentColorTest.class);
-			
+
 			AppGameContainer container = new AppGameContainer(box);
 			container.setDisplayMode(800,600,false);
 			container.start();

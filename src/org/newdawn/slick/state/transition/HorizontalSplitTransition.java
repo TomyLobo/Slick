@@ -34,7 +34,7 @@ public class HorizontalSplitTransition implements Transition {
 	 * Create a new transition
 	 */
 	public HorizontalSplitTransition() {
-		
+
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class HorizontalSplitTransition implements Transition {
 	public HorizontalSplitTransition(Color background) {
 		this.background = background;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.state.transition.Transition#init(org.newdawn.slick.state.GameState, org.newdawn.slick.state.GameState)
 	 */
@@ -76,7 +76,7 @@ public class HorizontalSplitTransition implements Transition {
 		prev.render(container, game, g);
 		GL.glPopMatrix();
 		g.clearClip();
-		
+
 		g.translate(offset*2, 0);
 		g.setClip((int)((container.getWidth()/2)+offset),0,container.getWidth()/2,container.getHeight());
 		if (background != null) {

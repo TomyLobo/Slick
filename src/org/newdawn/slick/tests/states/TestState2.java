@@ -29,7 +29,7 @@ public class TestState2 extends BasicGameState {
 	private float ang;
 	/** The game holding this state */
 	private StateBasedGame game;
-	
+
 	/**
 	 * @see org.newdawn.slick.state.BasicGameState#getID()
 	 */
@@ -53,7 +53,7 @@ public class TestState2 extends BasicGameState {
 		g.setFont(font);
 		g.setColor(Color.green);
 		g.drawString("This is State 2", 200, 50);
-		
+
 		g.rotate(400,300,ang);
 		g.drawImage(image,400-(image.getWidth()/2),300-(image.getHeight()/2));
 	}
@@ -64,7 +64,7 @@ public class TestState2 extends BasicGameState {
 	public void update(GameContainer container, StateBasedGame game, int delta) {
 		ang += delta * 0.1f;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.state.BasicGameState#keyReleased(int, char)
 	 */

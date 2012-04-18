@@ -20,7 +20,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class VerticalSplitTransition implements Transition {
 	/** The renderer to use for all GL operations */
 	protected static SGL GL = Renderer.get();
-	
+
 	/** The previous game state */
 	private GameState prev;
 	/** The current offset */
@@ -29,12 +29,12 @@ public class VerticalSplitTransition implements Transition {
 	private boolean finish;
 	/** The background to draw underneath the previous state (null for none) */
 	private Color background;
-	
+
 	/**
 	 * Create a new transition
 	 */
 	public VerticalSplitTransition() {
-		
+
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class VerticalSplitTransition implements Transition {
 	public VerticalSplitTransition(Color background) {
 		this.background = background;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.state.transition.Transition#init(org.newdawn.slick.state.GameState, org.newdawn.slick.state.GameState)
 	 */
@@ -77,7 +77,7 @@ public class VerticalSplitTransition implements Transition {
 		GL.glPopMatrix();
 		g.clearClip();
 		g.resetTransform();
-		
+
 		g.translate(0, offset);
 		g.setClip(0,(int)((container.getHeight()/2)+(offset)),container.getWidth(),container.getHeight()/2);
 		if (background != null) {

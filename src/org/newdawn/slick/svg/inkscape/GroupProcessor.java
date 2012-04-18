@@ -29,7 +29,7 @@ public class GroupProcessor implements ElementProcessor {
 	public void process(Loader loader, Element element, Diagram diagram, Transform t) throws ParsingException {
 		Transform transform = Util.getTransform(element);
 		transform = new Transform(t, transform);
-		
+
 		loader.loadChildren(element, transform);
 	}
 

@@ -17,14 +17,14 @@ import org.newdawn.slick.SlickException;
 public class ImageBufferTest extends BasicGame {
 	/** The image we're currently displaying */
 	private Image image;
-	
+
 	/**
 	 * Create a new image buffer rendering test
 	 */
 	public ImageBufferTest() {
 		super("Image Buffer Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */

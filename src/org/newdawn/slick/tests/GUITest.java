@@ -40,14 +40,14 @@ public class GUITest extends BasicGame implements ComponentListener {
 	private Font font;
 	/** The container */
 	private AppGameContainer app;
-	
+
 	/**
 	 * Create a new test of GUI  rendering
 	 */
 	public GUITest() {
 		super("GUI Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -56,7 +56,7 @@ public class GUITest extends BasicGame implements ComponentListener {
 			app = (AppGameContainer) container;
 			app.setIcon("testdata/icon.tga");
 		}
-		
+
 		font = new AngelCodeFont("testdata/demo2.fnt","testdata/demo2_00.tga");
 		field = new TextField(container, font, 150,20,500,35, new ComponentListener() {
 			public void componentActivated(AbstractComponent source) {
@@ -71,13 +71,13 @@ public class GUITest extends BasicGame implements ComponentListener {
 			}
 		});
 		field2.setBorderColor(Color.red);
-		
+
 		this.container = container;
-		
+
 		image = new Image("testdata/logo.tga");
 		background = new Image("testdata/dungeontiles.gif");
 		container.setMouseCursor("testdata/cursor.tga", 0, 0);
-		
+
 		for (int i=0;i<4;i++) {
 			areas[i] = new MouseOverArea(container, image, 300, 100 + (i*100), 200, 90, this);
 			areas[i].setNormalColor(new Color(1,1,1,0.8f));
@@ -90,13 +90,13 @@ public class GUITest extends BasicGame implements ComponentListener {
 	 */
 	public void render(GameContainer container, Graphics g) {
 		background.draw(0, 0, 800, 500);
-		
+
 		for (int i=0;i<4;i++) {
 			areas[i].render(container, g);
 		}
 		field.render(container, g);
 		field2.render(container, g);
-		
+
 		g.setFont(font);
 		g.drawString(message, 200, 550);
 	}
@@ -120,14 +120,14 @@ public class GUITest extends BasicGame implements ComponentListener {
 		if (key == Input.KEY_F1) {
 			if (app != null) {
 				try {
-					app.setDisplayMode(640,480,false);		
+					app.setDisplayMode(640,480,false);
 				} catch (SlickException e) {
 					Log.error(e);
 				}
 			}
 		}
 	}
-	
+
 	/**
 	 * Entry point to our test
 	 * 

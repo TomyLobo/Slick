@@ -17,7 +17,7 @@ public interface LoadableImageData extends ImageData {
 	 * @param edging True if we should edge
 	 */
 	public void configureEdging(boolean edging);
-	
+
 	/**
 	 * Load a image from the specified stream
 	 * 
@@ -38,7 +38,7 @@ public interface LoadableImageData extends ImageData {
 	 */
 	public ByteBuffer loadImage(InputStream fis, boolean flipped, int[] transparent)
 			throws IOException;
-	
+
 	/**
 	 * Load a image from the specified stream
 	 * 

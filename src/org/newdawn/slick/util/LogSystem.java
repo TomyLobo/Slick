@@ -28,7 +28,7 @@ public interface LogSystem {
 	 * @param message The message describing the error
 	 */
 	public void error(String message);
-	
+
 	/**
 	 * Log a warning
 	 * 
@@ -43,7 +43,7 @@ public interface LogSystem {
 	 * @param e The cause of the warning
 	 */
 	public void warn(String message, Throwable e);
-	
+
 	/**
 	 * Log an information message
 	 * 

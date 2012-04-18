@@ -8,12 +8,12 @@ import org.newdawn.slick.state.StateBasedGame;
 
 /**
  * A transition that will combine two states into one effect. The first state is
- * the one we're transitioning from. The second state is specified in the constructor. 
+ * the one we're transitioning from. The second state is specified in the constructor.
  * 
  * By default one state will simply be rendered over the other. Subclass this transition
  * overriding the preRenderFirstState and preRenderSecondState to setup the rendering
- * for each state (alpha or what ever). Note that it's also possible to use the 
- * postRenderSecondState method to clean up your OpenGL setup. 
+ * for each state (alpha or what ever). Note that it's also possible to use the
+ * postRenderSecondState method to clean up your OpenGL setup.
  * 
  * So these methods are called like so:
  * 
@@ -28,17 +28,17 @@ import org.newdawn.slick.state.StateBasedGame;
 public abstract class CrossStateTransition implements Transition {
 	/** The second state to cross with */
 	private GameState secondState;
-	
+
 	/**
 	 * Create a cross state transitions
 	 * 
-	 * @param secondState The secondary state with combining with the 
+	 * @param secondState The secondary state with combining with the
 	 * source state.
 	 */
 	public CrossStateTransition(GameState secondState) {
 		this.secondState = secondState;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.state.transition.Transition#isComplete()
 	 */
@@ -77,7 +77,7 @@ public abstract class CrossStateTransition implements Transition {
 	 */
 	public void preRenderFirstState(StateBasedGame game, GameContainer container, Graphics g) throws SlickException {
 	}
-	
+
 	/**
 	 * Notification that the transition is about to render the second state is the cross
 	 * transition.
@@ -98,8 +98,8 @@ public abstract class CrossStateTransition implements Transition {
 	 * @param container The container holding the game
 	 * @param g The graphic context used to render
 	 * @throws SlickException Indicates a failure to setup the rendering state - throw for anything that goes wrong
-	 */	
+	 */
 	public void postRenderSecondState(StateBasedGame game, GameContainer container, Graphics g) throws SlickException {
 	}
-	
+
 }

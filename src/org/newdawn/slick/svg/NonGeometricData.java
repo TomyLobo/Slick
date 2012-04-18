@@ -5,7 +5,7 @@ import java.util.Properties;
 import org.newdawn.slick.Color;
 
 /**
- * A set of data about a shape that doesn't fit into it's geometric 
+ * A set of data about a shape that doesn't fit into it's geometric
  * configuration.
  *
  * @author kevin
@@ -29,15 +29,15 @@ public class NonGeometricData {
 	public static final String STROKE_DASHOFFSET = "stroke-dashoffset";
 	/** The alpha value for drawing */
 	public static final String STROKE_OPACITY = "stroke-opacity";
-	
+
 	/** Value indicating that no settings has been specified */
 	public static final String NONE = "none";
-	
+
 	/** The meta data stored for the figure */
 	private String metaData = "";
 	/** The attributes stored for the figure */
 	private Properties props = new Properties();
-	
+
 	/**
 	 * Create a set of non-geometric data for a figure
 	 * 
@@ -47,7 +47,7 @@ public class NonGeometricData {
 		this.metaData = metaData;
 		addAttribute(STROKE_WIDTH, "1");
 	}
-	
+
 	/**
 	 * Morph the color from a string
 	 * 
@@ -64,21 +64,21 @@ public class NonGeometricData {
 		if (str.equals("black")) {
 			return "#000000";
 		}
-		
+
 		return str;
 	}
-	
+
 	/**
 	 * Add a configured style attribute into the data set
 	 * 
-	 * @param attribute The attribute to add  
+	 * @param attribute The attribute to add
 	 * @param value The value to assign
 	 */
 	public void addAttribute(String attribute, String value) {
 		if (value == null) {
 			value = "";
 		}
-		
+
 		if (attribute.equals(FILL) ) {
 			value = morphColor(value);
 		}
@@ -104,7 +104,7 @@ public class NonGeometricData {
 			}
 			value = morphColor(value);
 		}
-		
+
 		props.setProperty(attribute, value);
 	}
 
@@ -117,7 +117,7 @@ public class NonGeometricData {
 	public boolean isColor(String attribute) {
 		return getAttribute(attribute).startsWith("#");
 	}
-	
+
 	/**
 	 * Get the meta data assigned to the figure. Either the label or
 	 * the id value.
@@ -127,7 +127,7 @@ public class NonGeometricData {
 	public String getMetaData() {
 		return metaData;
 	}
-	
+
 	/**
 	 * Get the attribtue value for a given attribute
 	 * 
@@ -137,7 +137,7 @@ public class NonGeometricData {
 	public String getAttribute(String attribute) {
 		return props.getProperty(attribute);
 	}
-	
+
 	/**
 	 * Get an attribute value converted to a color. isColor should first be checked
 	 * 
@@ -148,12 +148,12 @@ public class NonGeometricData {
 		if (!isColor(attribute)) {
 			throw new RuntimeException("Attribute "+attribute+" is not specified as a color:"+getAttribute(attribute));
 		}
-		
+
 		int col = Integer.parseInt(getAttribute(attribute).substring(1), 16);
-		
+
 		return new Color(col);
 	}
-	
+
 	/**
 	 * Get the attribute value as a reference to another entity
 	 * 
@@ -165,12 +165,12 @@ public class NonGeometricData {
 		if (value.length() < 7) {
 			return "";
 		}
-		
+
 		value = value.substring(5, value.length()-1);
-		
+
 		return value;
 	}
-	
+
 	/**
 	 * Get an attribute converted to a float value
 	 * 
@@ -182,11 +182,11 @@ public class NonGeometricData {
 		if (value == null) {
 			return 0;
 		}
-		
+
 		try {
 			return Float.parseFloat(value);
 		} catch (NumberFormatException e) {
-			throw new RuntimeException("Attribute "+attribute+" is not specified as a float:"+getAttribute(attribute));			
+			throw new RuntimeException("Attribute "+attribute+" is not specified as a float:"+getAttribute(attribute));
 		}
 	}
 
@@ -198,7 +198,7 @@ public class NonGeometricData {
 	public boolean isFilled() {
 		return isColor(NonGeometricData.FILL);
 	}
-	
+
 	/**
 	 * True if the shape is meant to be outlined
 	 * 

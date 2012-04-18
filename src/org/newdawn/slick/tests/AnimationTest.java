@@ -28,20 +28,20 @@ public class AnimationTest extends BasicGame {
 	private GameContainer container;
 	/** Start limited counter */
 	private int start = 5000;
-	
+
 	/**
 	 * Create a new image rendering test
 	 */
 	public AnimationTest() {
 		super("Animation Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
 		this.container = container;
-		
+
 		SpriteSheet sheet = new SpriteSheet("testdata/homeranim.png", 36, 65);
 		animation = new Animation();
 		for (int i=0;i<8;i++) {
@@ -69,7 +69,7 @@ public class AnimationTest extends BasicGame {
 		g.drawString("Til Limited animation: "+start, 100, 500);
 		g.drawString("Hold 1 to move the manually animated", 100, 70);
 		g.drawString("PingPong Frame:"+pingPong.getFrame(), 600, 70);
-		
+
 		g.scale(-1,1);
 		animation.draw(-100,100);
 		animation.draw(-200,100,36*4,65*4);

@@ -27,7 +27,7 @@ public class MorphShapeTest extends BasicGame {
 	private MorphShape morph;
 	/** The current morph time */
 	private float time;
-	
+
 	/**
 	 * Create a simple test
 	 */
@@ -45,11 +45,11 @@ public class MorphShapeTest extends BasicGame {
 		b = b.transform(Transform.createRotateTransform(-0.6f,100,100));
 		c = new Rectangle(300,100,50,200);
 		c = c.transform(Transform.createRotateTransform(-0.2f,100,100));
-		
+
 		morph = new MorphShape(a);
 		morph.addShape(b);
 		morph.addShape(c);
-		
+
 		container.setVSync(true);
 	}
 

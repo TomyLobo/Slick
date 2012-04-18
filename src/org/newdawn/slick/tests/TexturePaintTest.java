@@ -23,19 +23,19 @@ public class TexturePaintTest extends BasicGame {
 	private Polygon poly = new Polygon();
 	/** The image being textured */
 	private Image image;
-	
+
 	/** The texture paint rectangle */
 	private Rectangle texRect = new Rectangle(50,50,100,100);
 	/** The texture paint */
 	private TexCoordGenerator texPaint;
-	
+
 	/**
 	 * Create the test
 	 */
 	public TexturePaintTest() {
 		super("Texture Paint Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -44,14 +44,14 @@ public class TexturePaintTest extends BasicGame {
 		poly.addPoint(420, 100);
 		poly.addPoint(620, 420);
 		poly.addPoint(300, 320);
-	
+
 		image = new Image("testdata/rocks.png");
-		
+
 		texPaint = new TexCoordGenerator() {
 			public Vector2f getCoordFor(float x, float y) {
 				float tx = (texRect.getX() - x) / texRect.getWidth();
 				float ty = (texRect.getY() - y) / texRect.getHeight();
-				
+
 				return new Vector2f(tx,ty);
 			}
 		};
@@ -69,7 +69,7 @@ public class TexturePaintTest extends BasicGame {
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		g.setColor(Color.white);
 		g.texture(poly, image);
-		
+
 		ShapeRenderer.texture(poly, image, texPaint);
 	}
 

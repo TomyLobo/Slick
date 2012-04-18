@@ -13,27 +13,27 @@ import org.newdawn.slick.SlickException;
  * @author kevin
  */
 public class ImageMemTest extends BasicGame {
-	
+
 	/**
 	 * Create a new image rendering test
 	 */
 	public ImageMemTest() {
 		super("Image Memory Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
 		try {
-            Image img = new Image(2400, 2400);
-            img.getGraphics();
-            img.destroy();
-            img = new Image(2400, 2400);
-            img.getGraphics();
-        } catch (Exception ex) {
-        	ex.printStackTrace();
-        }
+			Image img = new Image(2400, 2400);
+			img.getGraphics();
+			img.destroy();
+			img = new Image(2400, 2400);
+			img.getGraphics();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	/**

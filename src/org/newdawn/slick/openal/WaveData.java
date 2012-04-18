@@ -1,31 +1,31 @@
-/* 
+/*
  * Copyright (c) 2002-2004 LWJGL Project
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are 
+ * modification, are permitted provided that the following conditions are
  * met:
  * 
- * * Redistributions of source code must retain the above copyright 
+ * * Redistributions of source code must retain the above copyright
  *   notice, this list of conditions and the following disclaimer.
  *
  * * Redistributions in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in the
  *   documentation and/or other materials provided with the distribution.
  *
- * * Neither the name of 'LWJGL' nor the names of 
- *   its contributors may be used to endorse or promote products derived 
+ * * Neither the name of 'LWJGL' nor the names of
+ *   its contributors may be used to endorse or promote products derived
  *   from this software without specific prior written permission.
  * 
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
  * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR 
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, 
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
  * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
+ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
@@ -87,49 +87,49 @@ public class WaveData {
 	/**
 	 * Creates a WaveData container from the specified url
 	 * 
-	 * @param path URL to file 
+	 * @param path URL to file
 	 * @return WaveData containing data, or null if a failure occured
 	 */
 	public static WaveData create(URL path) {
 		try {
 			return create(
-				AudioSystem.getAudioInputStream(
-					new BufferedInputStream(path.openStream())));
+					AudioSystem.getAudioInputStream(
+							new BufferedInputStream(path.openStream())));
 		} catch (Exception e) {
 			org.lwjgl.LWJGLUtil.log("Unable to create from: " + path);
 			e.printStackTrace();
 			return null;
-		}		
+		}
 	}
-	
+
 	/**
 	 * Creates a WaveData container from the specified in the classpath
 	 * 
-	 * @param path path to file (relative, and in classpath) 
+	 * @param path path to file (relative, and in classpath)
 	 * @return WaveData containing data, or null if a failure occured
 	 */
 	public static WaveData create(String path) {
 		return create(WaveData.class.getClassLoader().getResource(path));
 	}
-	
+
 	/**
 	 * Creates a WaveData container from the specified inputstream
 	 * 
-	 * @param is InputStream to read from 
+	 * @param is InputStream to read from
 	 * @return WaveData containing data, or null if a failure occured
 	 */
 	public static WaveData create(InputStream is) {
 		try {
 			return create(
-				AudioSystem.getAudioInputStream(is));
+					AudioSystem.getAudioInputStream(is));
 		} catch (Exception e) {
 			org.lwjgl.LWJGLUtil.log("Unable to create from inputstream");
 			e.printStackTrace();
 			return null;
-		}		
-	}	
-	
-	/**	
+		}
+	}
+
+	/**
 	 * Creates a WaveData container from the specified bytes
 	 *
 	 * @param buffer array of bytes containing the complete wave file
@@ -138,17 +138,17 @@ public class WaveData {
 	public static WaveData create(byte[] buffer) {
 		try {
 			return create(
-				AudioSystem.getAudioInputStream(
-					new BufferedInputStream(new ByteArrayInputStream(buffer))));
+					AudioSystem.getAudioInputStream(
+							new BufferedInputStream(new ByteArrayInputStream(buffer))));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
-	/**	
+
+	/**
 	 * Creates a WaveData container from the specified ByetBuffer.
-	 * If the buffer is backed by an array, it will be used directly, 
+	 * If the buffer is backed by an array, it will be used directly,
 	 * else the contents of the buffer will be copied using get(byte[]).
 	 *
 	 * @param buffer ByteBuffer containing sound file
@@ -157,7 +157,7 @@ public class WaveData {
 	public static WaveData create(ByteBuffer buffer) {
 		try {
 			byte[] bytes = null;
-			
+
 			if(buffer.hasArray()) {
 				bytes = buffer.array();
 			} else {
@@ -169,7 +169,7 @@ public class WaveData {
 			e.printStackTrace();
 			return null;
 		}
-	}	
+	}
 
 	/**
 	 * Creates a WaveData container from the specified stream
@@ -205,14 +205,14 @@ public class WaveData {
 
 		//read data into buffer
 		byte[] buf =
-			new byte[audioformat.getChannels()
-				* (int) ais.getFrameLength()
-				* audioformat.getSampleSizeInBits()
-				/ 8];
+				new byte[audioformat.getChannels()
+				         * (int) ais.getFrameLength()
+				         * audioformat.getSampleSizeInBits()
+				         / 8];
 		int read = 0, total = 0;
 		try {
 			while ((read = ais.read(buf, total, buf.length - total)) != -1
-				&& total < buf.length) {
+					&& total < buf.length) {
 				total += read;
 			}
 		} catch (IOException ioe) {
@@ -221,13 +221,13 @@ public class WaveData {
 
 		//insert data into bytebuffer
 		ByteBuffer buffer = convertAudioBytes(buf, audioformat.getSampleSizeInBits() == 16);
-/*		ByteBuffer buffer = ByteBuffer.allocateDirect(buf.length);
+		/*		ByteBuffer buffer = ByteBuffer.allocateDirect(buf.length);
 		buffer.put(buf);
 		buffer.rewind();*/
 
 		//create our result
 		WaveData wavedata =
-			new WaveData(buffer, channels, (int) audioformat.getSampleRate());
+				new WaveData(buffer, channels, (int) audioformat.getSampleRate());
 
 		//close stream
 		try {

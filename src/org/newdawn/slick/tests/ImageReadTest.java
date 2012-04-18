@@ -20,14 +20,14 @@ public class ImageReadTest extends BasicGame {
 	private Color[] read = new Color[6];
 	/** The main graphics context */
 	private Graphics g;
-	
+
 	/**
 	 * Create a new image reading test
 	 */
 	public ImageReadTest() {
 		super("Image Read Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -44,7 +44,7 @@ public class ImageReadTest extends BasicGame {
 	 */
 	public void render(GameContainer container, Graphics g) {
 		this.g = g;
-		
+
 		image.draw(100,100);
 		g.setColor(Color.white);
 		g.drawString("Move mouse over test image", 200, 20);
@@ -72,13 +72,13 @@ public class ImageReadTest extends BasicGame {
 	public void update(GameContainer container, int delta) {
 		int mx = container.getInput().getMouseX();
 		int my = container.getInput().getMouseY();
-		
+
 		if ((mx >= 100) && (my >= 100) && (mx < 200) && (my < 200)) {
 			read[4] = image.getColor(mx-100,my-100);
 		} else {
 			read[4] = Color.black;
 		}
-		
+
 		read[5] = g.getPixel(mx, my);
 	}
 

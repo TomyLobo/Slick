@@ -35,7 +35,7 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 	private boolean showLinks = true;
 	/** The path if there is one current found between the two points */
 	private NavPath path;
-	
+
 	/** The x coordinate of the start of the search */
 	private float sx;
 	/** The y coordinate of the start of the search */
@@ -46,7 +46,7 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 	private float ey;
 	/** The tile based map we're searching across - loaded from a raw file */
 	private DataMap dataMap;
-	
+
 	/**
 	 * Create a new test
 	 */
@@ -57,7 +57,7 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 	/**
 	 * Initialise resources and the map data
 	 * 
-	 * @param container the container the game is running in 
+	 * @param container the container the game is running in
 	 */
 	public void init(GameContainer container) throws SlickException {
 		container.setShowFPS(false);
@@ -69,10 +69,10 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 		}
 		builder = new NavMeshBuilder();
 		navMesh = builder.build(dataMap);
-		
+
 		System.out.println("Navmesh shapes: "+navMesh.getSpaceCount());
 	}
-	
+
 	/**
 	 * Update data map etc
 	 */
@@ -103,7 +103,7 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 				}
 			}
 		}
-		
+
 		if (showSpaces) {
 			for (int i=0;i<navMesh.getSpaceCount();i++) {
 				Space space = navMesh.getSpace(i);
@@ -124,7 +124,7 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 				}
 			}
 		}
-		
+
 		if (path != null) {
 			g.setColor(Color.white);
 			for (int i=0;i<path.length()-1;i++) {
@@ -132,7 +132,7 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 			}
 		}
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see org.newdawn.slick.util.pathfinding.PathFindingContext#getMover()
@@ -172,7 +172,7 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 	public void mousePressed(int button, int x, int y) {
 		float mx = (x - 50) / 10.0f;
 		float my = (y - 50) / 10.0f;
-		
+
 		if (button == 0) {
 			sx = mx;
 			sy = my;
@@ -192,7 +192,7 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 	private class DataMap implements TileBasedMap {
 		/** The map data */
 		private byte[] map = new byte[50*50];
-	
+
 		/**
 		 * Create a new map loading it from a file
 		 * 
@@ -211,10 +211,10 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 			if ((tx < 0) || (ty < 0) || (tx >= 50) || (ty >= 50)) {
 				return false;
 			}
-			
+
 			return map[tx+(ty*50)] != 0;
 		}
-		
+
 		/*
 		 * (non-Javadoc)
 		 * @see org.newdawn.slick.util.pathfinding.TileBasedMap#getCost(org.newdawn.slick.util.pathfinding.PathFindingContext, int, int)
@@ -246,7 +246,7 @@ public class NavMeshTest extends BasicGame implements PathFindingContext {
 		public void pathFinderVisited(int x, int y) {
 		}
 	}
-	
+
 	/**
 	 * Entry point to out application
 	 * 

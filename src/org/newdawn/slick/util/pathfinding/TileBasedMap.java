@@ -23,18 +23,18 @@ public interface TileBasedMap {
 	 * @return The number of tiles down the map
 	 */
 	public int getHeightInTiles();
-	
+
 	/**
-	 * Notification that the path finder visited a given tile. This is 
+	 * Notification that the path finder visited a given tile. This is
 	 * used for debugging new heuristics.
 	 * 
 	 * @param x The x coordinate of the tile that was visited
 	 * @param y The y coordinate of the tile that was visited
 	 */
 	public void pathFinderVisited(int x, int y);
-	
+
 	/**
-	 * Check if the given location is blocked, i.e. blocks movement of 
+	 * Check if the given location is blocked, i.e. blocks movement of
 	 * the supplied mover.
 	 * 
 	 * @param context The context describing the pathfinding at the time of this request
@@ -43,9 +43,9 @@ public interface TileBasedMap {
 	 * @return True if the location is blocked
 	 */
 	public boolean blocked(PathFindingContext context, int tx, int ty);
-	
+
 	/**
-	 * Get the cost of moving through the given tile. This can be used to 
+	 * Get the cost of moving through the given tile. This can be used to
 	 * make certain areas more desirable. A simple and valid implementation
 	 * of this method would be to return 1 in all cases.
 	 * 

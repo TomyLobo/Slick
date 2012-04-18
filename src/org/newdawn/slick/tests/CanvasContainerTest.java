@@ -33,14 +33,14 @@ public class CanvasContainerTest extends BasicGame {
 	private Image subImage;
 	/** The current rotation of our test image */
 	private float rot;
-	
+
 	/**
 	 * Create a new image rendering test
 	 */
 	public CanvasContainerTest() {
 		super("Canvas Container Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -67,11 +67,11 @@ public class CanvasContainerTest extends BasicGame {
 		flipped2.draw(520,380);
 		Image flipped3 = flipped2.getFlippedCopy(true, false);
 		flipped3.draw(400,380);
-		
+
 		for (int i=0;i<3;i++) {
 			subImage.draw(200+(i*30),300);
 		}
-		
+
 		g.translate(500, 200);
 		g.rotate(50, 50, rot);
 		g.scale(0.3f,0.3f);
@@ -97,12 +97,12 @@ public class CanvasContainerTest extends BasicGame {
 	public static void main(String[] argv) {
 		try {
 			CanvasGameContainer container = new CanvasGameContainer(new CanvasContainerTest());
-			
+
 			Frame frame = new Frame("Test");
 			frame.setLayout(new GridLayout(1,2));
 			frame.setSize(500,500);
 			frame.add(container);
-			
+
 			frame.addWindowListener(new WindowAdapter() {
 				public void windowClosing(WindowEvent e) {
 					System.exit(0);

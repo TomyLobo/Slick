@@ -12,7 +12,7 @@ import org.newdawn.slick.geom.MorphShape;
 public class SVGMorph extends Diagram {
 	/** The list of figures being morphed */
 	private ArrayList figures = new ArrayList();
-	
+
 	/**
 	 * Create a new morph with a first diagram base
 	 * 
@@ -20,15 +20,15 @@ public class SVGMorph extends Diagram {
 	 */
 	public SVGMorph(Diagram diagram) {
 		super(diagram.getWidth(), diagram.getHeight());
-		
+
 		for (int i=0;i<diagram.getFigureCount();i++) {
 			Figure figure = diagram.getFigure(i);
 			Figure copy = new Figure(figure.getType(), new MorphShape(figure.getShape()), figure.getData(), figure.getTransform());
-			
+
 			figures.add(copy);
 		}
 	}
-	
+
 	/**
 	 * Add a subsquent step to the morphing
 	 * 
@@ -41,7 +41,7 @@ public class SVGMorph extends Diagram {
 		for (int i=0;i<diagram.getFigureCount();i++) {
 			Figure figure = diagram.getFigure(i);
 			String id = figure.getData().getMetaData();
-			
+
 			for (int j=0;j<figures.size();j++) {
 				Figure existing = (Figure) figures.get(j);
 				if (existing.getData().getMetaData().equals(id)) {
@@ -54,8 +54,8 @@ public class SVGMorph extends Diagram {
 	}
 
 	/**
-	 * Set the current diagram we should morph from. This only really works with 
-	 * updateMorphTime() but can be used for smooth transitions between 
+	 * Set the current diagram we should morph from. This only really works with
+	 * updateMorphTime() but can be used for smooth transitions between
 	 * morphs.
 	 * 
 	 * @param diagram The diagram to use as the base of the morph
@@ -63,7 +63,7 @@ public class SVGMorph extends Diagram {
 	public void setExternalDiagram(Diagram diagram) {
 		for (int i=0;i<figures.size();i++) {
 			Figure figure = (Figure) figures.get(i);
-			
+
 			for (int j=0;j<diagram.getFigureCount();j++) {
 				Figure newBase = diagram.getFigure(j);
 				if (newBase.getData().getMetaData().equals(figure.getData().getMetaData())) {
@@ -74,7 +74,7 @@ public class SVGMorph extends Diagram {
 			}
 		}
 	}
-	
+
 	/**
 	 * Update the morph time index by the amount specified
 	 * 
@@ -87,7 +87,7 @@ public class SVGMorph extends Diagram {
 			shape.updateMorphTime(delta);
 		}
 	}
-	
+
 	/**
 	 * Set the "time" index for this morph. This is given in terms of diagrams, so
 	 * 0.5f would give you the position half way between the first and second diagrams.
@@ -101,7 +101,7 @@ public class SVGMorph extends Diagram {
 			shape.setMorphTime(time);
 		}
 	}
-	
+
 	/**
 	 * @see Diagram#getFigureCount()
 	 */

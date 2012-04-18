@@ -33,7 +33,7 @@ public interface Texture {
 	 */
 	public int getImageHeight();
 
-	/** 
+	/**
 	 * Get the width of the original image
 	 *
 	 * @return The width of the original image
@@ -86,7 +86,7 @@ public interface Texture {
 	 * @return The texture data from the card for this texture
 	 */
 	public byte[] getTextureData();
-	
+
 	/**
 	 * Apply a given texture filter to the texture
 	 * 

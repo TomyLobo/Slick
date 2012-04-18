@@ -13,7 +13,7 @@ public class ParsingException extends SlickException {
 	/**
 	 * Create a new exception
 	 * 
-	 * @param nodeID The ID of the node that failed validation 
+	 * @param nodeID The ID of the node that failed validation
 	 * @param message The description of the failure
 	 * @param cause The exception causing this one
 	 */
@@ -24,7 +24,7 @@ public class ParsingException extends SlickException {
 	/**
 	 * Create a new exception
 	 * 
-	 * @param element The element that failed validation 
+	 * @param element The element that failed validation
 	 * @param message The description of the failure
 	 * @param cause The exception causing this one
 	 */
@@ -35,7 +35,7 @@ public class ParsingException extends SlickException {
 	/**
 	 * Create a new exception
 	 * 
-	 * @param nodeID The ID of the node that failed validation 
+	 * @param nodeID The ID of the node that failed validation
 	 * @param message The description of the failure
 	 */
 	public ParsingException(String nodeID, String message) {
@@ -45,7 +45,7 @@ public class ParsingException extends SlickException {
 	/**
 	 * Create a new exception
 	 * 
-	 * @param element The element that failed validation 
+	 * @param element The element that failed validation
 	 * @param message The description of the failure
 	 */
 	public ParsingException(Element element, String message) {

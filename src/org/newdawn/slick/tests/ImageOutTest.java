@@ -29,26 +29,26 @@ public class ImageOutTest extends BasicGame {
 	private Image copy;
 	/** The message to display */
 	private String message;
-	
+
 	/**
 	 * Create a new image rendering test
 	 */
 	public ImageOutTest() {
 		super("Image Out Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
 		this.container = container;
-		
+
 		try {
 			fire = ParticleIO.loadConfiguredSystem("testdata/system.xml");
 		} catch (IOException e) {
 			throw new SlickException("Failed to load particle systems", e);
 		}
-		
+
 		copy = new Image(400,300);
 		String[] formats = ImageOut.getSupportedFormats();
 		message = "Formats supported: ";
@@ -71,7 +71,7 @@ public class ImageOutTest extends BasicGame {
 		g.setDrawMode(Graphics.MODE_ADD);
 		g.drawImage(copy, 200, 300);
 		g.setDrawMode(Graphics.MODE_NORMAL);
-		
+
 		g.drawString(message, 10,400);
 		g.drawRect(200,0,400,300);
 		g.translate(400, 250);
@@ -90,13 +90,13 @@ public class ImageOutTest extends BasicGame {
 		ImageOut.write(copy, fname);
 		message = "Written "+fname;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer, int)
 	 */
 	public void update(GameContainer container, int delta) throws SlickException {
 		fire.update(delta);
-		
+
 		if (container.getInput().isKeyPressed(Input.KEY_P)) {
 			writeTo("ImageOutTest.png");
 		}

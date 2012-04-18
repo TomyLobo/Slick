@@ -10,7 +10,7 @@ public class Item {
 	/** The name injected by the XML parser */
 	protected String name;
 	/** The condition value injected by the XML parser */
-	protected int condition; 
+	protected int condition;
 
 	/**
 	 * Dump this object to sysout

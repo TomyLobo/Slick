@@ -16,10 +16,10 @@ public class AudioImpl implements Audio {
 	private int buffer;
 	/** The index of the source being used to play this sound */
 	private int index = -1;
-	
+
 	/** The length of the audio */
 	private float length;
-	
+
 	/**
 	 * Create a new sound
 	 * 
@@ -29,33 +29,33 @@ public class AudioImpl implements Audio {
 	AudioImpl(SoundStore store, int buffer) {
 		this.store = store;
 		this.buffer = buffer;
-		
+
 		int bytes = AL10.alGetBufferi(buffer, AL10.AL_SIZE);
 		int bits = AL10.alGetBufferi(buffer, AL10.AL_BITS);
 		int channels = AL10.alGetBufferi(buffer, AL10.AL_CHANNELS);
 		int freq = AL10.alGetBufferi(buffer, AL10.AL_FREQUENCY);
-		
+
 		int samples = bytes / (bits / 8);
 		length = (samples / (float) freq) / channels;
 	}
-	
+
 	/**
 	 * Get the ID of the OpenAL buffer holding this data (if any). This method
 	 * is not valid with streaming resources.
 	 * 
-	 * @return The ID of the OpenAL buffer holding this data 
+	 * @return The ID of the OpenAL buffer holding this data
 	 */
 	public int getBufferID() {
 		return buffer;
 	}
-	
+
 	/**
 	 *
 	 */
 	protected AudioImpl() {
-		
+
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.openal.Audio#stop()
 	 */
@@ -65,7 +65,7 @@ public class AudioImpl implements Audio {
 			index = -1;
 		}
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.openal.Audio#isPlaying()
 	 */
@@ -73,10 +73,10 @@ public class AudioImpl implements Audio {
 		if (index != -1) {
 			return store.isPlaying(index);
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.openal.Audio#playAsSoundEffect(float, float, boolean)
 	 */
@@ -93,7 +93,7 @@ public class AudioImpl implements Audio {
 		index = store.playAsSoundAt(buffer, pitch, gain, loop, x, y, z);
 		return store.getSource(index);
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.openal.Audio#playAsMusic(float, float, boolean)
 	 */
@@ -102,7 +102,7 @@ public class AudioImpl implements Audio {
 		index = 0;
 		return store.getSource(0);
 	}
-	
+
 	/**
 	 * Pause the music currently being played
 	 */
@@ -116,13 +116,13 @@ public class AudioImpl implements Audio {
 	public static void restartMusic() {
 		SoundStore.get().restartLoop();
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.openal.Audio#setPosition(float)
 	 */
 	public boolean setPosition(float position) {
 		position = position % length;
-		
+
 		AL10.alSourcef(store.getSource(index), AL11.AL_SEC_OFFSET, position);
 		if (AL10.alGetError() != 0) {
 			return false;

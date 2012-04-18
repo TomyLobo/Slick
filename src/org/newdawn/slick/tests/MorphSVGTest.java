@@ -24,7 +24,7 @@ public class MorphSVGTest extends BasicGame {
 	private float time;
 	/** The current x position */
 	private float x = -300;
-	
+
 	/**
 	 * Create a simple test
 	 */
@@ -41,7 +41,7 @@ public class MorphSVGTest extends BasicGame {
 		morph.addStep(InkscapeLoader.load("testdata/svg/walk2.svg"));
 		morph.addStep(InkscapeLoader.load("testdata/svg/walk3.svg"));
 		morph.addStep(InkscapeLoader.load("testdata/svg/walk4.svg"));
-		
+
 		container.setVSync(true);
 	}
 
@@ -51,7 +51,7 @@ public class MorphSVGTest extends BasicGame {
 	public void update(GameContainer container, int delta)
 			throws SlickException {
 		morph.updateMorphTime(delta * 0.003f);
-		
+
 		x += delta * 0.2f;
 		if (x > 550) {
 			x = -450;

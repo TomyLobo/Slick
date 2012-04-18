@@ -19,7 +19,7 @@ import org.newdawn.slick.util.ResourceLoader;
  * to traverse to extract into your normal data model.
  * 
  * This utility hopes to take a piece of XML and map it onto a previously designed data
- * model. At the moment it's way to tied to the structure of the XML but this will 
+ * model. At the moment it's way to tied to the structure of the XML but this will
  * hopefully change with time.
  * 
  * XML element names must be mapped to class names. This can be done in two ways either:
@@ -35,11 +35,11 @@ import org.newdawn.slick.util.ResourceLoader;
  * parameter of the type generated for the child element.
  * 
  * Classes can optionally implement setXMLElementName(String) and setXMLElementContent(String) to
- * recieve the name and content respectively of the XMLElement they were parsed from. This can 
+ * recieve the name and content respectively of the XMLElement they were parsed from. This can
  * help when mapping two elements to a single class.
  * 
  * To reiterate, I'm not sure this is a good idea yet. It helps me as a utility since I've done
- * this several times in the past but in the general case it may not be perfect. Consider a custom 
+ * this several times in the past but in the general case it may not be perfect. Consider a custom
  * parser using XMLParser or JAXB (et al) seriously instead.
  * 
  * @author kevin
@@ -54,13 +54,13 @@ public class ObjectTreeParser {
 	private ArrayList ignored = new ArrayList();
 	/** The name of the method to add an child object to it's parent */
 	private String addMethod = "add";
-	
+
 	/**
 	 * Create an object tree parser with no default package
 	 */
 	public ObjectTreeParser() {
 	}
-	
+
 	/**
 	 * Create an object tree parser specifing the default package
 	 * where classes will be search for using the XML element name
@@ -70,7 +70,7 @@ public class ObjectTreeParser {
 	public ObjectTreeParser(String defaultPackage) {
 		this.defaultPackage = defaultPackage;
 	}
-	
+
 	/**
 	 * Add a mapping between XML element name and class name
 	 * 
@@ -80,7 +80,7 @@ public class ObjectTreeParser {
 	public void addElementMapping(String elementName, Class elementClass) {
 		nameToClass.put(elementName, elementClass);
 	}
-	
+
 	/**
 	 * Add a name to the list of elements ignored
 	 * 
@@ -89,10 +89,10 @@ public class ObjectTreeParser {
 	public void addIgnoredElement(String elementName) {
 		ignored.add(elementName);
 	}
-	
+
 	/**
 	 * Set the name of the method to use to add child objects to their
-	 * parents. This is sometimes useful to not clash with the existing 
+	 * parents. This is sometimes useful to not clash with the existing
 	 * data model methods.
 	 * 
 	 * @param methodName The name of the method to call
@@ -100,7 +100,7 @@ public class ObjectTreeParser {
 	public void setAddMethodName(String methodName) {
 		addMethod = methodName;
 	}
-	
+
 	/**
 	 * Set the default package which will be search for classes by their XML
 	 * element name.
@@ -110,33 +110,33 @@ public class ObjectTreeParser {
 	public void setDefaultPackage(String defaultPackage) {
 		this.defaultPackage = defaultPackage;
 	}
-	
+
 	/**
 	 * Parse the XML document located by the slick resource loader using the
 	 * reference given.
 	 * 
 	 * @param ref The reference to the XML document
 	 * @return The root element of the newly parse document
-	 * @throws SlickXMLException Indicates a failure to parse the XML, most likely the 
+	 * @throws SlickXMLException Indicates a failure to parse the XML, most likely the
 	 * XML is malformed in some way.
 	 */
 	public Object parse(String ref) throws SlickXMLException {
 		return parse(ref, ResourceLoader.getResourceAsStream(ref));
 	}
-	
+
 	/**
 	 * Parse the XML document that can be read from the given input stream
 	 * 
 	 * @param name The name of the document
 	 * @param in The input stream from which the document can be read
 	 * @return The root element of the newly parse document
-	 * @throws SlickXMLException Indicates a failure to parse the XML, most likely the 
+	 * @throws SlickXMLException Indicates a failure to parse the XML, most likely the
 	 * XML is malformed in some way.
 	 */
 	public Object parse(String name, InputStream in) throws SlickXMLException {
 		XMLParser parser = new XMLParser();
 		XMLElement root = parser.parse(name, in);
-		
+
 		return traverse(root);
 	}
 
@@ -147,13 +147,13 @@ public class ObjectTreeParser {
 	 * @param ref The reference to the XML document
 	 * @param target The top level object that represents the root node
 	 * @return The root element of the newly parse document
-	 * @throws SlickXMLException Indicates a failure to parse the XML, most likely the 
+	 * @throws SlickXMLException Indicates a failure to parse the XML, most likely the
 	 * XML is malformed in some way.
 	 */
 	public Object parseOnto(String ref, Object target) throws SlickXMLException {
 		return parseOnto(ref, ResourceLoader.getResourceAsStream(ref), target);
 	}
-	
+
 	/**
 	 * Parse the XML document that can be read from the given input stream
 	 * 
@@ -161,18 +161,18 @@ public class ObjectTreeParser {
 	 * @param in The input stream from which the document can be read
 	 * @param target The top level object that represents the root node
 	 * @return The root element of the newly parse document
-	 * @throws SlickXMLException Indicates a failure to parse the XML, most likely the 
+	 * @throws SlickXMLException Indicates a failure to parse the XML, most likely the
 	 * XML is malformed in some way.
 	 */
 	public Object parseOnto(String name, InputStream in, Object target) throws SlickXMLException {
 		XMLParser parser = new XMLParser();
 		XMLElement root = parser.parse(name, in);
-		
+
 		return traverse(root, target);
 	}
-	
+
 	/**
-	 * Deterine the name of the class that should be used for a given 
+	 * Deterine the name of the class that should be used for a given
 	 * XML element name.
 	 * 
 	 * @param name The name of the XML element
@@ -183,7 +183,7 @@ public class ObjectTreeParser {
 		if (clazz != null) {
 			return clazz;
 		}
-		
+
 		if (defaultPackage != null) {
 			try {
 				return Class.forName(defaultPackage+"."+name);
@@ -191,7 +191,7 @@ public class ObjectTreeParser {
 				// ignore, it's just not there
 			}
 		}
-		
+
 		return null;
 	}
 
@@ -201,12 +201,12 @@ public class ObjectTreeParser {
 	 * 
 	 * @param current The XML element to process
 	 * @return The object created for the given element
-	 * @throws SlickXMLException 
+	 * @throws SlickXMLException
 	 */
 	private Object traverse(XMLElement current) throws SlickXMLException {
 		return traverse(current, null);
 	}
-	
+
 	/**
 	 * Traverse the XML element specified generating the appropriate object structure
 	 * for it and it's children
@@ -214,30 +214,30 @@ public class ObjectTreeParser {
 	 * @param current The XML element to process
 	 * @param instance The instance to parse onto, normally null
 	 * @return The object created for the given element
-	 * @throws SlickXMLException 
+	 * @throws SlickXMLException
 	 */
 	private Object traverse(XMLElement current, Object instance) throws SlickXMLException {
 		String name = current.getName();
 		if (ignored.contains(name)) {
 			return null;
 		}
-		
+
 		Class clazz;
-		
+
 		if (instance == null) {
 			clazz = getClassForElementName(name);
 		} else {
 			clazz = instance.getClass();
 		}
-		
+
 		if (clazz == null) {
 			throw new SlickXMLException("Unable to map element "+name+" to a class, define the mapping");
 		}
-		
+
 		try {
 			if (instance == null) {
 				instance = clazz.newInstance();
-				
+
 				Method elementNameMethod = getMethod(clazz, "setXMLElementName", new Class[] {String.class});
 				if (elementNameMethod != null) {
 					invoke(elementNameMethod, instance, new Object[] {name});
@@ -247,13 +247,13 @@ public class ObjectTreeParser {
 					invoke(contentMethod, instance, new Object[] {current.getContent()});
 				}
 			}
-			
+
 			String[] attrs = current.getAttributeNames();
 			for (int i=0;i<attrs.length;i++) {
 				String methodName = "set"+attrs[i];
-				
+
 				Method method = findMethod(clazz, methodName);
-				
+
 				if (method == null) {
 					Field field = findField(clazz, attrs[i]);
 					if (field != null) {
@@ -269,15 +269,15 @@ public class ObjectTreeParser {
 					invoke(method, instance, new Object[] {typedValue});
 				}
 			}
-			
+
 			XMLElementList children = current.getChildren();
 			for (int i=0;i<children.size();i++) {
 				XMLElement element = children.get(i);
-				
+
 				Object child = traverse(element);
 				if (child != null) {
 					String methodName = addMethod;
-					
+
 					Method method = findMethod(clazz, methodName, child.getClass());
 					if (method == null) {
 						Log.info("Unable to find method to add: "+child+" to "+clazz);
@@ -286,7 +286,7 @@ public class ObjectTreeParser {
 					}
 				}
 			}
-			
+
 			return instance;
 		} catch (InstantiationException e) {
 			throw new SlickXMLException("Unable to instance "+clazz+" for element "+name+", no zero parameter constructor?", e);
@@ -294,7 +294,7 @@ public class ObjectTreeParser {
 			throw new SlickXMLException("Unable to instance "+clazz+" for element "+name+", no zero parameter constructor?", e);
 		}
 	}
-	
+
 	/**
 	 * Convert a given value to a given type
 	 * 
@@ -315,7 +315,7 @@ public class ObjectTreeParser {
 			throw new SlickXMLException("Failed to convert: "+value+" to the expected primitive type: "+clazz, e);
 		}
 	}
-	
+
 	/**
 	 * Map a primitive class type to it's real object wrapper
 	 * 
@@ -338,12 +338,12 @@ public class ObjectTreeParser {
 		if (clazz == Long.TYPE) {
 			return Long.class;
 		}
-		
+
 		throw new RuntimeException("Unsupported primitive: "+clazz);
 	}
-	
+
 	/**
-	 * Find a field in a class by it's name. Note that this method is 
+	 * Find a field in a class by it's name. Note that this method is
 	 * only needed because the general reflection method is case
 	 * sensitive
 	 * 
@@ -363,12 +363,12 @@ public class ObjectTreeParser {
 				}
 			}
 		}
-		
+
 		return null;
 	}
 
 	/**
-	 * Find a method in a class by it's name. Note that this method is 
+	 * Find a method in a class by it's name. Note that this method is
 	 * only needed because the general reflection method is case
 	 * sensitive
 	 * 
@@ -382,13 +382,13 @@ public class ObjectTreeParser {
 			if (methods[i].getName().equalsIgnoreCase(name)) {
 				Method method = methods[i];
 				Class[] params = method.getParameterTypes();
-				
+
 				if (params.length == 1) {
 					return method;
 				}
 			}
 		}
-		
+
 		return null;
 	}
 
@@ -406,7 +406,7 @@ public class ObjectTreeParser {
 			if (methods[i].getName().equalsIgnoreCase(name)) {
 				Method method = methods[i];
 				Class[] params = method.getParameterTypes();
-				
+
 				if (params.length == 1) {
 					if (method.getParameterTypes()[0].isAssignableFrom(parameter)) {
 						return method;
@@ -414,16 +414,16 @@ public class ObjectTreeParser {
 				}
 			}
 		}
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * Set a field value on a object instance
 	 * 
 	 * @param field The field to be set
 	 * @param instance The instance of the object to set it on
-	 * @param value The value to set 
+	 * @param value The value to set
 	 * @throws SlickXMLException Indicates a failure to set or access the field
 	 */
 	private void setField(Field field, Object instance, Object value) throws SlickXMLException {
@@ -438,10 +438,10 @@ public class ObjectTreeParser {
 			field.setAccessible(false);
 		}
 	}
-	
+
 	/**
-	 * Call a method on a object 
-	 *  
+	 * Call a method on a object
+	 * 
 	 * @param method The method to call
 	 * @param instance The objet to call the method on
 	 * @param params The parameters to pass
@@ -461,9 +461,9 @@ public class ObjectTreeParser {
 			method.setAccessible(false);
 		}
 	}
-	
+
 	/**
-	 * Get a method on a given class. Only here for tidy purposes, 
+	 * Get a method on a given class. Only here for tidy purposes,
 	 * hides the the big exceptions.
 	 * 
 	 * @param clazz The class to search

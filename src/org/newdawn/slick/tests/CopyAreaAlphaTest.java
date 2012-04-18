@@ -18,14 +18,14 @@ public class CopyAreaAlphaTest extends BasicGame {
 	private Image textureMap;
 	/** The copied image */
 	private Image copy;
-	
+
 	/**
 	 * Create a new tester for the clip plane based clipping
 	 */
 	public CopyAreaAlphaTest() {
 		super("CopyArea Alpha Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -52,7 +52,7 @@ public class CopyAreaAlphaTest extends BasicGame {
 		g.setColor(Color.white);
 		g.fillOval(100,100,150,150);
 		textureMap.draw(10,50);
-		
+
 		g.copyArea(copy, 100,100);
 		g.setColor(Color.red);
 		g.fillRect(300,100,200,200);
@@ -64,7 +64,7 @@ public class CopyAreaAlphaTest extends BasicGame {
 	 */
 	public void keyPressed(int key, char c) {
 	}
-	
+
 	/**
 	 * Entry point to our test
 	 * 

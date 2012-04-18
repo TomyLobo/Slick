@@ -31,21 +31,21 @@ public class InputProviderTest extends BasicGame implements InputProviderListene
 	private InputProvider provider;
 	/** The message to be displayed */
 	private String message = "";
-	
+
 	/**
 	 * Create a new image rendering test
 	 */
 	public InputProviderTest() {
 		super("InputProvider Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
 		provider = new InputProvider(container.getInput());
 		provider.addListener(this);
-		
+
 		provider.bindCommand(new KeyControl(Input.KEY_LEFT), run);
 		provider.bindCommand(new KeyControl(Input.KEY_A), run);
 		provider.bindCommand(new ControllerDirectionControl(0, ControllerDirectionControl.LEFT), run);
@@ -84,7 +84,7 @@ public class InputProviderTest extends BasicGame implements InputProviderListene
 	public void controlReleased(Command command) {
 		message = "Released: "+command;
 	}
-	
+
 	/**
 	 * Entry point to our test
 	 * 

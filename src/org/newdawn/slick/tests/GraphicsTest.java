@@ -27,39 +27,39 @@ public class GraphicsTest extends BasicGame {
 	private Polygon poly;
 	/** The container holding this test */
 	private GameContainer container;
-	
+
 	/**
 	 * Create a new test of graphics context rendering
 	 */
 	public GraphicsTest() {
 		super("Graphics Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
 		this.container = container;
-		
+
 		image = new Image("testdata/logo.tga", true);
-		
+
 		Image temp = new Image("testdata/palette_tool.png");
 		container.setMouseCursor(temp, 0, 0);
-		
+
 		container.setIcons(new String[] {"testdata/icon.tga"});
 		container.setTargetFrameRate(100);
-		
+
 		poly = new Polygon();
 		float len = 100;
-		
+
 		for (int x=0;x<360;x+=30) {
 			if (len == 100) {
-				len = 50; 
+				len = 50;
 			} else {
 				len = 100;
 			}
-			poly.addPoint((float) FastTrig.cos(Math.toRadians(x)) * len, 
-						  (float) FastTrig.sin(Math.toRadians(x)) * len);
+			poly.addPoint((float) FastTrig.cos(Math.toRadians(x)) * len,
+					(float) FastTrig.sin(Math.toRadians(x)) * len);
 		}
 	}
 
@@ -68,20 +68,20 @@ public class GraphicsTest extends BasicGame {
 	 */
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		g.setColor(Color.white);
-		
+
 		g.setAntiAlias(true);
 		for (int x=0;x<360;x+=10) {
 			g.drawLine(700,100,(int) (700+(Math.cos(Math.toRadians(x))*100)),
-							   (int) (100+(Math.sin(Math.toRadians(x))*100)));
+					(int) (100+(Math.sin(Math.toRadians(x))*100)));
 		}
 		g.setAntiAlias(false);
-		
+
 		g.setColor(Color.yellow);
 		g.drawString("The Graphics Test!", 300, 50);
 		g.setColor(Color.white);
 		g.drawString("Space - Toggles clipping", 400, 80);
 		g.drawString("Frame rate capped to 100", 400, 120);
-		
+
 		if (clip) {
 			g.setColor(Color.gray);
 			g.drawRect(100,260,400,100);
@@ -98,11 +98,11 @@ public class GraphicsTest extends BasicGame {
 		g.translate(0, 230);
 		g.draw(poly);
 		g.resetTransform();
-		
+
 		g.setColor(Color.magenta);
 		g.drawRoundRect(10, 10, 100, 100, 10);
 		g.fillRoundRect(10, 210, 100, 100, 10);
-		
+
 		g.rotate(400, 300, ang);
 		g.setColor(Color.green);
 		g.drawRect(200,200,200,200);
@@ -110,7 +110,7 @@ public class GraphicsTest extends BasicGame {
 		g.fillRect(250,250,100,100);
 
 		g.drawImage(image, 300,270);
-		
+
 		g.setColor(Color.red);
 		g.drawOval(100,100,200,200);
 		g.setColor(Color.red.darker());
@@ -121,7 +121,7 @@ public class GraphicsTest extends BasicGame {
 		g.drawOval(300,300,150,100);
 		g.setAntiAlias(true);
 		g.resetTransform();
-		
+
 		if (clip) {
 			g.clearClip();
 		}
@@ -145,7 +145,7 @@ public class GraphicsTest extends BasicGame {
 			clip = !clip;
 		}
 	}
-	
+
 	/**
 	 * Entry point to our test
 	 * 

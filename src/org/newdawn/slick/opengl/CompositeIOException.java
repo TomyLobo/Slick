@@ -11,14 +11,14 @@ import java.util.ArrayList;
 public class CompositeIOException extends IOException {
 	/** The list of exceptions causing this one */
 	private ArrayList exceptions = new ArrayList();
-	
+
 	/**
 	 * Create a new composite IO Exception
 	 */
 	public CompositeIOException() {
 		super();
 	}
-	
+
 	/**
 	 * Add an exception that caused this exceptino
 	 * 
@@ -27,7 +27,7 @@ public class CompositeIOException extends IOException {
 	public void addException(Exception e) {
 		exceptions.add(e);
 	}
-	
+
 	/**
 	 * @see java.lang.Throwable#getMessage()
 	 */
@@ -36,7 +36,7 @@ public class CompositeIOException extends IOException {
 		for (int i=0;i<exceptions.size();i++) {
 			msg += "\t"+((IOException) exceptions.get(i)).getMessage()+"\n";
 		}
-		
+
 		return msg;
 	}
 }

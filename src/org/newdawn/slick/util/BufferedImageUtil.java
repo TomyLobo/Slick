@@ -66,7 +66,7 @@ public class BufferedImageUtil {
 
 		return tex;
 	}
-	
+
 	/**
 	 * Load a texture into OpenGL from a BufferedImage
 	 * 
@@ -116,38 +116,38 @@ public class BufferedImageUtil {
 		texture.setTextureHeight(data.getTexHeight());
 		texture.setTextureWidth(data.getTexWidth());
 		texture.setAlpha(data.getDepth() == 32);
-		
+
 		if (target == SGL.GL_TEXTURE_2D) {
 			Renderer.get().glTexParameteri(target, SGL.GL_TEXTURE_MIN_FILTER, minFilter);
 			Renderer.get().glTexParameteri(target, SGL.GL_TEXTURE_MAG_FILTER, magFilter);
-			
-	        if (Renderer.get().canTextureMirrorClamp()) {
-	        	Renderer.get().glTexParameteri(SGL.GL_TEXTURE_2D, SGL.GL_TEXTURE_WRAP_S, SGL.GL_MIRROR_CLAMP_TO_EDGE_EXT);
-	        	Renderer.get().glTexParameteri(SGL.GL_TEXTURE_2D, SGL.GL_TEXTURE_WRAP_T, SGL.GL_MIRROR_CLAMP_TO_EDGE_EXT);
-	        } else {
-	        	Renderer.get().glTexParameteri(SGL.GL_TEXTURE_2D, SGL.GL_TEXTURE_WRAP_S, SGL.GL_CLAMP);
-	        	Renderer.get().glTexParameteri(SGL.GL_TEXTURE_2D, SGL.GL_TEXTURE_WRAP_T, SGL.GL_CLAMP);
-	        }
+
+			if (Renderer.get().canTextureMirrorClamp()) {
+				Renderer.get().glTexParameteri(SGL.GL_TEXTURE_2D, SGL.GL_TEXTURE_WRAP_S, SGL.GL_MIRROR_CLAMP_TO_EDGE_EXT);
+				Renderer.get().glTexParameteri(SGL.GL_TEXTURE_2D, SGL.GL_TEXTURE_WRAP_T, SGL.GL_MIRROR_CLAMP_TO_EDGE_EXT);
+			} else {
+				Renderer.get().glTexParameteri(SGL.GL_TEXTURE_2D, SGL.GL_TEXTURE_WRAP_S, SGL.GL_CLAMP);
+				Renderer.get().glTexParameteri(SGL.GL_TEXTURE_2D, SGL.GL_TEXTURE_WRAP_T, SGL.GL_CLAMP);
+			}
 		}
 
-		Renderer.get().glTexImage2D(target, 
-                      0, 
-                      dstPixelFormat, 
-                      texture.getTextureWidth(), 
-                      texture.getTextureHeight(), 
-                      0, 
-                      srcPixelFormat, 
-                      SGL.GL_UNSIGNED_BYTE, 
-                      textureBuffer); 
+		Renderer.get().glTexImage2D(target,
+				0,
+				dstPixelFormat,
+				texture.getTextureWidth(),
+				texture.getTextureHeight(),
+				0,
+				srcPixelFormat,
+				SGL.GL_UNSIGNED_BYTE,
+				textureBuffer);
 
 		return texture;
 	}
-	
+
 	/**
 	 * Implement of transform copy area for 1.4
 	 * 
 	 * @param image The image to copy
- 	 * @param x The x position to copy to
+	 * @param x The x position to copy to
 	 * @param y The y position to copy to
 	 * @param width The width of the image
 	 * @param height The height of the image
@@ -156,7 +156,7 @@ public class BufferedImageUtil {
 	 */
 	private static void copyArea(BufferedImage image, int x, int y, int width, int height, int dx, int dy) {
 		Graphics2D g = (Graphics2D) image.getGraphics();
-		
+
 		g.drawImage(image.getSubimage(x, y, width, height),x+dx,y+dy,null);
 	}
 }

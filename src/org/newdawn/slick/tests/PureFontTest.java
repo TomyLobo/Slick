@@ -1,5 +1,5 @@
 package org.newdawn.slick.tests;
-	
+
 import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -20,14 +20,14 @@ public class PureFontTest extends BasicGame {
 	private Font font;
 	/** The image */
 	private Image image;
-	
+
 	/**
 	 * Create a new test for font rendering
 	 */
 	public PureFontTest() {
 		super("Hiero Font Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.Game#init(org.newdawn.slick.GameContainer)
 	 */
@@ -50,7 +50,7 @@ public class PureFontTest extends BasicGame {
 	 */
 	public void update(GameContainer container, int delta) throws SlickException {
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#keyPressed(int, char)
 	 */
@@ -59,10 +59,10 @@ public class PureFontTest extends BasicGame {
 			System.exit(0);
 		}
 	}
-	
+
 	/** The container we're using */
 	private static AppGameContainer container;
-	
+
 	/**
 	 * Entry point to our test
 	 * 

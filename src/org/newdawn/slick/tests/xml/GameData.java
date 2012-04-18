@@ -12,9 +12,9 @@ public class GameData {
 	private ArrayList entities = new ArrayList();
 
 	/**
-	 * Called by XML parser to add a configured entity to the GameData 
+	 * Called by XML parser to add a configured entity to the GameData
 	 * 
-	 * @param entity The entity to be added 
+	 * @param entity The entity to be added
 	 */
 	private void add(Entity entity) {
 		entities.add(entity);

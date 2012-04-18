@@ -30,12 +30,12 @@ public class PathProcessor implements ElementProcessor {
 	 */
 	private static Path processPoly(Element element, StringTokenizer tokens) throws ParsingException {
 		int count = 0;
-		
+
 		ArrayList pts = new ArrayList();
 		boolean moved = false;
 		boolean reasonToBePath = false;
 		Path path = null;
-		
+
 		while (tokens.hasMoreTokens()) {
 			try {
 				String nextToken = tokens.nextToken();
@@ -57,12 +57,12 @@ public class PathProcessor implements ElementProcessor {
 						path = new Path(x,y);
 						continue;
 					}
-	
+
 					reasonToBePath = true;
 					float x = Float.parseFloat(tokens.nextToken());
 					float y = Float.parseFloat(tokens.nextToken());
 					path.startHole(x,y);
-					
+
 					continue;
 				}
 				if (nextToken.equals("C")) {
@@ -80,11 +80,11 @@ public class PathProcessor implements ElementProcessor {
 				throw new ParsingException(element.getAttribute("id"), "Invalid token in points list", e);
 			}
 		}
-		
+
 		if (!reasonToBePath) {
 			return null;
 		}
-		
+
 		return path;
 	}
 
@@ -95,18 +95,18 @@ public class PathProcessor implements ElementProcessor {
 	public void process(Loader loader, Element element, Diagram diagram, Transform t) throws ParsingException {
 		Transform transform = Util.getTransform(element);
 		transform = new Transform(t, transform);
-		
+
 		String points = element.getAttribute("points");
 		if (element.getNodeName().equals("path")) {
 			points = element.getAttribute("d");
 		}
-		
+
 		StringTokenizer tokens = new StringTokenizer(points, ", ");
 		Path path = processPoly(element, tokens);
 		NonGeometricData data = Util.getNonGeometricData(element);
 		if (path != null) {
 			Shape shape = path.transform(transform);
-			
+
 			diagram.addFigure(new Figure(Figure.PATH, shape, data, transform));
 		}
 	}
@@ -120,8 +120,8 @@ public class PathProcessor implements ElementProcessor {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
+
 }

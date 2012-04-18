@@ -12,7 +12,6 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
-import org.newdawn.slick.font.effects.ShadowEffect;
 
 /**
  * A simple test of the unicode font functionality provided
@@ -38,10 +37,10 @@ public class UnicodeFontTest extends BasicGame {
 
 		// unicodeFont = new UnicodeFont(Font.decode("Arial Unicode MS"), 25, false, false);
 		unicodeFont = new UnicodeFont("c:/windows/fonts/arial.ttf", 48, false, false);
-//		unicodeFont.setPaddingBottom(10);
-//		unicodeFont.setPaddingRight(10);
-//		unicodeFont.setPaddingAdvanceX(-10);
-//		unicodeFont.getEffects().add(new ShadowEffect(java.awt.Color.black, 5, 5, 0.5f));
+		//		unicodeFont.setPaddingBottom(10);
+		//		unicodeFont.setPaddingRight(10);
+		//		unicodeFont.setPaddingAdvanceX(-10);
+		//		unicodeFont.getEffects().add(new ShadowEffect(java.awt.Color.black, 5, 5, 0.5f));
 		unicodeFont.getEffects().add(new ColorEffect(java.awt.Color.white));
 
 		// unicodeFont = new UnicodeFont("Arial", 25, false, false);
@@ -86,7 +85,7 @@ public class UnicodeFontTest extends BasicGame {
 	 * Entry point to our simple test
 	 * 
 	 * @param args The arguments supplied to the test
-	 * @throws SlickException Indicates a failure loading or processing resources 
+	 * @throws SlickException Indicates a failure loading or processing resources
 	 * @throws IOException Indicates a failure loading the font
 	 */
 	public static void main(String[] args) throws SlickException, IOException {

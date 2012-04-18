@@ -80,7 +80,7 @@ public class TileSet {
 				Document doc = builder.parse(in);
 				Element docElement = doc.getDocumentElement();
 				element = docElement; // (Element)
-										// docElement.getElementsByTagName("tileset").item(0);
+				// docElement.getElementsByTagName("tileset").item(0);
 			} catch (Exception e) {
 				Log.error(e);
 				throw new SlickException(

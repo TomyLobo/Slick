@@ -65,7 +65,7 @@ public class InkscapeLoader implements Loader {
 	public static void addElementProcessor(ElementProcessor proc) {
 		processors.add(proc);
 	}
-	
+
 	/**
 	 * Load a SVG document into a diagram
 	 * 

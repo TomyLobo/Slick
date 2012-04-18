@@ -155,12 +155,12 @@ public class InputProvider {
 	 */
 	public void clearCommand(Command command) {
 		List controls = getControlsFor(command);
-		
+
 		for (int i=0;i<controls.size();i++) {
-	    	unbindCommand((Control) controls.get(i));
-	    }
+			unbindCommand((Control) controls.get(i));
+		}
 	}
-	
+
 	/**
 	 * Unbinds the command associated with this control
 	 * 

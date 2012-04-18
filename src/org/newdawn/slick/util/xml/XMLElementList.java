@@ -11,14 +11,14 @@ import java.util.Collection;
 public class XMLElementList  {
 	/** The list of elements */
 	private ArrayList list = new ArrayList();
-	
+
 	/**
 	 * Create a new list
 	 */
 	public XMLElementList() {
-		
+
 	}
-	
+
 	/**
 	 * Add an element to the list
 	 * 
@@ -27,7 +27,7 @@ public class XMLElementList  {
 	public void add(XMLElement element) {
 		list.add(element);
 	}
-	
+
 	/**
 	 * Get the number of elements in the list
 	 * 
@@ -36,7 +36,7 @@ public class XMLElementList  {
 	public int size() {
 		return list.size();
 	}
-	
+
 	/**
 	 * Get the element at a specified index
 	 * 
@@ -46,7 +46,7 @@ public class XMLElementList  {
 	public XMLElement get(int i) {
 		return (XMLElement) list.get(i);
 	}
-	
+
 	/**
 	 * Check if this list contains the given element
 	 * 
@@ -56,7 +56,7 @@ public class XMLElementList  {
 	public boolean contains(XMLElement element) {
 		return list.contains(element);
 	}
-	
+
 	/**
 	 * Add all the elements in this list to another collection
 	 * 

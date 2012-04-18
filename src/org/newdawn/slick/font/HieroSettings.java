@@ -64,7 +64,7 @@ public class HieroSettings {
 	public HieroSettings(String hieroFileRef) throws SlickException {
 		this(ResourceLoader.getResourceAsStream(hieroFileRef));
 	}
-	
+
 	/**
 	 * Create a new set of configuration from a file
 	 * 

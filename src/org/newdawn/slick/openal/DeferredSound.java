@@ -8,7 +8,7 @@ import org.newdawn.slick.loading.LoadingList;
 import org.newdawn.slick.util.Log;
 
 /**
- * A sound implementation that can load the actual sound file at a later 
+ * A sound implementation that can load the actual sound file at a later
  * point.
  *
  * @author kevin
@@ -22,7 +22,7 @@ public class DeferredSound extends AudioImpl implements DeferredResource {
 	public static final int MOD = 3;
 	/** Indicate a AIF to be loaded */
 	public static final int AIF = 4;
-	
+
 	/** The type of sound to be loader */
 	private int type;
 	/** The location of the sound this proxy wraps */
@@ -31,7 +31,7 @@ public class DeferredSound extends AudioImpl implements DeferredResource {
 	private Audio target;
 	/** The input stream to load the sound this proxy wraps from (can be null) */
 	private InputStream in;
-	
+
 	/**
 	 * Create a new sound on request to load
 	 * 
@@ -42,12 +42,12 @@ public class DeferredSound extends AudioImpl implements DeferredResource {
 	public DeferredSound(String ref, InputStream in, int type) {
 		this.ref = ref;
 		this.type = type;
-		
+
 		// nasty hack to detect when we're loading from a stream
 		if (ref.equals(in.toString())) {
 			this.in = in;
 		}
-		
+
 		LoadingList.get().add(this);
 	}
 
@@ -59,7 +59,7 @@ public class DeferredSound extends AudioImpl implements DeferredResource {
 			throw new RuntimeException("Attempt to use deferred sound before loading");
 		}
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.loading.DeferredResource#load()
 	 */
@@ -111,7 +111,7 @@ public class DeferredSound extends AudioImpl implements DeferredResource {
 	 */
 	public boolean isPlaying() {
 		checkTarget();
-		
+
 		return target.isPlaying();
 	}
 
@@ -145,7 +145,7 @@ public class DeferredSound extends AudioImpl implements DeferredResource {
 		checkTarget();
 		return target.playAsSoundEffect(pitch, gain, loop, x, y, z);
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.openal.AudioImpl#stop()
 	 */

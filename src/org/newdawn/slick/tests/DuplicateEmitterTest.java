@@ -25,14 +25,14 @@ public class DuplicateEmitterTest extends BasicGame {
 	private ParticleSystem explosionSystem;
 	/** The original emitter we've duplicated */
 	private ConfigurableEmitter explosionEmitter;
-	
+
 	/**
 	 * Create a new DuplicateEmitterTest
 	 */
 	public DuplicateEmitterTest() {
 		super("DuplicateEmitterTest");
 	}
-	
+
 	/**
 	 * load ressources (the particle system) and create our duplicate emitters
 	 * and place them nicely on the screen
@@ -40,7 +40,7 @@ public class DuplicateEmitterTest extends BasicGame {
 	 */
 	public void init(GameContainer container) throws SlickException {
 		this.container = container;
-		
+
 		try {
 			// load the particle system containing our explosion emitter
 			explosionSystem = ParticleIO.loadConfiguredSystem("testdata/endlessexplosion.xml");

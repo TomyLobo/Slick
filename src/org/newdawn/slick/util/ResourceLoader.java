@@ -15,12 +15,12 @@ import java.util.ArrayList;
 public class ResourceLoader {
 	/** The list of locations to be searched */
 	private static ArrayList locations = new ArrayList();
-	
+
 	static {
 		locations.add(new ClasspathLocation());
 		locations.add(new FileSystemLocation(new File(".")));
 	}
-	
+
 	/**
 	 * Add a location that will be searched for resources
 	 * 
@@ -29,7 +29,7 @@ public class ResourceLoader {
 	public static void addResourceLocation(ResourceLocation location) {
 		locations.add(location);
 	}
-	
+
 	/**
 	 * Remove a location that will be no longer be searched for resources
 	 * 
@@ -38,7 +38,7 @@ public class ResourceLoader {
 	public static void removeResourceLocation(ResourceLocation location) {
 		locations.remove(location);
 	}
-	
+
 	/**
 	 * Remove all the locations, no resources will be found until
 	 * new locations have been added
@@ -46,7 +46,7 @@ public class ResourceLoader {
 	public static void removeAllResourceLocations() {
 		locations.clear();
 	}
-	
+
 	/**
 	 * Get a resource
 	 * 
@@ -55,7 +55,7 @@ public class ResourceLoader {
 	 */
 	public static InputStream getResourceAsStream(String ref) {
 		InputStream in = null;
-		
+
 		for (int i=0;i<locations.size();i++) {
 			ResourceLocation location = (ResourceLocation) locations.get(i);
 			in = location.getResourceAsStream(ref);
@@ -63,15 +63,15 @@ public class ResourceLoader {
 				break;
 			}
 		}
-		
+
 		if (in == null)
 		{
 			throw new RuntimeException("Resource not found: "+ref);
 		}
-			
+
 		return new BufferedInputStream(in);
 	}
-	
+
 	/**
 	 * Check if a resource is available from any given resource loader
 	 * 
@@ -80,7 +80,7 @@ public class ResourceLoader {
 	 */
 	public static boolean resourceExists(String ref) {
 		URL url = null;
-		
+
 		for (int i=0;i<locations.size();i++) {
 			ResourceLocation location = (ResourceLocation) locations.get(i);
 			url = location.getResource(ref);
@@ -88,10 +88,10 @@ public class ResourceLoader {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
+
 	/**
 	 * Get a resource as a URL
 	 * 
@@ -101,7 +101,7 @@ public class ResourceLoader {
 	public static URL getResource(String ref) {
 
 		URL url = null;
-		
+
 		for (int i=0;i<locations.size();i++) {
 			ResourceLocation location = (ResourceLocation) locations.get(i);
 			url = location.getResource(ref);
@@ -109,12 +109,12 @@ public class ResourceLoader {
 				break;
 			}
 		}
-		
+
 		if (url == null)
 		{
 			throw new RuntimeException("Resource not found: "+ref);
 		}
-			
+
 		return url;
 	}
 }

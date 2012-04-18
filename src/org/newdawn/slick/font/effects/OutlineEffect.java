@@ -69,7 +69,7 @@ public class OutlineEffect implements ConfigurableEffect {
 	}
 
 	/**
-	 * Sets the width of the outline. The glyphs will need padding so the 
+	 * Sets the width of the outline. The glyphs will need padding so the
 	 * outline doesn't get clipped.
 	 * 
 	 * @param width The width of the outline being drawn
@@ -99,7 +99,7 @@ public class OutlineEffect implements ConfigurableEffect {
 	/**
 	 * Get the join type as indicated by @see BasicStroke
 	 * 
-	 * @return The join type between segments in the outline 
+	 * @return The join type between segments in the outline
 	 */
 	public int getJoin() {
 		return join;
@@ -114,12 +114,12 @@ public class OutlineEffect implements ConfigurableEffect {
 		if (stroke == null) {
 			return new BasicStroke(width, BasicStroke.CAP_SQUARE, join);
 		}
-		
+
 		return stroke;
 	}
 
 	/**
-	 * Sets the stroke to use for the outline. If this is set, 
+	 * Sets the stroke to use for the outline. If this is set,
 	 * the other outline settings are ignored.
 	 * 
 	 * @param stroke The stroke to be used to draw the outline
@@ -129,7 +129,7 @@ public class OutlineEffect implements ConfigurableEffect {
 	}
 
 	/**
-	 * Sets how the corners of the outline are drawn. This is usually only noticeable 
+	 * Sets how the corners of the outline are drawn. This is usually only noticeable
 	 * at large outline widths.
 	 * 
 	 * @param join One of: {@link BasicStroke#JOIN_BEVEL}, {@link BasicStroke#JOIN_MITER}, {@link BasicStroke#JOIN_ROUND}
@@ -152,11 +152,11 @@ public class OutlineEffect implements ConfigurableEffect {
 		List values = new ArrayList();
 		values.add(EffectUtil.colorValue("Color", color));
 		values.add(EffectUtil.floatValue("Width", width, 0.1f, 999, "This setting controls the width of the outline. "
-			+ "The glyphs will need padding so the outline doesn't get clipped."));
+				+ "The glyphs will need padding so the outline doesn't get clipped."));
 		values.add(EffectUtil.optionValue("Join", String.valueOf(join), new String[][] { {"Bevel", BasicStroke.JOIN_BEVEL + ""},
 			{"Miter", BasicStroke.JOIN_MITER + ""}, {"Round", BasicStroke.JOIN_ROUND + ""}},
 			"This setting defines how the corners of the outline are drawn. "
-				+ "This is usually only noticeable at large outline widths."));
+					+ "This is usually only noticeable at large outline widths."));
 		return values;
 	}
 

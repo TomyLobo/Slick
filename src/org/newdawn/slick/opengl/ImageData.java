@@ -44,7 +44,7 @@ public interface ImageData {
 	 * @return Get the ast required texture height for a loaded image
 	 */
 	public int getTexHeight();
-	
+
 	/**
 	 * Get the store image
 	 * 

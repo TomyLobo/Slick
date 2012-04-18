@@ -37,30 +37,30 @@ public class GlyphPage {
 	public static final int MAX_GLYPH_SIZE = 256;
 
 	/** A temporary working buffer */
-    private static ByteBuffer scratchByteBuffer = ByteBuffer.allocateDirect(MAX_GLYPH_SIZE * MAX_GLYPH_SIZE * 4);
+	private static ByteBuffer scratchByteBuffer = ByteBuffer.allocateDirect(MAX_GLYPH_SIZE * MAX_GLYPH_SIZE * 4);
 
-    static {
+	static {
 		scratchByteBuffer.order(ByteOrder.LITTLE_ENDIAN);
-    }
-    
-    /** A temporary working buffer */
-    private static IntBuffer scratchIntBuffer = scratchByteBuffer.asIntBuffer();
-    
-    
+	}
+
+	/** A temporary working buffer */
+	private static IntBuffer scratchIntBuffer = scratchByteBuffer.asIntBuffer();
+
+
 	/** A temporary image used to generate the glyph page */
 	private static BufferedImage scratchImage = new BufferedImage(MAX_GLYPH_SIZE, MAX_GLYPH_SIZE, BufferedImage.TYPE_INT_ARGB);
 	/** The graphics context form the temporary image */
 	private static Graphics2D scratchGraphics = (Graphics2D)scratchImage.getGraphics();
-	
+
 	static {
 		scratchGraphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		scratchGraphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		scratchGraphics.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
 	}
-	
+
 	/** The render context in which the glyphs will be generated */
-    public static FontRenderContext renderContext = scratchGraphics.getFontRenderContext();
-	
+	public static FontRenderContext renderContext = scratchGraphics.getFontRenderContext();
+
 	/**
 	 * Get the scratch graphics used to generate the page of glyphs
 	 * 
@@ -69,7 +69,7 @@ public class GlyphPage {
 	public static Graphics2D getScratchGraphics() {
 		return scratchGraphics;
 	}
-	
+
 	/** The font this page is part of */
 	private final UnicodeFont unicodeFont;
 	/** The width of this page's image */
@@ -210,7 +210,7 @@ public class GlyphPage {
 			scratchIntBuffer.put(row);
 		}
 		GL.glTexSubImage2D(SGL.GL_TEXTURE_2D, 0, pageX, pageY, width, height, SGL.GL_BGRA, SGL.GL_UNSIGNED_BYTE,
-			scratchByteBuffer);
+				scratchByteBuffer);
 		scratchIntBuffer.clear();
 
 		glyph.setImage(pageImage.getSubImage(pageX, pageY, width, height));

@@ -35,7 +35,7 @@ public class Gradient {
 	private Transform transform;
 	/** The name of the referenced gradient */
 	private String ref;
-	
+
 	/**
 	 * Create a new gradient definition
 	 * 
@@ -46,7 +46,7 @@ public class Gradient {
 		this.name = name;
 		this.radial = radial;
 	}
-	
+
 	/**
 	 * Check if the gradient is radial
 	 * 
@@ -55,7 +55,7 @@ public class Gradient {
 	public boolean isRadial() {
 		return radial;
 	}
-	
+
 	/**
 	 * Set the transform given for this definition
 	 * 
@@ -64,7 +64,7 @@ public class Gradient {
 	public void setTransform(Transform trans) {
 		this.transform = trans;
 	}
-	
+
 	/**
 	 * Get the transform to apply during this gradient application
 	 * 
@@ -73,7 +73,7 @@ public class Gradient {
 	public Transform getTransform() {
 		return transform;
 	}
-	
+
 	/**
 	 * Reference another gradient, i.e. use it's colour stops
 	 * 
@@ -82,7 +82,7 @@ public class Gradient {
 	public void reference(String ref) {
 		this.ref = ref;
 	}
-	
+
 	/**
 	 * Resolve the gradient reference
 	 * 
@@ -92,14 +92,14 @@ public class Gradient {
 		if (ref == null) {
 			return;
 		}
-		
+
 		Gradient other = diagram.getGradient(ref);
-		
+
 		for (int i=0;i<other.steps.size();i++) {
 			steps.add(other.steps.get(i));
 		}
 	}
-	
+
 	/**
 	 * Generate the image used for texturing the gradient across shapes
 	 */
@@ -115,7 +115,7 @@ public class Gradient {
 			image = buffer.getImage();
 		}
 	}
-	
+
 	/**
 	 * Get the image generated for this gradient
 	 * 
@@ -123,7 +123,7 @@ public class Gradient {
 	 */
 	public Image getImage() {
 		genImage();
-		
+
 		return image;
 	}
 
@@ -135,7 +135,7 @@ public class Gradient {
 	public void setR(float r) {
 		this.r = r;
 	}
-	
+
 	/**
 	 * Set the first x value given for the gradient (cx in the case of radial)
 	 * 
@@ -180,7 +180,7 @@ public class Gradient {
 	public float getR() {
 		return r;
 	}
-	
+
 	/**
 	 * Get the first x value given for this gradient (cx in the case of radial)
 	 * 
@@ -216,7 +216,7 @@ public class Gradient {
 	public float getY2() {
 		return y2;
 	}
-	
+
 	/**
 	 * Add a colour step/stop to the gradient
 	 * 
@@ -226,7 +226,7 @@ public class Gradient {
 	public void addStep(float location, Color c) {
 		steps.add(new Step(location, c));
 	}
-	
+
 	/**
 	 * Get the intepolated colour at the given location on the gradient
 	 * 
@@ -240,22 +240,22 @@ public class Gradient {
 		if (p > 1) {
 			return ((Step) steps.get(steps.size()-1)).col;
 		}
-		
+
 		for (int i=1;i<steps.size();i++) {
 			Step prev = ((Step) steps.get(i-1));
 			Step current = ((Step) steps.get(i));
-			
+
 			if (p <= current.location) {
 				float dis = current.location - prev.location;
 				p -= prev.location;
 				float v = p / dis;
-				
+
 				Color c = new Color(1,1,1,1);
 				c.a = (prev.col.a * (1 - v)) + (current.col.a * (v));
 				c.r = (prev.col.r * (1 - v)) + (current.col.r * (v));
 				c.g = (prev.col.g * (1 - v)) + (current.col.g * (v));
 				c.b = (prev.col.b * (1 - v)) + (current.col.b * (v));
-				
+
 				return c;
 			}
 		}
@@ -263,7 +263,7 @@ public class Gradient {
 		// shouldn't ever happen
 		return Color.black;
 	}
-	
+
 	/**
 	 * The description of a single step on the gradient
 	 * 
@@ -274,7 +274,7 @@ public class Gradient {
 		float location;
 		/** The colour applied */
 		Color col;
-		
+
 		/**
 		 * Create a new step
 		 * 

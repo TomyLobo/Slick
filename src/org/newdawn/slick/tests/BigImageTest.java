@@ -37,14 +37,14 @@ public class BigImageTest extends BasicGame {
 	private float ang = 30f;
 	/** A sprite sheet made from the big image */
 	private SpriteSheet bigSheet;
-	
+
 	/**
 	 * Create a new image rendering test
 	 */
 	public BigImageTest() {
 		super("Big Image Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -56,7 +56,7 @@ public class BigImageTest extends BasicGame {
 		image = image.getScaledCopy(0.3f);
 		imageX = image.getFlippedCopy(true, false);
 		imageY = imageX.getFlippedCopy(true, true);
-		
+
 		bigSheet = new SpriteSheet(original, 16, 16);
 	}
 
@@ -65,12 +65,12 @@ public class BigImageTest extends BasicGame {
 	 */
 	public void render(GameContainer container, Graphics g) {
 		original.draw(0,0,new Color(1,1,1,0.4f));
-		
+
 		image.draw(x,y);
 		imageX.draw(x+400,y);
 		imageY.draw(x,y+300);
 		scaledSub.draw(x+300,y+300);
-		
+
 		bigSheet.getSprite(7, 5).draw(50,10);
 		g.setColor(Color.white);
 		g.drawRect(50,10,64,64);
@@ -98,7 +98,7 @@ public class BigImageTest extends BasicGame {
 	 */
 	public void update(GameContainer container, int delta) throws SlickException {
 		ang += delta * 0.1f;
-		
+
 		if (container.getInput().isKeyDown(Input.KEY_LEFT)) {
 			x -= delta * 0.1f;
 		}
