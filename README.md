@@ -1,21 +1,34 @@
 Slick
 =====
-A 2D LWJGL Java Utility Library (out of date)
+2D game Java library based on LWJGL.
 
-This is a very early version. The tests work but no demo has been written yet. Yes the windows natives are included in the main distribution in the right place. This is just meant to make it easier for quick start windows users. All the natives required can be found in jars in the 'lib' directory.
+Copyright (c) 2007, Slick 2D
+All rights reserved.
 
 Tools
 =====
-AngelCode bitmap font tool - seems to be the best around at the moment and provided clean kerning information. Available from http://www.angelcode.com/products/bmfont/.  
-TilED tile map tool - Java alternative to Mappy (which just seems borked to me). Available from http://www.mapeditor.org.  
-ImagePacker - ImagePacker (http://homepage.ntlworld.com/config/imagepacker/index.htm) packs single images into large images for efficent rendering and memory usage.  
-Pedigree - Particle Editor written as part of the Slick Project (Java).  
-Hiero - Bitmap Font tool with effects written as part fo the Slick Project (Java).  
+**AngelCode** (bitmap font tool)  
+Seems to be the best around at the moment and provided clean kerning information.  
+Available from http://www.angelcode.com/products/bmfont/.
+
+**TilED** (tile map tool)  
+Java alternative to Mappy (which just seems borked to me).
+Available from http://www.mapeditor.org.  
+
+**ImagePacker**  
+Packs single images into large images for efficent rendering and memory usage.  
+Available from http://homepage.ntlworld.com/config/imagepacker/index.htm
+
+**Pedigree**  
+Particle Editor written as part of the Slick Project (Java).
+
+**Hiero**  
+Bitmap Font tool with effects written as part fo the Slick Project (Java).
 
 Authors
 =======
-Kevin Glass (slick@cokeandcode.com)  
-Tommy Haaks (tommy@haaks.net)  
-Mark Bernard (captainjester@hotmail.com)  
-Aaron Roberts (antamiga@gmail.com)  
-Liam Edwards-Playne / liamzebedee (liamzebedee@yahoo.com.au)  
+**Kevin Glass** (slick@cokeandcode.com)  
+**Tommy Haaks** (tommy@haaks.net)  
+**Mark Bernard** (captainjester@hotmail.com)  
+**Aaron Roberts** (antamiga@gmail.com)  
+**Liam Edwards-Playne / liamzebedee** (liamzebedee@yahoo.com.au)  
