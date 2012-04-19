@@ -1,0 +1,123 @@
+<!--
+	Maven build file for Slick
+
+	Copyright (c) 2007, Slick 2D
+	Slick is licensed under BSD License
+	All rights reserved.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Project information -->
+	<groupId>slick</groupId>
+	<artifactId>slick</artifactId>
+	<version>dev-SNAPSHOT</version>
+	<name>Slick</name>
+	<url>http://slick.cokeandcode.com</url>
+	<description>2D game Java library based on LWJGL.</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<lwjglVersion>2.8.3</lwjglVersion>
+		<phys2dVersion>060408</phys2dVersion>
+	</properties>
+
+	<!-- License -->
+	<licenses>
+		<license>
+			<name>BSD License</name>
+			<url>http://slick.cokeandcode.com/static.php?page=license</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<!-- Source code -->
+	<scm>
+		<developerConnection>scm:git:git@github.com:SpoutDev/${project.name}.git</developerConnection>
+		<connection>scm:git:git://github.com/SpoutDev/${project.name}.git</connection>
+		<url>https://github.com/SpoutDev/${project.name}</url>
+	</scm>
+
+	<!-- Continuous integration -->
+	<ciManagement>
+		<system>jenkins</system>
+		<url>http://ci.spout.org</url>
+	</ciManagement>
+
+	<!-- Repository locations -->
+	<repositories>
+		<repository>
+			<id>spout-repo</id>
+			<url>http://repo.spout.org</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.lwjgl.lwjgl</groupId>
+			<artifactId>lwjgl</artifactId>
+			<version>${lwjglVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>phys2d</groupId>
+			<artifactId>phys2d</artifactId>
+			<version>${phys2dVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.java.jinput</groupId>
+			<artifactId>jinput</artifactId>
+			<version>2.0.5</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.jnlp</groupId>
+			<artifactId>jnlp</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>ibxm</groupId>
+			<artifactId>ibxm</artifactId>
+			<version>unknown</version>
+		</dependency>
+		<dependency>
+			<groupId>jcraft</groupId>
+			<artifactId>jogg</artifactId>
+			<version>0.0.7</version>
+		</dependency>
+		<dependency>
+			<groupId>jcraft</groupId>
+			<artifactId>jorbis</artifactId>
+			<version>0.0.15</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<defaultGoal>clean package install</defaultGoal>
+		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+		<!-- Resources -->
+		<resources>
+			<resource>
+				<targetPath>.</targetPath>
+				<filtering>false</filtering>
+				<directory>${basedir}</directory>
+				<includes>
+					<include>LICENSE.txt</include>
+				</includes>
+			</resource>
+		</resources>
+		<!-- Plugins -->
+		<plugins>
+			<!-- Compile plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
