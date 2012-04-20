@@ -12,7 +12,7 @@
 	<!-- Project information -->
 	<groupId>slick</groupId>
 	<artifactId>slick</artifactId>
-	<version>dev-SNAPSHOT</version>
+	<version>0.4-SNAPSHOT</version>
 	<name>Slick</name>
 	<url>http://slick.cokeandcode.com</url>
 	<description>2D game Java library based on LWJGL.</description>
@@ -21,6 +21,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<lwjglVersion>2.8.3</lwjglVersion>
 		<phys2dVersion>060408</phys2dVersion>
+		<buildNumber>Unknown</buildNumber>
 	</properties>
 
 	<!-- License -->
@@ -102,6 +103,14 @@
 				<directory>${basedir}</directory>
 				<includes>
 					<include>LICENSE.txt</include>
+				</includes>
+			</resource>
+			<resource>
+				<targetPath>.</targetPath>
+				<filtering>true</filtering>
+				<directory>${basedir}/src/main/resources</directory>
+				<includes>
+					<include>version</include>
 				</includes>
 			</resource>
 		</resources>
