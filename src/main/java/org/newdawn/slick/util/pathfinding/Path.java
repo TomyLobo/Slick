@@ -13,15 +13,15 @@ import java.util.ArrayList;
 public class Path implements Serializable {
 	/** The serial identifier for this class */
 	private static final long serialVersionUID = 1L;
-	
+
 	/** The list of steps building up this path */
 	private ArrayList steps = new ArrayList();
-	
+
 	/**
 	 * Create an empty path
 	 */
 	public Path() {
-		
+
 	}
 
 	/**
@@ -32,7 +32,7 @@ public class Path implements Serializable {
 	public int getLength() {
 		return steps.size();
 	}
-	
+
 	/**
 	 * Get the step at a given index in the path
 	 * 
@@ -43,7 +43,7 @@ public class Path implements Serializable {
 	public Step getStep(int index) {
 		return (Step) steps.get(index);
 	}
-	
+
 	/**
 	 * Get the x coordinate for the step at the given index
 	 * 
@@ -63,9 +63,9 @@ public class Path implements Serializable {
 	public int getY(int index) {
 		return getStep(index).y;
 	}
-	
+
 	/**
-	 * Append a step to the path.  
+	 * Append a step to the path.
 	 * 
 	 * @param x The x coordinate of the new step
 	 * @param y The y coordinate of the new step
@@ -75,7 +75,7 @@ public class Path implements Serializable {
 	}
 
 	/**
-	 * Prepend a step to the path.  
+	 * Prepend a step to the path.
 	 * 
 	 * @param x The x coordinate of the new step
 	 * @param y The y coordinate of the new step
@@ -83,7 +83,7 @@ public class Path implements Serializable {
 	public void prependStep(int x, int y) {
 		steps.add(0, new Step(x, y));
 	}
-	
+
 	/**
 	 * Check if this path contains the given step
 	 * 
@@ -94,7 +94,7 @@ public class Path implements Serializable {
 	public boolean contains(int x, int y) {
 		return steps.contains(new Step(x,y));
 	}
-	
+
 	/**
 	 * A single step within the path
 	 * 
@@ -105,7 +105,7 @@ public class Path implements Serializable {
 		private int x;
 		/** The y coordinate at the given step */
 		private int y;
-		
+
 		/**
 		 * Create a new step
 		 * 
@@ -116,7 +116,7 @@ public class Path implements Serializable {
 			this.x = x;
 			this.y = y;
 		}
-		
+
 		/**
 		 * Get the x coordinate of the new step
 		 * 
@@ -134,7 +134,7 @@ public class Path implements Serializable {
 		public int getY() {
 			return y;
 		}
-		
+
 		/**
 		 * @see Object#hashCode()
 		 */
@@ -148,10 +148,10 @@ public class Path implements Serializable {
 		public boolean equals(Object other) {
 			if (other instanceof Step) {
 				Step o = (Step) other;
-				
+
 				return (o.x == x) && (o.y == y);
 			}
-			
+
 			return false;
 		}
 	}

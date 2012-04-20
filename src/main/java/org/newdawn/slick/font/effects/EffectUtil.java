@@ -38,7 +38,7 @@ import org.newdawn.slick.font.effects.ConfigurableEffect.Value;
 public class EffectUtil {
 	/** A graphics 2D temporary surface to be used when generating effects */
 	static private BufferedImage scratchImage = new BufferedImage(GlyphPage.MAX_GLYPH_SIZE, GlyphPage.MAX_GLYPH_SIZE,
-		BufferedImage.TYPE_INT_ARGB);
+			BufferedImage.TYPE_INT_ARGB);
 
 	/**
 	 * Returns an image that can be used by effects as a temp image.
@@ -106,7 +106,7 @@ public class EffectUtil {
 	 * @return The value selected by the user
 	 */
 	static public Value floatValue (String name, final float currentValue, final float min, final float max,
-		final String description) {
+			final String description) {
 		return new DefaultValue(name, String.valueOf(currentValue)) {
 			public void showDialog () {
 				JSpinner spinner = new JSpinner(new SpinnerNumberModel(currentValue, min, max, 0.1f));
@@ -141,9 +141,9 @@ public class EffectUtil {
 		};
 	}
 
-	
+
 	/**
-	 * Prompts the user for a value that represents a fixed number of options. 
+	 * Prompts the user for a value that represents a fixed number of options.
 	 * All options are strings.
 	 * 
 	 * @param options The first array has an entry for each option. Each entry is either a String[1] that is both the display value
@@ -211,7 +211,7 @@ public class EffectUtil {
 	static public Color fromString (String rgb) {
 		if (rgb == null || rgb.length() != 6) return Color.white;
 		return new Color(Integer.parseInt(rgb.substring(0, 2), 16), Integer.parseInt(rgb.substring(2, 4), 16), Integer.parseInt(rgb
-			.substring(4, 6), 16));
+				.substring(4, 6), 16));
 	}
 
 	/**
@@ -226,7 +226,7 @@ public class EffectUtil {
 		/**
 		 * Create a default value
 		 * 
-		 * @param name The name of the value being configured  
+		 * @param name The name of the value being configured
 		 * @param value The value to use for the default
 		 */
 		public DefaultValue(String name, String value) {
@@ -314,15 +314,15 @@ public class EffectUtil {
 			JPanel descriptionPanel = new JPanel();
 			descriptionPanel.setLayout(new GridBagLayout());
 			getContentPane().add(
-				descriptionPanel,
-				new GridBagConstraints(0, 0, 2, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0,
-					0), 0, 0));
+					descriptionPanel,
+					new GridBagConstraints(0, 0, 2, 1, 1.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0,
+							0), 0, 0));
 			descriptionPanel.setBackground(Color.white);
 			descriptionPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.black));
 			{
 				JTextArea descriptionText = new JTextArea(description);
 				descriptionPanel.add(descriptionText, new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.CENTER,
-					GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
+						GridBagConstraints.BOTH, new Insets(5, 5, 5, 5), 0, 0));
 				descriptionText.setWrapStyleWord(true);
 				descriptionText.setLineWrap(true);
 				descriptionText.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -331,17 +331,17 @@ public class EffectUtil {
 
 			JPanel panel = new JPanel();
 			getContentPane().add(
-				panel,
-				new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 0,
-					5), 0, 0));
+					panel,
+					new GridBagConstraints(0, 1, 1, 1, 1.0, 1.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 0,
+							5), 0, 0));
 			panel.add(new JLabel(name + ":"));
 			panel.add(component);
 
 			JPanel buttonPanel = new JPanel();
 			getContentPane().add(
-				buttonPanel,
-				new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
-					new Insets(0, 0, 0, 0), 0, 0));
+					buttonPanel,
+					new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.NONE,
+							new Insets(0, 0, 0, 0), 0, 0));
 			{
 				JButton okButton = new JButton("OK");
 				buttonPanel.add(okButton);

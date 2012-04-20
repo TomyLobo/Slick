@@ -23,7 +23,7 @@ public class FadeInTransition implements Transition {
 	public FadeInTransition() {
 		this(Color.black, 500);
 	}
-	
+
 	/**
 	 * Create a new fade in transition
 	 * 
@@ -32,7 +32,7 @@ public class FadeInTransition implements Transition {
 	public FadeInTransition(Color color) {
 		this(color, 500);
 	}
-	
+
 	/**
 	 * Create a new fade in transition
 	 * 
@@ -44,7 +44,7 @@ public class FadeInTransition implements Transition {
 		this.color.a = 1;
 		this.fadeTime = fadeTime;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.state.transition.Transition#isComplete()
 	 */
@@ -58,11 +58,11 @@ public class FadeInTransition implements Transition {
 	public void postRender(StateBasedGame game, GameContainer container, Graphics g) {
 		Color old = g.getColor();
 		g.setColor(color);
-		
+
 		g.fillRect(0, 0, container.getWidth()*2, container.getHeight()*2);
 		g.setColor(old);
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.state.transition.Transition#update(org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.GameContainer, int)
 	 */
@@ -81,7 +81,7 @@ public class FadeInTransition implements Transition {
 
 	public void init(GameState firstState, GameState secondState) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

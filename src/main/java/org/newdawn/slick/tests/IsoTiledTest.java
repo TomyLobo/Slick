@@ -15,7 +15,7 @@ import org.newdawn.slick.util.Bootstrap;
 public class IsoTiledTest extends BasicGame {
 	/** The tilemap we're going to render */
 	private TiledMap tilemap;
-	
+
 	/**
 	 * Create a new test
 	 */

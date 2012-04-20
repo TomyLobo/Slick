@@ -35,14 +35,14 @@ public class ImageGraphicsTest extends BasicGame {
 	private float ang;
 	/** The name of the dynamic image technique in use */
 	private String using = "none";
-	
+
 	/**
 	 * Create a new image rendering test
 	 */
 	public ImageGraphicsTest() {
 		super("Image Graphics Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -54,7 +54,7 @@ public class ImageGraphicsTest extends BasicGame {
 		cut = new Image(100,100);
 		gTarget = target.getGraphics();
 		offscreenPreload = preloaded.getGraphics();
-		
+
 		offscreenPreload.drawString("Drawing over a loaded image", 5, 15);
 		offscreenPreload.setLineWidth(5);
 		offscreenPreload.setAntiAlias(true);
@@ -63,16 +63,16 @@ public class ImageGraphicsTest extends BasicGame {
 		offscreenPreload.setColor(Color.white);
 		offscreenPreload.drawRect(190,20,70,70);
 		offscreenPreload.flush();
-		
+
 		if (GraphicsFactory.usingFBO()) {
 			using = "FBO (Frame Buffer Objects)";
 		} else if (GraphicsFactory.usingPBuffer()) {
 			using = "Pbuffer (Pixel Buffers)";
 		}
-		
+
 		System.out.println(preloaded.getColor(50,50));
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
 	 */
@@ -90,10 +90,10 @@ public class ImageGraphicsTest extends BasicGame {
 		gTarget.drawImage(testImage,100,150);
 		gTarget.drawImage(testImage,100,50);
 		gTarget.drawImage(testImage,50,75);
-		
+
 		// Note we started by clearing the offscreen graphics area and then end
 		// by calling flush
-		gTarget.flush(); 
+		gTarget.flush();
 
 		g.setColor(Color.red);
 		g.fillRect(250, 50, 200, 200);
@@ -102,7 +102,7 @@ public class ImageGraphicsTest extends BasicGame {
 		target.draw(300,100);
 		target.draw(300,410,200,150);
 		target.draw(505,410,100,75);
-		
+
 		// Draw some text on the screen to indicate what we did and put some
 		// nice boxes around the three areas
 		g.setColor(Color.white);
@@ -111,7 +111,7 @@ public class ImageGraphicsTest extends BasicGame {
 		g.drawRect(300, 100, target.getWidth(), target.getHeight());
 		g.drawRect(300, 410, target.getWidth()/2, target.getHeight()/2);
 		g.drawRect(505, 410, target.getWidth()/4, target.getHeight()/4);
-		
+
 		// SCREEN COPY EXAMPLE
 		// Put some text and simple graphics on the screen to test copying
 		// from the screen to a target image
@@ -120,11 +120,11 @@ public class ImageGraphicsTest extends BasicGame {
 		g.drawString("Using: "+using, 10, 580);
 		g.setColor(Color.red);
 		g.fillRect(10,120,200,5);
-		
+
 		// Copy the screen area into a destination image
 		int xp = (int) (60 + (Math.sin(ang / 60) * 50));
 		g.copyArea(cut,xp,50);
-		
+
 		// Draw the copied image to the screen and put some nice
 		// boxes around the source and the destination
 		cut.draw(30,250);
@@ -132,7 +132,7 @@ public class ImageGraphicsTest extends BasicGame {
 		g.drawRect(30, 250, cut.getWidth(), cut.getHeight());
 		g.setColor(Color.gray);
 		g.drawRect(xp, 50, cut.getWidth(), cut.getHeight());
-		
+
 		// ALTERING A LOADED IMAGE EXAMPLE
 		// Draw the image we loaded in the init method and then modified
 		// by drawing some text and simple geometry on it
@@ -156,7 +156,7 @@ public class ImageGraphicsTest extends BasicGame {
 	public static void main(String[] argv) {
 		try {
 			GraphicsFactory.setUseFBO(false);
-			
+
 			AppGameContainer container = new AppGameContainer(new ImageGraphicsTest());
 			container.setDisplayMode(800,600,false);
 			container.start();

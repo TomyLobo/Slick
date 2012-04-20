@@ -23,7 +23,7 @@ public class FadeOutTransition implements Transition {
 	public FadeOutTransition() {
 		this(Color.black, 500);
 	}
-	
+
 	/**
 	 * Create a new fade out transition
 	 * 
@@ -32,7 +32,7 @@ public class FadeOutTransition implements Transition {
 	public FadeOutTransition(Color color) {
 		this(color, 500);
 	}
-	
+
 	/**
 	 * Create a new fade out transition
 	 * 
@@ -44,7 +44,7 @@ public class FadeOutTransition implements Transition {
 		this.color.a = 0;
 		this.fadeTime = fadeTime;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.state.transition.Transition#isComplete()
 	 */
@@ -61,7 +61,7 @@ public class FadeOutTransition implements Transition {
 		g.fillRect(0, 0, container.getWidth() * 2, container.getHeight() * 2);
 		g.setColor(old);
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.state.transition.Transition#update(org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.GameContainer, int)
 	 */
@@ -80,7 +80,7 @@ public class FadeOutTransition implements Transition {
 
 	public void init(GameState firstState, GameState secondState) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

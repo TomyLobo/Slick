@@ -12,7 +12,7 @@ public interface PathFindingContext {
 	 * @return The object being moved along the path
 	 */
 	public Mover getMover();
-	
+
 	/**
 	 * Get the x coordinate of the source location
 	 * 
@@ -26,7 +26,7 @@ public interface PathFindingContext {
 	 * @return The y coordinate of the source location
 	 */
 	public int getSourceY();
-	
+
 	/**
 	 * Get the distance that has been searched to reach this point
 	 * 

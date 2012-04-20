@@ -9,7 +9,7 @@ import org.newdawn.slick.Image;
  * The description of any class that can produce data to an output stream reprsenting
  * some image in memory.
  *
- * @author Jon 
+ * @author Jon
  */
 public interface ImageWriter {
 	/**
@@ -21,5 +21,5 @@ public interface ImageWriter {
 	 * @param writeAlpha True if we should write alpha information to the file
 	 * @throws IOException Indicates a failure to write out the image to the specified location
 	 */
-	void saveImage(Image image, String format, OutputStream out, boolean writeAlpha) throws IOException; 
+	void saveImage(Image image, String format, OutputStream out, boolean writeAlpha) throws IOException;
 }

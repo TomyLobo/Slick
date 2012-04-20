@@ -12,9 +12,9 @@ public class Inventory {
 	private ArrayList items = new ArrayList();
 
 	/**
-	 * Called by XML parser to add a configured item to the entity 
+	 * Called by XML parser to add a configured item to the entity
 	 * 
-	 * @param item The item to be added 
+	 * @param item The item to be added
 	 */
 	private void add(Item item) {
 		items.add(item);

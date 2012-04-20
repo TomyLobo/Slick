@@ -17,14 +17,14 @@ public class KeyRepeatTest extends BasicGame {
 	private int count;
 	/** The input sub system */
 	private Input input;
-	
+
 	/**
 	 * Create a new image rendering test
 	 */
 	public KeyRepeatTest() {
 		super("KeyRepeatTest");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */

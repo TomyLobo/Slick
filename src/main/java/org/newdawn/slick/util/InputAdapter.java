@@ -11,7 +11,7 @@ import org.newdawn.slick.InputListener;
 public class InputAdapter implements InputListener {
 	/** A flag to indicate if we're accepting input here */
 	private boolean acceptingInput = true;
-	
+
 	/**
 	 * @see org.newdawn.slick.InputListener#controllerButtonPressed(int, int)
 	 */
@@ -93,7 +93,7 @@ public class InputAdapter implements InputListener {
 	public void setAcceptingInput(boolean acceptingInput) {
 		this.acceptingInput = acceptingInput;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.InputListener#keyPressed(int, char)
 	 */
@@ -149,6 +149,6 @@ public class InputAdapter implements InputListener {
 	 * @see org.newdawn.slick.ControlledInputReciever#inputStarted()
 	 */
 	public void inputStarted() {
-		
+
 	}
 }

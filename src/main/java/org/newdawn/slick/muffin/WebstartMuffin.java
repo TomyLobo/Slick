@@ -17,7 +17,7 @@ import javax.jnlp.ServiceManager;
 import org.newdawn.slick.util.Log;
 
 /**
- * A muffin load/save implementation based on using Webstart Muffins (a bit like cookies only 
+ * A muffin load/save implementation based on using Webstart Muffins (a bit like cookies only
  * for webstart)
  * 
  * @author kappaOne
@@ -51,7 +51,7 @@ public class WebstartMuffin implements Muffin {
 		} catch (Exception e) {
 			Log.info("No exisiting Muffin Found - First Save");
 		}
-		
+
 		try {
 			ps.create(configURL, 1024); // 1024 bytes for our data
 

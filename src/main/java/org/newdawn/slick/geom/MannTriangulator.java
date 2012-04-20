@@ -39,7 +39,7 @@ import java.util.List;
 public class MannTriangulator implements Triangulator {
 	/** The allowed error value */
 	private static final double EPSILON = 1e-5;
-	
+
 	/** The outer countour of the shape */
 	protected PointBag contour;
 	/** The holes defined in the polygon */
@@ -50,18 +50,18 @@ public class MannTriangulator implements Triangulator {
 	private Point nextFreePoint;
 	/** The list of triangles created (or rather points in triangles, 3xn) */
 	private List triangles = new ArrayList();
-	
+
 	/** Creates a new instance of Triangulator0 */
 	public MannTriangulator() {
 		contour = getPointBag();
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.geom.Triangulator#addPolyPoint(float, float)
 	 */
 	public void addPolyPoint(float x, float y) {
-    	addPoint(new Vector2f(x,y));
-    }
+		addPoint(new Vector2f(x,y));
+	}
 
 	/**
 	 * Reset the internal state of the triangulator
@@ -197,7 +197,7 @@ public class MannTriangulator implements Triangulator {
 					}
 				}
 			} while ((pContour = pContour.next) != contour.first);
-			
+
 			// remove the point - we do it in every case to prevent endless loop
 			Point prev = pContour.prev;
 			Point next = pContour.next;
@@ -363,7 +363,7 @@ public class MannTriangulator implements Triangulator {
 		private double hypot(double x, double y) {
 			return Math.sqrt(x*x + y*y);
 		}
-		
+
 		/**
 		 * Compute the angle at this point
 		 */
@@ -440,10 +440,10 @@ public class MannTriangulator implements Triangulator {
 			// detection
 			boolean sidePrev = ((prev.pt.y - pt.y) * dx + (pt.x - prev.pt.x)
 					* dy) >= 0;
-			boolean sideNext = ((pt.y - next.pt.y) * dx + (next.pt.x - pt.x)
-					* dy) >= 0;
+					boolean sideNext = ((pt.y - next.pt.y) * dx + (next.pt.x - pt.x)
+							* dy) >= 0;
 
-			return (angle < 0) ? (sidePrev | sideNext) : (sidePrev & sideNext);
+							return (angle < 0) ? (sidePrev | sideNext) : (sidePrev & sideNext);
 		}
 
 		/**
@@ -546,7 +546,7 @@ public class MannTriangulator implements Triangulator {
 		}
 
 		/**
-		 * Get the number of points in the bag 
+		 * Get the number of points in the bag
 		 * 
 		 * @return The number of points in the bag
 		 */
@@ -562,7 +562,7 @@ public class MannTriangulator implements Triangulator {
 			} while ((p = p.next) != first);
 			return count;
 		}
-		
+
 		/**
 		 * Check if the point provided was contained
 		 * 
@@ -573,7 +573,7 @@ public class MannTriangulator implements Triangulator {
 			if (first == null) {
 				return false;
 			}
-			
+
 			if (first.prev.pt.equals(point)) {
 				return true;
 			}

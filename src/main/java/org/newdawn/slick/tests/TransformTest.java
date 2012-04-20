@@ -20,14 +20,14 @@ public class TransformTest extends BasicGame {
 	private boolean scaleUp;
 	/** True if we should be scaling down */
 	private boolean scaleDown;
-	
+
 	/**
 	 * Create a new test of graphics context rendering
 	 */
 	public TransformTest() {
 		super("Transform Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -48,7 +48,7 @@ public class TransformTest extends BasicGame {
 				g.fillRect(-500+(x*100), -500+(y*100), 80, 80);
 			}
 		}
-		
+
 		g.setColor(new Color(1,1,1,0.5f));
 		g.fillRect(-320,-240,640,480);
 		g.setColor(Color.white);
@@ -93,7 +93,7 @@ public class TransformTest extends BasicGame {
 			scaleDown = false;
 		}
 	}
-	
+
 	/**
 	 * Entry point to our test
 	 * 

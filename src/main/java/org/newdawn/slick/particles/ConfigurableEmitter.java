@@ -135,7 +135,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 	protected float adjustx;
 	/** The amount to adjust on the y axis */
 	protected float adjusty;
-	
+
 	/**
 	 * Create a new emitter configurable externally
 	 * 
@@ -192,7 +192,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 			updateImage = true;
 		}
 	}
-	
+
 	/**
 	 * The name of the image to load
 	 * 
@@ -238,9 +238,9 @@ public class ConfigurableEmitter implements ParticleEmitter {
 			adjusty -= this.y - y;
 		}
 		this.x = x;
-		this.y = y;		
+		this.y = y;
 	}
-	
+
 	/**
 	 * Get the base x coordiante for spawning particles
 	 * 
@@ -286,7 +286,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 		} else {
 			adjust = false;
 		}
-		
+
 		if (updateImage) {
 			updateImage = false;
 			try {
@@ -297,19 +297,19 @@ public class ConfigurableEmitter implements ParticleEmitter {
 			}
 		}
 
-		if ((wrapUp) || 
-		    ((length.isEnabled()) && (timeout < 0)) ||
-		    ((emitCount.isEnabled() && (leftToEmit <= 0)))) {
+		if ((wrapUp) ||
+				((length.isEnabled()) && (timeout < 0)) ||
+				((emitCount.isEnabled() && (leftToEmit <= 0)))) {
 			if (particleCount == 0) {
 				completed = true;
 			}
 		}
 		particleCount = 0;
-		
+
 		if (wrapUp) {
 			return;
 		}
-		
+
 		if (length.isEnabled()) {
 			if (timeout < 0) {
 				return;
@@ -374,14 +374,14 @@ public class ConfigurableEmitter implements ParticleEmitter {
 	 */
 	public void updateParticle(Particle particle, int delta) {
 		particleCount++;
-		
+
 		// adjust the particles if required
 		particle.x += adjustx;
 		particle.y += adjusty;
 
 		particle.adjustVelocity(windFactor.getValue(0) * 0.00005f * delta, gravityFactor
 				.getValue(0) * 0.00005f * delta);
-		
+
 		float offset = particle.getLife() / particle.getOriginalLife();
 		float inv = 1 - offset;
 		float colOffset = 0;
@@ -462,7 +462,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 		if (wrapUp) {
 			return completed;
 		}
-		
+
 		return false;
 	}
 
@@ -480,7 +480,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 	 * Release all the particles held by this emitter
 	 */
 	public void reset() {
-	    completed = false; 
+		completed = false;
 		if (engine != null) {
 			engine.releaseAll(this);
 		}
@@ -498,7 +498,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 			}
 		}
 	}
-	
+
 	/**
 	 * Create a duplicate of this emitter.
 	 * The duplicate should be added to a ParticleSystem to be used.
@@ -886,14 +886,14 @@ public class ConfigurableEmitter implements ParticleEmitter {
 	public boolean useAdditive() {
 		return useAdditive;
 	}
-	
+
 	public boolean isOriented() {
 		return this.useOriented;
 	}
-	
+
 	public boolean usePoints(ParticleSystem system) {
 		return (this.usePoints == Particle.INHERIT_POINTS) && (system.usePoints()) ||
-			   (this.usePoints == Particle.USE_POINTS); 
+				(this.usePoints == Particle.USE_POINTS);
 	}
 
 	public Image getImage() {

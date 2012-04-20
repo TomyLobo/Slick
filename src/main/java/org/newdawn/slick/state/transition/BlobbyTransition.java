@@ -23,7 +23,7 @@ import org.newdawn.slick.util.MaskUtil;
 public class BlobbyTransition implements Transition {
 	/** The renderer to use for all GL operations */
 	protected static SGL GL = Renderer.get();
-	
+
 	/** The previous state */
 	private GameState prev;
 	/** True if the state has finished */
@@ -36,12 +36,12 @@ public class BlobbyTransition implements Transition {
 	private int timer = 1000;
 	/** The number of blobs to create */
 	private int blobCount = 10;
-	
+
 	/**
 	 * Create a new transition
 	 */
 	public BlobbyTransition() {
-		
+
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class BlobbyTransition implements Transition {
 	public BlobbyTransition(Color background) {
 		this.background = background;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.state.transition.Transition#init(org.newdawn.slick.state.GameState, org.newdawn.slick.state.GameState)
 	 */
@@ -80,7 +80,7 @@ public class BlobbyTransition implements Transition {
 	public void preRender(StateBasedGame game, GameContainer container,
 			Graphics g) throws SlickException {
 		prev.render(container, game, g);
-		
+
 		MaskUtil.defineMask();
 		for (int i=0;i<blobs.size();i++) {
 			((Blob) blobs.get(i)).render(g);
@@ -106,18 +106,18 @@ public class BlobbyTransition implements Transition {
 				blobs.add(new Blob(container));
 			}
 		}
-		
+
 		for (int i=0;i<blobs.size();i++) {
 			((Blob) blobs.get(i)).update(delta);
 		}
-		
+
 		timer -= delta;
 		if (timer < 0) {
 			finish = true;
 		}
 	}
 
-	/** 
+	/**
 	 * A blob to show the new state
 	 * 
 	 * @author kevin
@@ -131,7 +131,7 @@ public class BlobbyTransition implements Transition {
 		private float growSpeed;
 		/** The radius of this blob */
 		private float rad;
-		
+
 		/**
 		 * Create a new blob
 		 * 
@@ -142,16 +142,16 @@ public class BlobbyTransition implements Transition {
 			y = (float) (Math.random() * container.getWidth());
 			growSpeed = (float) (1f + (Math.random() * 1f));
 		}
-		
+
 		/**
-		 * Update the blob 
+		 * Update the blob
 		 * 
 		 * @param delta The change in time in milliseconds
 		 */
 		public void update(int delta) {
 			rad += growSpeed * delta * 0.4f;
 		}
-		
+
 		/**
 		 * Render the blob - i.e. the mask
 		 * 

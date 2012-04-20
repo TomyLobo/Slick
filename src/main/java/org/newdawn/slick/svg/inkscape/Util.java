@@ -28,7 +28,7 @@ public class Util {
 	 */
 	static NonGeometricData getNonGeometricData(Element element) {
 		String meta = getMetaData(element);
-		
+
 		NonGeometricData data = new InkscapeNonGeometricData(meta, element);
 		data.addAttribute(NonGeometricData.ID, element.getAttribute("id"));
 		data.addAttribute(NonGeometricData.FILL, getStyle(element, NonGeometricData.FILL));
@@ -39,10 +39,10 @@ public class Util {
 		data.addAttribute(NonGeometricData.STROKE_MITERLIMIT, getStyle(element, NonGeometricData.STROKE_MITERLIMIT));
 		data.addAttribute(NonGeometricData.STROKE_OPACITY, getStyle(element, NonGeometricData.STROKE_OPACITY));
 		data.addAttribute(NonGeometricData.STROKE_WIDTH, getStyle(element, NonGeometricData.STROKE_WIDTH));
-		
+
 		return data;
 	}
-	
+
 	/**
 	 * Get the meta data store within an element either in the label or
 	 * id atributes
@@ -55,10 +55,10 @@ public class Util {
 		if ((label != null) && (!label.equals(""))) {
 			return label;
 		}
-		
+
 		return element.getAttribute("id");
 	}
-	
+
 	/**
 	 * Get the style attribute setting for a given style information element (i.e. fill, stroke)
 	 * 
@@ -68,29 +68,29 @@ public class Util {
 	 */
 	static String getStyle(Element element, String styleName) {
 		String value = element.getAttribute(styleName);
-		
+
 		if ((value != null) && (value.length() > 0)) {
 			return value;
 		}
-		
+
 		String style = element.getAttribute("style");
 		return extractStyle(style, styleName);
 	}
-	
+
 	/**
 	 * Extract the style value from a Inkscape encoded string
 	 * 
-	 * @param style The style string to be decoded 
-	 * @param attribute The style attribute to retrieve 
+	 * @param style The style string to be decoded
+	 * @param attribute The style attribute to retrieve
 	 * @return The value for the given attribute
 	 */
 	static String extractStyle(String style, String attribute) {
 		if (style == null) {
 			return "";
 		}
-		
+
 		StringTokenizer tokens = new StringTokenizer(style,";");
-		
+
 		while (tokens.hasMoreTokens()) {
 			String token = tokens.nextToken();
 			String key = token.substring(0,token.indexOf(':'));
@@ -98,7 +98,7 @@ public class Util {
 				return token.substring(token.indexOf(':')+1);
 			}
 		}
-		
+
 		return "";
 	}
 
@@ -111,7 +111,7 @@ public class Util {
 	static Transform getTransform(Element element) {
 		return getTransform(element, "transform");
 	}
-	
+
 	/**
 	 * Get a transform defined in the XML
 	 * 
@@ -124,7 +124,7 @@ public class Util {
 		if (str == null) {
 			return new Transform();
 		}
-		
+
 		if (str.equals("")) {
 			return new Transform();
 		} else if (str.startsWith("translate")) {
@@ -133,7 +133,7 @@ public class Util {
 			StringTokenizer tokens = new StringTokenizer(str, ", ");
 			float x = Float.parseFloat(tokens.nextToken());
 			float y = Float.parseFloat(tokens.nextToken());
-			
+
 			return Transform.createTranslateTransform(x,y);
 		} else if (str.startsWith("matrix")) {
 			float[] pose = new float[6];
@@ -144,20 +144,20 @@ public class Util {
 			for (int j=0;j<tr.length;j++) {
 				tr[j] = Float.parseFloat(tokens.nextToken());
 			}
-			
+
 			pose[0] = tr[0];
 			pose[1] = tr[2];
 			pose[2] = tr[4];
 			pose[3] = tr[1];
 			pose[4] = tr[3];
 			pose[5] = tr[5];
-			
+
 			return new Transform(pose);
 		}
-		
+
 		return new Transform();
 	}
-	
+
 	/**
 	 * Get a floating point attribute that may appear in either the default or
 	 * SODIPODI namespace
@@ -172,14 +172,14 @@ public class Util {
 		if ((cx == null) || (cx.equals(""))) {
 			cx = element.getAttributeNS(SODIPODI, attr);
 		}
-		
+
 		try {
 			return Float.parseFloat(cx);
 		} catch (NumberFormatException e) {
 			throw new ParsingException(element, "Invalid value for: "+attr, e);
 		}
 	}
-	
+
 	/**
 	 * Get the attribute value as a reference to another entity
 	 * 
@@ -190,9 +190,9 @@ public class Util {
 		if (value.length() < 2) {
 			return "";
 		}
-		
+
 		value = value.substring(1, value.length());
-		
+
 		return value;
 	}
 }

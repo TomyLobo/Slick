@@ -21,14 +21,14 @@ public class ClipTest extends BasicGame {
 	private boolean world;
 	/** True if we're showing screen clipping */
 	private boolean clip;
-	
+
 	/**
 	 * Create a new tester for the clip plane based clipping
 	 */
 	public ClipTest() {
 		super("Clip Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -52,14 +52,14 @@ public class ClipTest extends BasicGame {
 		g.drawString("1 - No Clipping", 100, 10);
 		g.drawString("2 - Screen Clipping", 100, 30);
 		g.drawString("3 - World Clipping", 100, 50);
-		
+
 		if (world) {
 			g.drawString("WORLD CLIPPING ENABLED", 200, 80);
-		} 
+		}
 		if (clip) {
 			g.drawString("SCREEN CLIPPING ENABLED", 200, 80);
 		}
-		
+
 		g.rotate(400, 400, ang);
 		if (world) {
 			g.setWorldClip(350,302,100,196);
@@ -71,7 +71,7 @@ public class ClipTest extends BasicGame {
 		g.fillOval(300,300,200,200);
 		g.setColor(Color.blue);
 		g.fillRect(390,200,20,400);
-		
+
 		g.clearClip();
 		g.clearWorldClip();
 	}
@@ -93,7 +93,7 @@ public class ClipTest extends BasicGame {
 			clip = false;
 		}
 	}
-	
+
 	/**
 	 * Entry point to our test
 	 * 

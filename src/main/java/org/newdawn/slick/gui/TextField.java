@@ -17,13 +17,13 @@ public class TextField extends AbstractComponent {
 	private static final int INITIAL_KEY_REPEAT_INTERVAL = 400;
 	/** The key repeat interval */
 	private static final int KEY_REPEAT_INTERVAL = 50;
-	
+
 	/** The width of the field */
 	private int width;
 
 	/** The height of the field */
 	private int height;
-	
+
 	/** The location in the X coordinate */
 	protected int x;
 
@@ -56,22 +56,22 @@ public class TextField extends AbstractComponent {
 
 	/** The last key pressed */
 	private int lastKey = -1;
-	
+
 	/** The last character pressed */
 	private char lastChar = 0;
-	
+
 	/** The time since last key repeat */
 	private long repeatTimer;
-	
+
 	/** The text before the paste in */
 	private String oldText;
-	
+
 	/** The cursor position before the paste */
 	private int oldCursorPos;
-	
+
 	/** True if events should be consumed by the field */
 	private boolean consume = true;
-	
+
 	/**
 	 * Create a new text field
 	 * 
@@ -87,15 +87,15 @@ public class TextField extends AbstractComponent {
 	 *            The width of the text field
 	 * @param height
 	 *            The height of the text field
-	 * @param listener 
+	 * @param listener
 	 * 			  The listener to add to the text field
 	 */
 	public TextField(GUIContext container, Font font, int x, int y, int width,
-					 int height, ComponentListener listener) {
+			int height, ComponentListener listener) {
 		this(container,font,x,y,width,height);
 		addListener(listener);
 	}
-	
+
 	/**
 	 * Create a new text field
 	 * 
@@ -131,14 +131,14 @@ public class TextField extends AbstractComponent {
 	public void setConsumeEvents(boolean consume) {
 		this.consume = consume;
 	}
-	
+
 	/**
 	 * Deactivate the key input handling for this field
 	 */
 	public void deactivate() {
 		setFocus(false);
 	}
-	
+
 	/**
 	 * Moves the component.
 	 * 
@@ -169,7 +169,7 @@ public class TextField extends AbstractComponent {
 	public int getY() {
 		return y;
 	}
-	
+
 	/**
 	 * Get the width of the component
 	 * 
@@ -235,7 +235,7 @@ public class TextField extends AbstractComponent {
 		}
 		Rectangle oldClip = g.getClip();
 		g.setWorldClip(x,y,width, height);
-		
+
 		// Someone could have set a color for me to blend...
 		Color clr = g.getColor();
 
@@ -337,12 +337,12 @@ public class TextField extends AbstractComponent {
 	 */
 	protected void doPaste(String text) {
 		recordOldPosition();
-		
+
 		for (int i=0;i<text.length();i++) {
 			keyPressed(-1, text.charAt(i));
 		}
 	}
-	
+
 	/**
 	 * Record the old position and content
 	 */
@@ -350,7 +350,7 @@ public class TextField extends AbstractComponent {
 		oldText = getText();
 		oldCursorPos = cursorPos;
 	}
-	
+
 	/**
 	 * Do the undo of the paste, overrideable for custom behaviour
 	 * 
@@ -363,7 +363,7 @@ public class TextField extends AbstractComponent {
 			setCursorPos(oldCursorPos);
 		}
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.gui.AbstractComponent#keyPressed(int, char)
 	 */
@@ -371,22 +371,22 @@ public class TextField extends AbstractComponent {
 		if (hasFocus()) {
 			if (key != -1)
 			{
-				if ((key == Input.KEY_V) && 
-				   ((input.isKeyDown(Input.KEY_LCONTROL)) || (input.isKeyDown(Input.KEY_RCONTROL)))) {
+				if ((key == Input.KEY_V) &&
+						((input.isKeyDown(Input.KEY_LCONTROL)) || (input.isKeyDown(Input.KEY_RCONTROL)))) {
 					String text = Sys.getClipboard();
 					if (text != null) {
 						doPaste(text);
 					}
 					return;
 				}
-				if ((key == Input.KEY_Z) && 
-				   ((input.isKeyDown(Input.KEY_LCONTROL)) || (input.isKeyDown(Input.KEY_RCONTROL)))) {
+				if ((key == Input.KEY_Z) &&
+						((input.isKeyDown(Input.KEY_LCONTROL)) || (input.isKeyDown(Input.KEY_RCONTROL)))) {
 					if (oldText != null) {
 						doUndo(oldCursorPos, oldText);
 					}
 					return;
 				}
-				
+
 				// alt and control keys don't come through here
 				if (input.isKeyDown(Input.KEY_LCONTROL) || input.isKeyDown(Input.KEY_RCONTROL)) {
 					return;
@@ -395,7 +395,7 @@ public class TextField extends AbstractComponent {
 					return;
 				}
 			}
-			
+
 			if (lastKey != key) {
 				lastKey = key;
 				repeatTimer = System.currentTimeMillis() + INITIAL_KEY_REPEAT_INTERVAL;
@@ -403,7 +403,7 @@ public class TextField extends AbstractComponent {
 				repeatTimer = System.currentTimeMillis() + KEY_REPEAT_INTERVAL;
 			}
 			lastChar = c;
-			
+
 			if (key == Input.KEY_LEFT) {
 				if (cursorPos > 0) {
 					cursorPos--;
@@ -470,7 +470,7 @@ public class TextField extends AbstractComponent {
 	 */
 	public void setFocus(boolean focus) {
 		lastKey = -1;
-		
+
 		super.setFocus(focus);
 	}
 }

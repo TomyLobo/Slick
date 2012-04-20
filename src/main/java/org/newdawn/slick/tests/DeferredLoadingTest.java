@@ -18,7 +18,7 @@ import org.newdawn.slick.loading.LoadingList;
 /**
  * A test for deferred loading. Each of the resources is requested then the loading list
  * is cycled to actual perform the resource allowing the rendering to be performed in
- * between 
+ * between
  *
  * @author kevin
  */
@@ -35,26 +35,26 @@ public class DeferredLoadingTest extends BasicGame {
 	private DeferredResource nextResource;
 	/** True if we've loaded all the resources and started rendereing */
 	private boolean started;
-	
+
 	/**
 	 * Create a new image rendering test
 	 */
 	public DeferredLoadingTest() {
 		super("Deferred Loading Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
 		LoadingList.setDeferredLoading(true);
-		
+
 		new Sound("testdata/cbrown01.wav");
 		new Sound("testdata/engine.wav");
 		sound = new Sound("testdata/restart.ogg");
 		new Music("testdata/testloop.ogg");
 		music = new Music("testdata/SMB-X.XM");
-		
+
 		new Image("testdata/cursor.png");
 		new Image("testdata/cursor.tga");
 		new Image("testdata/cursor.png");
@@ -65,7 +65,7 @@ public class DeferredLoadingTest extends BasicGame {
 		new Image("testdata/logo.png");
 		new Image("testdata/rocket.png");
 		new Image("testdata/testpack.png");
-		
+
 		font = new AngelCodeFont("testdata/demo.fnt", "testdata/demo_00.tga");
 	}
 
@@ -76,14 +76,14 @@ public class DeferredLoadingTest extends BasicGame {
 		if (nextResource != null) {
 			g.drawString("Loading: "+nextResource.getDescription(), 100, 100);
 		}
-		
+
 		int total = LoadingList.get().getTotalResources();
 		int loaded = LoadingList.get().getTotalResources() - LoadingList.get().getRemainingResources();
-		
+
 		float bar = loaded / (float) total;
 		g.fillRect(100,150,loaded*40,20);
 		g.drawRect(100,150,total*40,20);
-		
+
 		if (started) {
 			image.draw(100,200);
 			font.drawString(100,500,"LOADING COMPLETE");
@@ -102,10 +102,10 @@ public class DeferredLoadingTest extends BasicGame {
 			} catch (IOException e) {
 				throw new SlickException("Failed to load: "+nextResource.getDescription(), e);
 			}
-			
+
 			nextResource = null;
 		}
-		
+
 		if (LoadingList.get().getRemainingResources() > 0) {
 			nextResource = LoadingList.get().getNext();
 		} else {

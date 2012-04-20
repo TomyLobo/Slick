@@ -1,5 +1,5 @@
 package org.newdawn.slick.tests;
-	
+
 import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -23,14 +23,14 @@ public class FontTest extends BasicGame {
 	private AngelCodeFont font2;
 	/** The image of the font to compare against */
 	private Image image;
-	
+
 	/**
 	 * Create a new test for font rendering
 	 */
 	public FontTest() {
 		super("Font Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.Game#init(org.newdawn.slick.GameContainer)
 	 */
@@ -46,15 +46,15 @@ public class FontTest extends BasicGame {
 	public void render(GameContainer container, Graphics g) {
 		font.drawString(80, 5, "A Font Example", Color.red);
 		font.drawString(100, 32, "We - AV - Here is a more complete line that hopefully");
-		font.drawString(100, 36 + font.getHeight("We Here is a more complete line that hopefully"), 
-				             "will show some kerning.");
-		
+		font.drawString(100, 36 + font.getHeight("We Here is a more complete line that hopefully"),
+				"will show some kerning.");
+
 		font2.drawString(80, 85, "A Font Example", Color.red);
 		font2.drawString(100, 132, "We - AV - Here is a more complete line that hopefully");
-		font2.drawString(100, 136 + font2.getHeight("We - Here is a more complete line that hopefully"), 
-				             "will show some kerning.");
+		font2.drawString(100, 136 + font2.getHeight("We - Here is a more complete line that hopefully"),
+				"will show some kerning.");
 		image.draw(100,400);
-		
+
 		String testStr = "Testing Font";
 		font2.drawString(100, 300, testStr);
 		g.setColor(Color.white);
@@ -69,7 +69,7 @@ public class FontTest extends BasicGame {
 	 */
 	public void update(GameContainer container, int delta) throws SlickException {
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#keyPressed(int, char)
 	 */
@@ -85,10 +85,10 @@ public class FontTest extends BasicGame {
 			}
 		}
 	}
-	
+
 	/** The container we're using */
 	private static AppGameContainer container;
-	
+
 	/**
 	 * Entry point to our test
 	 * 

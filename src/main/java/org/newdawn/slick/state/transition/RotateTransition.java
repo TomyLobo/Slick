@@ -31,7 +31,7 @@ public class RotateTransition implements Transition {
 	 * Create a new transition
 	 */
 	public RotateTransition() {
-		
+
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class RotateTransition implements Transition {
 	public RotateTransition(Color background) {
 		this.background = background;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.state.transition.Transition#init(org.newdawn.slick.state.GameState, org.newdawn.slick.state.GameState)
 	 */

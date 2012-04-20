@@ -19,7 +19,7 @@ import org.newdawn.slick.util.InputAdapter;
 public abstract class AbstractComponent extends InputAdapter {
 	/** The component that currently has focus */
 	private static AbstractComponent currentFocus = null;
-	
+
 	/** The game container */
 	protected GUIContext container;
 
@@ -31,7 +31,7 @@ public abstract class AbstractComponent extends InputAdapter {
 
 	/** The input we're responding to */
 	protected Input input;
-	
+
 	/**
 	 * Create a new component
 	 * 
@@ -48,7 +48,7 @@ public abstract class AbstractComponent extends InputAdapter {
 
 		setLocation(0, 0);
 	}
-	
+
 	/**
 	 * Add a component listener to be informed when the component sees fit.
 	 * 
@@ -169,7 +169,7 @@ public abstract class AbstractComponent extends InputAdapter {
 	protected void consumeEvent() {
 		input.consumeEvent();
 	}
-	
+
 	/**
 	 * Gives the focus to this component with a click of the mouse.
 	 * 

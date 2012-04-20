@@ -26,7 +26,7 @@ import org.newdawn.slick.Image;
  */
 public class ImageIOWriter implements ImageWriter {
 	/**
-	 * @see org.newdawn.slick.imageout.ImageWriter#saveImage(org.newdawn.slick.Image, 
+	 * @see org.newdawn.slick.imageout.ImageWriter#saveImage(org.newdawn.slick.Image,
 	 * java.lang.String, java.io.OutputStream, boolean)
 	 */
 	public void saveImage(Image image, String format, OutputStream output, boolean hasAlpha)
@@ -36,7 +36,7 @@ public class ImageIOWriter implements ImageWriter {
 		if (!hasAlpha) {
 			len = 3 * image.getWidth() * image.getHeight();
 		}
-		
+
 		ByteBuffer out = ByteBuffer.allocate(len);
 		Color c;
 
@@ -55,17 +55,17 @@ public class ImageIOWriter implements ImageWriter {
 
 		// create a raster of the correct format and fill it with our buffer
 		DataBufferByte dataBuffer = new DataBufferByte(out.array(), len);
-		
+
 		PixelInterleavedSampleModel sampleModel;
 
 		ColorModel cm;
-		
+
 		if (hasAlpha) {
 			int[] offsets = { 0, 1, 2, 3 };
 			sampleModel = new PixelInterleavedSampleModel(
 					DataBuffer.TYPE_BYTE, image.getWidth(), image.getHeight(), 4,
 					4 * image.getWidth(), offsets);
-			
+
 			cm = new ComponentColorModel(ColorSpace
 					.getInstance(ColorSpace.CS_sRGB), new int[] { 8, 8, 8, 8 },
 					true, false, ComponentColorModel.TRANSLUCENT,
@@ -75,20 +75,20 @@ public class ImageIOWriter implements ImageWriter {
 			sampleModel = new PixelInterleavedSampleModel(
 					DataBuffer.TYPE_BYTE, image.getWidth(), image.getHeight(), 3,
 					3 * image.getWidth(), offsets);
-			
+
 			cm = new ComponentColorModel(ColorSpace.getInstance(ColorSpace.CS_sRGB),
-	                new int[] {8,8,8,0},
-	                false,
-	                false,
-	                ComponentColorModel.OPAQUE,
-	                DataBuffer.TYPE_BYTE);
+					new int[] {8,8,8,0},
+					false,
+					false,
+					ComponentColorModel.OPAQUE,
+					DataBuffer.TYPE_BYTE);
 		}
 		WritableRaster raster = Raster.createWritableRaster(sampleModel, dataBuffer, new Point(0, 0));
 
 		// finally create the buffered image based on the data from the texture
 		// and spit it through to ImageIO
 		BufferedImage img = new BufferedImage(cm, raster, false, null);
-		
+
 		ImageIO.write(img, format, output);
 	}
 }

@@ -16,19 +16,19 @@ import org.w3c.dom.Element;
  * @author kevin
  */
 public class EllipseProcessor implements ElementProcessor {
-	
+
 	/**
 	 * @see org.newdawn.slick.svg.inkscape.ElementProcessor#process(org.newdawn.slick.svg.Loader, org.w3c.dom.Element, org.newdawn.slick.svg.Diagram, org.newdawn.slick.geom.Transform)
 	 */
 	public void process(Loader loader, Element element, Diagram diagram, Transform t) throws ParsingException {
 		Transform transform = Util.getTransform(element);
 		transform = new Transform(t, transform);
-		
+
 		float x = Util.getFloatAttribute(element,"cx");
 		float y = Util.getFloatAttribute(element,"cy");
 		float rx = Util.getFloatAttribute(element,"rx");
 		float ry = Util.getFloatAttribute(element,"ry");
-		
+
 		Ellipse ellipse = new Ellipse(x,y,rx,ry);
 		Shape shape = ellipse.transform(transform);
 
@@ -37,7 +37,7 @@ public class EllipseProcessor implements ElementProcessor {
 		data.addAttribute("cy", ""+y);
 		data.addAttribute("rx", ""+rx);
 		data.addAttribute("ry", ""+ry);
-		
+
 		diagram.addFigure(new Figure(Figure.ELLIPSE, shape, data, transform));
 	}
 
@@ -53,7 +53,7 @@ public class EllipseProcessor implements ElementProcessor {
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 

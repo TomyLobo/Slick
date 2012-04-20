@@ -4,7 +4,7 @@ import org.newdawn.slick.util.xml.ObjectTreeParser;
 import org.newdawn.slick.util.xml.SlickXMLException;
 
 /**
- * A simple test to check that the object parser from XML works. Read the Javadoc of 
+ * A simple test to check that the object parser from XML works. Read the Javadoc of
  * ObjectParser to work out whats going on here
  * 
  * @author kevin
@@ -21,7 +21,7 @@ public class ObjectParserTest {
 	public static void main(String[] argv) throws SlickXMLException {
 		ObjectTreeParser parser = new ObjectTreeParser("org.newdawn.slick.tests.xml");
 		parser.addElementMapping("Bag", ItemContainer.class);
-		
+
 		GameData parsedData = (GameData) parser.parse("testdata/objxmltest.xml");
 		parsedData.dump("");
 	}

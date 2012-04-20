@@ -28,7 +28,7 @@ public class TestState3 extends BasicGameState {
 	private int selected;
 	/** The game holding this state */
 	private StateBasedGame game;
-	
+
 	/**
 	 * @see org.newdawn.slick.state.BasicGameState#getID()
 	 */
@@ -52,7 +52,7 @@ public class TestState3 extends BasicGameState {
 		g.setColor(Color.blue);
 		g.drawString("This is State 3", 200, 50);
 		g.setColor(Color.white);
-		
+
 		for (int i=0;i<options.length;i++) {
 			g.drawString(options[i], 400 - (font.getWidth(options[i])/2), 200+(i*50));
 			if (selected == i) {

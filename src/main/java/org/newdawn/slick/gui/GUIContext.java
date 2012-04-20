@@ -19,49 +19,49 @@ public interface GUIContext {
 	 * @return The input system available to this game container
 	 */
 	public Input getInput();
-	
+
 	/**
 	 * Get the accurate system time
 	 * 
 	 * @return The system time in milliseconds
 	 */
 	public long getTime();
-	
+
 	/**
 	 * Get the width of the standard screen resolution
 	 * 
 	 * @return The screen width
 	 */
 	public abstract int getScreenWidth();
-	
+
 	/**
 	 * Get the height of the standard screen resolution
 	 * 
 	 * @return The screen height
 	 */
 	public abstract int getScreenHeight();
-	
+
 	/**
 	 * Get the width of the game canvas
 	 * 
 	 * @return The width of the game canvas
 	 */
 	public int getWidth();
-	
+
 	/**
 	 * Get the height of the game canvas
 	 * 
 	 * @return The height of the game canvas
 	 */
 	public int getHeight();
-	
+
 	/**
 	 * Get the default system font
 	 * 
 	 * @return The default system font
 	 */
 	public Font getDefaultFont();
-	
+
 	/**
 	 * Set the mouse cursor to be displayed - this is a hardware cursor and hence
 	 * shouldn't have any impact on FPS.
@@ -94,9 +94,9 @@ public interface GUIContext {
 	 * @throws SlickException Indicates a failure to load the cursor image or create the hardware cursor
 	 */
 	public abstract void setMouseCursor(Cursor cursor, int hotSpotX, int hotSpotY) throws SlickException;
-	
+
 	/**
-	 * Set the default mouse cursor - i.e. the original cursor before any native 
+	 * Set the default mouse cursor - i.e. the original cursor before any native
 	 * cursor was set
 	 */
 	public abstract void setDefaultMouseCursor();

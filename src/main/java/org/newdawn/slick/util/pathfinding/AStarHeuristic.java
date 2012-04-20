@@ -11,7 +11,7 @@ public interface AStarHeuristic {
 
 	/**
 	 * Get the additional heuristic cost of the given tile. This controls the
-	 * order in which tiles are searched while attempting to find a path to the 
+	 * order in which tiles are searched while attempting to find a path to the
 	 * target location. The lower the cost the more likely the tile will
 	 * be searched.
 	 * 

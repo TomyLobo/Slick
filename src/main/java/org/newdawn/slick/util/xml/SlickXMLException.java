@@ -11,16 +11,16 @@ import org.newdawn.slick.SlickException;
 public class SlickXMLException extends SlickException {
 
 	/**
-	 * Create a new exception 
+	 * Create a new exception
 	 * 
 	 * @param message The message describing the failure
 	 */
 	public SlickXMLException(String message) {
 		super(message);
 	}
-	
+
 	/**
-	 * Create a new exception 
+	 * Create a new exception
 	 * 
 	 * @param message The message describing the failure
 	 * @param e The exception causing this failure

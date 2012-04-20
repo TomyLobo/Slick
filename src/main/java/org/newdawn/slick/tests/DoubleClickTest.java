@@ -22,7 +22,7 @@ public class DoubleClickTest extends BasicGame {
 
 	/** The test message to display */
 	private String message = "Click or Double Click";
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -41,7 +41,7 @@ public class DoubleClickTest extends BasicGame {
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		g.drawString(message, 100, 100);
 	}
-	
+
 	/**
 	 * Entry point to our test
 	 * 

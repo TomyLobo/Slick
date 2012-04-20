@@ -7,14 +7,14 @@ import org.newdawn.slick.svg.ParsingException;
 import org.w3c.dom.Element;
 
 /**
- * The description of a module which processes a single XML element from a SVG (inkscape) 
+ * The description of a module which processes a single XML element from a SVG (inkscape)
  * document.
  *
  * @author kevin
  */
 public interface ElementProcessor {
 	/**
-	 * Process a document extracting all the elements that the processor is 
+	 * Process a document extracting all the elements that the processor is
 	 * interested in and producing appropriate diagram components for the
 	 * element.
 	 * 

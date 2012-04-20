@@ -15,7 +15,7 @@ public interface Triangulator extends Serializable {
 	 * @return The number of triangles produced
 	 */
 	public int getTriangleCount();
-	
+
 	/**
 	 * Get a point on a specified generated triangle
 	 * 
@@ -25,7 +25,7 @@ public interface Triangulator extends Serializable {
 	 * @return The x,y coordinate pair for the point
 	 */
 	public float[] getTrianglePoint(int tri, int i);
-	
+
 	/**
 	 * Add a point that forms part of the outer polygon
 	 * 
@@ -33,12 +33,12 @@ public interface Triangulator extends Serializable {
 	 * @param y The y coordiante of the point
 	 */
 	public void addPolyPoint(float x, float y);
-	
+
 	/**
 	 * Start a hole in the polygon
 	 */
 	public void startHole();
-	
+
 	/**
 	 * Run the triangulation
 	 * 

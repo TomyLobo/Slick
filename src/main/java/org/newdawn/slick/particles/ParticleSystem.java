@@ -18,8 +18,8 @@ import org.newdawn.slick.opengl.renderer.SGL;
 import org.newdawn.slick.util.Log;
 
 /**
- * A particle syste responsible for maintaining a set of data about individual 
- * particles which are created and controlled by assigned emitters. This pseudo 
+ * A particle syste responsible for maintaining a set of data about individual
+ * particles which are created and controlled by assigned emitters. This pseudo
  * chaotic nature hopes to give more organic looking effects
  *
  * @author kevin
@@ -27,18 +27,18 @@ import org.newdawn.slick.util.Log;
 public class ParticleSystem {
 	/** The renderer to use for all GL operations */
 	protected SGL GL = Renderer.get();
-	
+
 	/** The blending mode for the glowy style */
 	public static final int BLEND_ADDITIVE = 1;
 	/** The blending mode for the normal style */
 	public static final int BLEND_COMBINE = 2;
-	
+
 	/** The default number of particles in the system */
 	private static final int DEFAULT_PARTICLES = 100;
 
 	/** List of emitters to be removed */
 	private ArrayList removeMe = new ArrayList();
-	
+
 	/**
 	 * Set the path from which images should be loaded
 	 * 
@@ -48,7 +48,7 @@ public class ParticleSystem {
 	public static void setRelativePath(String path) {
 		ConfigurableEmitter.setRelativePath(path);
 	}
-	
+
 	/**
 	 * A pool of particles being used by a specific emitter
 	 * 
@@ -60,7 +60,7 @@ public class ParticleSystem {
 		public Particle[] particles;
 		/** The list of particles left to be used, if this size() == 0 then the particle engine was too small for the effect */
 		public ArrayList available;
-		
+
 		/**
 		 * Create a new particle pool contiaining a set of particles
 		 * 
@@ -71,15 +71,15 @@ public class ParticleSystem {
 		{
 			particles = new Particle[ maxParticles ];
 			available = new ArrayList();
-			
+
 			for( int i=0; i<particles.length; i++ )
 			{
 				particles[i] = createParticle( system );
 			}
-			
+
 			reset(system);
 		}
-		
+
 		/**
 		 * Rest the list of particles
 		 * 
@@ -87,14 +87,14 @@ public class ParticleSystem {
 		 */
 		public void reset(ParticleSystem system) {
 			available.clear();
-			
+
 			for( int i=0; i<particles.length; i++ )
 			{
 				available.add(particles[i]);
 			}
 		}
 	}
-	
+
 	/**
 	 * A map from emitter to a the particle pool holding the particles it uses
 	 * void: this is now sorted by emitters to allow emitter specfic state to be set for
@@ -104,10 +104,10 @@ public class ParticleSystem {
 	protected HashMap particlesByEmitter = new HashMap();
 	/** The maximum number of particles allows per emitter */
 	protected int maxParticlesPerEmitter;
-	
+
 	/** The list of emittered producing and controlling particles */
 	protected ArrayList emitters = new ArrayList();
-	
+
 	/** The dummy particle to return should no more particles be available */
 	protected Particle dummy;
 	/** The blending mode */
@@ -131,7 +131,7 @@ public class ParticleSystem {
 	private String defaultImageName;
 	/** The mask used to make the particle image background transparent if any */
 	private Color mask;
-	
+
 	/**
 	 * Create a new particle system
 	 * 
@@ -140,7 +140,7 @@ public class ParticleSystem {
 	public ParticleSystem(Image defaultSprite) {
 		this(defaultSprite, DEFAULT_PARTICLES);
 	}
-	
+
 	/**
 	 * Create a new particle system
 	 * 
@@ -149,7 +149,7 @@ public class ParticleSystem {
 	public ParticleSystem(String defaultSpriteRef) {
 		this(defaultSpriteRef, DEFAULT_PARTICLES);
 	}
-	
+
 	/**
 	 * Reset the state of the system
 	 */
@@ -159,13 +159,13 @@ public class ParticleSystem {
 			ParticlePool pool = (ParticlePool) pools.next();
 			pool.reset(this);
 		}
-		
+
 		for (int i=0;i<emitters.size();i++) {
 			ParticleEmitter emitter = (ParticleEmitter) emitters.get(i);
 			emitter.resetState();
 		}
 	}
-	
+
 	/**
 	 * Check if this system is currently visible, i.e. it's actually
 	 * rendered
@@ -175,7 +175,7 @@ public class ParticleSystem {
 	public boolean isVisible() {
 		return visible;
 	}
-	
+
 	/**
 	 * Indicate whether the particle system should be visible, i.e. whether
 	 * it'll actually render
@@ -185,7 +185,7 @@ public class ParticleSystem {
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
-	
+
 	/**
 	 * Indicate if completed emitters should be removed
 	 * 
@@ -194,7 +194,7 @@ public class ParticleSystem {
 	public void setRemoveCompletedEmitters(boolean remove) {
 		removeCompletedEmitters = remove;
 	}
-	
+
 	/**
 	 * Indicate if this engine should use points to render the particles
 	 * 
@@ -203,7 +203,7 @@ public class ParticleSystem {
 	public void setUsePoints(boolean usePoints) {
 		this.usePoints = usePoints;
 	}
-	
+
 	/**
 	 * Check if this engine should use points to render the particles
 	 * 
@@ -222,7 +222,7 @@ public class ParticleSystem {
 	public ParticleSystem(String defaultSpriteRef, int maxParticles) {
 		this(defaultSpriteRef, maxParticles, null);
 	}
-	
+
 	/**
 	 * Create a new particle system
 	 * 
@@ -233,7 +233,7 @@ public class ParticleSystem {
 	public ParticleSystem(String defaultSpriteRef, int maxParticles, Color mask) {
 		this.maxParticlesPerEmitter= maxParticles;
 		this.mask = mask;
-		
+
 		setDefaultImageName(defaultSpriteRef);
 		dummy = createParticle(this);
 	}
@@ -246,13 +246,13 @@ public class ParticleSystem {
 	 */
 	public ParticleSystem(Image defaultSprite, int maxParticles) {
 		this.maxParticlesPerEmitter= maxParticles;
-	
+
 		sprite = defaultSprite;
 		dummy = createParticle(this);
 	}
-	
+
 	/**
-	 * Set the default image name 
+	 * Set the default image name
 	 * 
 	 * @param ref The default image name
 	 */
@@ -260,7 +260,7 @@ public class ParticleSystem {
 		defaultImageName = ref;
 		sprite = null;
 	}
-	
+
 	/**
 	 * Get the blending mode in use
 	 * 
@@ -271,9 +271,9 @@ public class ParticleSystem {
 	public int getBlendingMode() {
 		return blendingMode;
 	}
-	
+
 	/**
-	 * Create a particle specific to this system, override for your own implementations. 
+	 * Create a particle specific to this system, override for your own implementations.
 	 * These particles will be cached and reused within this system.
 	 * 
 	 * @param system The system owning this particle
@@ -282,7 +282,7 @@ public class ParticleSystem {
 	protected Particle createParticle(ParticleSystem system) {
 		return new Particle(system);
 	}
-	
+
 	/**
 	 * Set the blending mode for the particles
 	 * 
@@ -291,7 +291,7 @@ public class ParticleSystem {
 	public void setBlendingMode(int mode) {
 		this.blendingMode = mode;
 	}
-	
+
 	/**
 	 * Get the number of emitters applied to the system
 	 * 
@@ -300,17 +300,17 @@ public class ParticleSystem {
 	public int getEmitterCount() {
 		return emitters.size();
 	}
-	
+
 	/**
 	 * Get an emitter a specified index int he list contained within this system
 	 * 
 	 * @param index The index of the emitter to retrieve
-	 * @return The particle emitter 
+	 * @return The particle emitter
 	 */
 	public ParticleEmitter getEmitter(int index) {
 		return (ParticleEmitter) emitters.get(index);
 	}
-	
+
 	/**
 	 * Add a particle emitter to be used on this system
 	 * 
@@ -318,11 +318,11 @@ public class ParticleSystem {
 	 */
 	public void addEmitter(ParticleEmitter emitter) {
 		emitters.add(emitter);
-		
+
 		ParticlePool pool= new ParticlePool( this, maxParticlesPerEmitter );
 		particlesByEmitter.put( emitter, pool );
 	}
-	
+
 	/**
 	 * Remove a particle emitter that is currently used in the system
 	 * 
@@ -332,7 +332,7 @@ public class ParticleSystem {
 		emitters.remove(emitter);
 		particlesByEmitter.remove(emitter);
 	}
-	
+
 	/**
 	 * Remove all the emitters from the system
 	 */
@@ -342,7 +342,7 @@ public class ParticleSystem {
 			i--;
 		}
 	}
-	
+
 	/**
 	 * Get the x coordiante of the position of the system
 	 * 
@@ -351,7 +351,7 @@ public class ParticleSystem {
 	public float getPositionX() {
 		return x;
 	}
-	
+
 	/**
 	 * Get the y coordiante of the position of the system
 	 * 
@@ -360,13 +360,13 @@ public class ParticleSystem {
 	public float getPositionY() {
 		return y;
 	}
-	
+
 	/**
 	 * Set the position at which this system should render relative to the current
 	 * graphics context setup
 	 * 
 	 * @param x The x coordinate at which this system should be centered
- 	 * @param y The y coordinate at which this system should be centered
+	 * @param y The y coordinate at which this system should be centered
 	 */
 	public void setPosition(float x, float y) {
 		this.x = x;
@@ -379,7 +379,7 @@ public class ParticleSystem {
 	public void render() {
 		render(x,y);
 	}
-	
+
 	/**
 	 * Render the particles in the system
 	 * 
@@ -390,53 +390,53 @@ public class ParticleSystem {
 		if ((sprite == null) && (defaultImageName != null)) {
 			loadSystemParticleImage();
 		}
-		
+
 		if (!visible) {
 			return;
 		}
-		
+
 		GL.glTranslatef(x,y,0);
-		
+
 		if (blendingMode == BLEND_ADDITIVE) {
 			GL.glBlendFunc(SGL.GL_SRC_ALPHA, SGL.GL_ONE);
 		}
 		if (usePoints()) {
-			GL.glEnable( SGL.GL_POINT_SMOOTH ); 
+			GL.glEnable( SGL.GL_POINT_SMOOTH );
 			TextureImpl.bindNone();
 		}
-		
+
 		// iterate over all emitters
 		for( int emitterIdx=0; emitterIdx<emitters.size(); emitterIdx++ )
 		{
 			// get emitter
 			ParticleEmitter emitter = (ParticleEmitter) emitters.get(emitterIdx);
-			
+
 			if (!emitter.isEnabled()) {
 				continue;
 			}
-			
+
 			// check for additive override and enable when set
 			if (emitter.useAdditive()) {
 				GL.glBlendFunc(SGL.GL_SRC_ALPHA, SGL.GL_ONE);
 			}
-			
+
 			// now get the particle pool for this emitter and render all particles that are in use
 			ParticlePool pool = (ParticlePool) particlesByEmitter.get(emitter);
 			Image image = emitter.getImage();
 			if (image == null) {
 				image = this.sprite;
 			}
-			
+
 			if (!emitter.isOriented() && !emitter.usePoints(this)) {
 				image.startUse();
 			}
-			
+
 			for (int i = 0; i < pool.particles.length; i++)
 			{
 				if (pool.particles[i].inUse())
 					pool.particles[i].render();
-			} 
-			
+			}
+
 			if (!emitter.isOriented() && !emitter.usePoints(this)) {
 				image.endUse();
 			}
@@ -448,37 +448,37 @@ public class ParticleSystem {
 		}
 
 		if (usePoints()) {
-			GL.glDisable( SGL.GL_POINT_SMOOTH ); 
+			GL.glDisable( SGL.GL_POINT_SMOOTH );
 		}
 		if (blendingMode == BLEND_ADDITIVE) {
 			GL.glBlendFunc(SGL.GL_SRC_ALPHA, SGL.GL_ONE_MINUS_SRC_ALPHA);
 		}
-		
+
 		Color.white.bind();
 		GL.glTranslatef(-x,-y,0);
 	}
-	
+
 	/**
 	 * Load the system particle image as the extension permissions
 	 */
 	private void loadSystemParticleImage() {
 		AccessController.doPrivileged(new PrivilegedAction() {
-            public Object run() {
-        		try {
-        			if (mask != null) {
-        				sprite = new Image(defaultImageName, mask);
-        			} else {
-        				sprite = new Image(defaultImageName);
-        			}
-        		} catch (SlickException e) {
-        			Log.error(e);
-        			defaultImageName = null;
-        		}
-                return null; // nothing to return
-            }
-        });
+			public Object run() {
+				try {
+					if (mask != null) {
+						sprite = new Image(defaultImageName, mask);
+					} else {
+						sprite = new Image(defaultImageName);
+					}
+				} catch (SlickException e) {
+					Log.error(e);
+					defaultImageName = null;
+				}
+				return null; // nothing to return
+			}
+		});
 	}
-	
+
 	/**
 	 * Update the system, request the assigned emitters update the particles
 	 * 
@@ -488,7 +488,7 @@ public class ParticleSystem {
 		if ((sprite == null) && (defaultImageName != null)) {
 			loadSystemParticleImage();
 		}
-		
+
 		removeMe.clear();
 		ArrayList emitters = new ArrayList(this.emitters);
 		for (int i=0;i<emitters.size();i++) {
@@ -504,9 +504,9 @@ public class ParticleSystem {
 			}
 		}
 		this.emitters.removeAll(removeMe);
-		
+
 		pCount = 0;
-		
+
 		if (!particlesByEmitter.isEmpty())
 		{
 			Iterator it= particlesByEmitter.keySet().iterator();
@@ -525,7 +525,7 @@ public class ParticleSystem {
 			}
 		}
 	}
-	
+
 	/**
 	 * Get the number of particles in use in this system
 	 * 
@@ -534,9 +534,9 @@ public class ParticleSystem {
 	public int getParticleCount() {
 		return pCount;
 	}
-	
+
 	/**
-	 * Get a new particle from the system. This should be used by emitters to 
+	 * Get a new particle from the system. This should be used by emitters to
 	 * request particles
 	 * 
 	 * @param emitter The emitter requesting the particle
@@ -552,14 +552,14 @@ public class ParticleSystem {
 			Particle p = (Particle) available.remove(available.size()-1);
 			p.init(emitter, life);
 			p.setImage(sprite);
-			
+
 			return p;
 		}
-		
+
 		Log.warn("Ran out of particles (increase the limit)!");
 		return dummy;
 	}
-	
+
 	/**
 	 * Release a particle back to the system once it has expired
 	 * 
@@ -572,7 +572,7 @@ public class ParticleSystem {
 			pool.available.add(particle);
 		}
 	}
-	
+
 	/**
 	 * Release all the particles owned by the specified emitter
 	 * 
@@ -596,7 +596,7 @@ public class ParticleSystem {
 			}
 		}
 	}
-	
+
 	/**
 	 * Move all the particles owned by the specified emitter
 	 * 
@@ -612,7 +612,7 @@ public class ParticleSystem {
 			}
 		}
 	}
-	
+
 	/**
 	 * Create a duplicate of this system. This would have been nicer as a different interface
 	 * but may cause to much API change headache. Maybe next full version release it should be
@@ -629,7 +629,7 @@ public class ParticleSystem {
 				throw new SlickException("Only systems contianing configurable emitters can be duplicated");
 			}
 		}
-	
+
 		ParticleSystem theCopy = null;
 		try {
 			ByteArrayOutputStream bout = new ByteArrayOutputStream();
@@ -640,7 +640,7 @@ public class ParticleSystem {
 			Log.error("Failed to duplicate particle system");
 			throw new SlickException("Unable to duplicated particle system", e);
 		}
-		
+
 		return theCopy;
 	}
 }

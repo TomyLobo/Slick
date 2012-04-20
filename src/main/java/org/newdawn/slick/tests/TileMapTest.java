@@ -16,35 +16,35 @@ import org.newdawn.slick.tiled.TiledMap;
 public class TileMapTest extends BasicGame {
 	/** The tile map we're going to load and render */
 	private TiledMap map;
-	
+
 	/** the name of the map, read from map properties, specified by TilED */
 	private String mapName;
-	
+
 	/** how hard are the monsters, read from layer properties, specified by TilED */
 	private String monsterDifficulty;
-	
+
 	/** we try to read a property from the map which doesn't exist so we expect the default value */
 	private String nonExistingMapProperty;
-	
+
 	/** we try to read a property from the layer which doesn't exist so we expect the default value */
 	private String nonExistingLayerProperty;
-	
+
 	/** how long did we wait already until next update */
 	private int updateCounter = 0;
-	
+
 	/** changing some tile of the map every UPDATE_TIME milliseconds */
 	private static int UPDATE_TIME = 1000;
-	
+
 	/** we want to store the originalTileID before we set a new one */
 	private int originalTileID = 0;
-	
+
 	/**
 	 * Create our tile map test
 	 */
 	public TileMapTest() {
 		super("Tile Map Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -55,7 +55,7 @@ public class TileMapTest extends BasicGame {
 		monsterDifficulty = map.getLayerProperty(0, "monsters", "easy peasy");
 		nonExistingMapProperty = map.getMapProperty("zaphod", "Undefined map property");
 		nonExistingLayerProperty = map.getLayerProperty(1, "beeblebrox", "Undefined layer property");
-		
+
 		// store the original tileid of layer 0 at 10, 10
 		originalTileID = map.getTileId(10, 10, 0);
 	}
@@ -65,14 +65,14 @@ public class TileMapTest extends BasicGame {
 	 */
 	public void render(GameContainer container, Graphics g) {
 		map.render(10, 10, 4,4,15,15);
-		
+
 		g.scale(0.35f,0.35f);
 		map.render(1400, 0);
 		g.resetTransform();
-		
+
 		g.drawString("map name: " + mapName, 10, 500);
 		g.drawString("monster difficulty: " + monsterDifficulty, 10, 550);
-		
+
 		g.drawString("non existing map property: " + nonExistingMapProperty, 10, 525);
 		g.drawString("non existing layer property: " + nonExistingLayerProperty, 10, 575);
 	}
@@ -101,7 +101,7 @@ public class TileMapTest extends BasicGame {
 			System.exit(0);
 		}
 	}
-	
+
 	/**
 	 * Entry point to our test
 	 * 

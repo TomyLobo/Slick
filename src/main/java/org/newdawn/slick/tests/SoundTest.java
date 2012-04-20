@@ -41,23 +41,23 @@ public class SoundTest extends BasicGame {
 	private Audio engine;
 	/** The Volume of the playing music */
 	private int volume = 10;
-	
+
 	/** The IDs of the sources used for each engine noise */
 	private int[] engines = new int[3];
-	
+
 	/**
 	 * Create a new test for sounds
 	 */
 	public SoundTest() {
 		super("Sound And Music Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
 		SoundStore.get().setMaxSources(32);
-		
+
 		myContainer = container;
 		sound = new Sound("testdata/restart.ogg");
 		charlie = new Sound("testdata/cbrown01.wav");
@@ -70,7 +70,7 @@ public class SoundTest extends BasicGame {
 		//music = musica = new Music("testdata/theme.ogg", true);
 		musicb = new Music("testdata/kirby.ogg", true);
 		burp = new Sound("testdata/burp.aif");
-		
+
 		music.play();
 	}
 
@@ -137,7 +137,7 @@ public class SoundTest extends BasicGame {
 			} else {
 				music = musica;
 			}
-			
+
 			music.loop();
 		}
 		for (int i=0;i<3;i++) {
@@ -152,17 +152,17 @@ public class SoundTest extends BasicGame {
 				}
 			}
 		}
-		
+
 		if (c == '+') {
 			volume += 1;
 			setVolume();
 		}
-		
+
 		if (c == '-') {
 			volume -= 1;
 			setVolume();
 		}
-		
+
 		if (key == Input.KEY_Y) {
 			int vol = (int) (music.getVolume() * 10);
 			vol --;
@@ -193,9 +193,9 @@ public class SoundTest extends BasicGame {
 		}
 
 	}
-	
+
 	/**
-	 *  Convenience routine to set global volume of music 
+	 *  Convenience routine to set global volume of music
 	 */
 	private void setVolume() {
 		// Do bounds checking
@@ -204,10 +204,10 @@ public class SoundTest extends BasicGame {
 		} else if(volume < 0) {
 			volume = 0;
 		}
-		
+
 		myContainer.setMusicVolume(volume / 10.0f);
 	}
-	
+
 	/**
 	 * Entry point to the sound test
 	 * 

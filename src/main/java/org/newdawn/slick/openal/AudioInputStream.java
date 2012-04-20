@@ -10,16 +10,16 @@ import java.io.IOException;
  */
 interface AudioInputStream {
 	/**
-	 * Get the number of channels used by the audio 
+	 * Get the number of channels used by the audio
 	 * 
 	 * @return The number of channels used by the audio
 	 */
 	public int getChannels();
-	
+
 	/**
 	 * The play back rate described in the underling audio file
 	 * 
-	 * @return The playback rate 
+	 * @return The playback rate
 	 */
 	public int getRate();
 
@@ -55,12 +55,12 @@ interface AudioInputStream {
 	public int read(byte[] data, int ofs, int len) throws IOException;
 
 	/**
-	 * Check if the stream is at the end, i.e. end of file or URL 
+	 * Check if the stream is at the end, i.e. end of file or URL
 	 * 
 	 * @return True if the stream has no more data available
 	 */
 	public boolean atEnd();
-	
+
 	/**
 	 * Close the stream
 	 * 

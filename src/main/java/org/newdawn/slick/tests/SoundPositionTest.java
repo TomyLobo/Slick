@@ -20,23 +20,23 @@ public class SoundPositionTest extends BasicGame {
 	private GameContainer myContainer;
 	/** The music to be played */
 	private Music music;
-	
+
 	/** The IDs of the sources used for each engine noise */
 	private int[] engines = new int[3];
-	
+
 	/**
 	 * Create a new test for sounds
 	 */
 	public SoundPositionTest() {
 		super("Music Position Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
 		SoundStore.get().setMaxSources(32);
-		
+
 		myContainer = container;
 		music = new Music("testdata/kirby.ogg", true);
 		music.play();
@@ -73,7 +73,7 @@ public class SoundPositionTest extends BasicGame {
 			music.setPosition(music.getPosition()+5);
 		}
 	}
-	
+
 	/**
 	 * Entry point to the sound test
 	 * 

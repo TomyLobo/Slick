@@ -14,25 +14,25 @@ public class Entity {
 	private Inventory invent;
 	/** Entity statistics */
 	private Stats stats;
-	
+
 	/**
-	 * Called by XML parser to add a configured inventory to the entity 
+	 * Called by XML parser to add a configured inventory to the entity
 	 * 
-	 * @param inventory The inventory to be added 
+	 * @param inventory The inventory to be added
 	 */
 	private void add(Inventory inventory) {
 		this.invent = inventory;
 	}
 
 	/**
-	 * Called by XML parser to add a configured statistics object to the entity 
+	 * Called by XML parser to add a configured statistics object to the entity
 	 * 
-	 * @param stats The statistics to be added 
+	 * @param stats The statistics to be added
 	 */
 	private void add(Stats stats) {
 		this.stats = stats;
 	}
-	
+
 	/**
 	 * Dump this object to sysout
 	 * 

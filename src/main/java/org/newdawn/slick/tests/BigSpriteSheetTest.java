@@ -22,14 +22,14 @@ public class BigSpriteSheetTest extends BasicGame {
 	private SpriteSheet bigSheet;
 	/** True if we should use the old method */
 	private boolean oldMethod = true;
-	
+
 	/**
 	 * Create a new image rendering test
 	 */
 	public BigSpriteSheetTest() {
 		super("Big SpriteSheet Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -57,9 +57,9 @@ public class BigSpriteSheetTest extends BasicGame {
 			}
 			bigSheet.endUse();
 		}
-		
+
 		g.drawString("Press space to toggle rendering method",10,30);
-		
+
 		container.getDefaultFont().drawString(10, 100, "TEST");
 	}
 

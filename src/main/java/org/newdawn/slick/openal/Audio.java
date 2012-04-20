@@ -1,6 +1,6 @@
 package org.newdawn.slick.openal;
 
-/** 
+/**
  * The description of of audio data loaded by the AudioLoader
  * 
  * @author kevin
@@ -17,10 +17,10 @@ public interface Audio {
 	 * Get the ID of the OpenAL buffer holding this data (if any). This method
 	 * is not valid with streaming resources.
 	 * 
-	 * @return The ID of the OpenAL buffer holding this data 
+	 * @return The ID of the OpenAL buffer holding this data
 	 */
 	public int getBufferID();
-	
+
 	/**
 	 * Check if the sound is playing as sound fx
 	 * 
@@ -61,7 +61,7 @@ public interface Audio {
 	 * @return The ID of the source playing the sound
 	 */
 	public int playAsMusic(float pitch, float gain, boolean loop);
-	
+
 	/**
 	 * Seeks to a position in the music.
 	 * 

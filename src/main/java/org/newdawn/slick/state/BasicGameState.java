@@ -15,28 +15,28 @@ public abstract class BasicGameState implements GameState {
 	 * @see org.newdawn.slick.ControlledInputReciever#inputStarted()
 	 */
 	public void inputStarted() {
-		
+
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.InputListener#isAcceptingInput()
 	 */
 	public boolean isAcceptingInput() {
 		return true;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.InputListener#setInput(org.newdawn.slick.Input)
 	 */
 	public void setInput(Input input) {
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.InputListener#inputEnded()
 	 */
 	public void inputEnded() {
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.state.GameState#getID()
 	 */
@@ -70,7 +70,7 @@ public abstract class BasicGameState implements GameState {
 	 * @see org.newdawn.slick.InputListener#controllerLeftPressed(int)
 	 */
 	public void controllerLeftPressed(int controller) {
-		
+
 	}
 
 	/**
@@ -132,7 +132,7 @@ public abstract class BasicGameState implements GameState {
 	 */
 	public void mouseClicked(int button, int x, int y, int clickCount) {
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.InputListener#mousePressed(int, int, int)
 	 */

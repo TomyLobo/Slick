@@ -96,7 +96,7 @@ public interface SGL {
 	public static final int GL_CLIP_PLANE2 = GL11.GL_CLIP_PLANE2;
 	/** OpenGL Enum - @url http://www.opengl.org/documentation */
 	public static final int GL_CLIP_PLANE3 = GL11.GL_CLIP_PLANE3;
-	
+
 	/** OpenGL Enum - @url http://www.opengl.org/documentation */
 	public static final int GL_COMPILE_AND_EXECUTE = GL11.GL_COMPILE_AND_EXECUTE;
 
@@ -136,12 +136,12 @@ public interface SGL {
 	public static final int GL_ONE_MINUS_SRC_COLOR = GL11.GL_ONE_MINUS_SRC_COLOR;
 	/** OpenGL Enum - @url http://www.opengl.org/documentation */
 	public static final int GL_MODELVIEW_MATRIX = GL11.GL_MODELVIEW_MATRIX;
-	
+
 	/**
 	 * Flush the current state of the renderer down to GL
 	 */
 	public void flush();
-	
+
 	/**
 	 * Initialise the display
 	 * 
@@ -175,7 +175,7 @@ public interface SGL {
 	 * @param buffer
 	 */
 	public void glClipPlane(int plane, DoubleBuffer buffer);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -185,21 +185,21 @@ public interface SGL {
 	 * @param height
 	 */
 	public void glScissor(int x, int y, int width, int height);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
 	 * @param width
 	 */
 	public void glLineWidth(float width);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
 	 * @param value
 	 */
 	public void glClear(int value);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -209,12 +209,12 @@ public interface SGL {
 	 * @param alpha
 	 */
 	public void glColorMask(boolean red, boolean green, boolean blue, boolean alpha);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 */
 	public void glLoadIdentity();
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -222,7 +222,7 @@ public interface SGL {
 	 * @param ret
 	 */
 	public void glGetInteger(int id, IntBuffer ret);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -230,21 +230,21 @@ public interface SGL {
 	 * @param ret
 	 */
 	public void glGetFloat(int id, FloatBuffer ret);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
 	 * @param item
 	 */
 	public void glEnable(int item);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
 	 * @param item
 	 */
 	public void glDisable(int item);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -252,7 +252,7 @@ public interface SGL {
 	 * @param id
 	 */
 	public void glBindTexture(int target, int id);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -263,7 +263,7 @@ public interface SGL {
 	 * @param pixels
 	 */
 	public void glGetTexImage(int target, int level, int format, int type, ByteBuffer pixels);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -280,7 +280,7 @@ public interface SGL {
 	 * @param a
 	 */
 	public void glColor4f(float r, float g, float b, float a);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -288,7 +288,7 @@ public interface SGL {
 	 * @param v
 	 */
 	public void glTexCoord2f(float u, float v);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -305,7 +305,7 @@ public interface SGL {
 	 * @param y
 	 */
 	public void glVertex2f(float x, float y);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -315,7 +315,7 @@ public interface SGL {
 	 * @param z
 	 */
 	public void glRotatef(float angle, float x, float y, float z);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -324,19 +324,19 @@ public interface SGL {
 	 * @param z
 	 */
 	public void glTranslatef(float x, float y, float z);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
 	 * @param geomType
 	 */
 	public void glBegin(int geomType);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 */
 	public void glEnd();
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -345,14 +345,14 @@ public interface SGL {
 	 * @param value
 	 */
 	public void glTexEnvi(int target, int mode, int value);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
 	 * @param size
 	 */
 	public void glPointSize(float size);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -361,17 +361,17 @@ public interface SGL {
 	 * @param z
 	 */
 	public void glScalef(float x, float y, float z);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 */
 	public void glPushMatrix();
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 */
 	public void glPopMatrix();
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -379,7 +379,7 @@ public interface SGL {
 	 * @param dest
 	 */
 	public void glBlendFunc(int src, int dest);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -387,7 +387,7 @@ public interface SGL {
 	 * @return The index of the lists
 	 */
 	public int glGenLists(int count);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -395,19 +395,19 @@ public interface SGL {
 	 * @param option
 	 */
 	public void glNewList(int id, int option);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 */
 	public void glEndList();
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
 	 * @param id
 	 */
 	public void glCallList(int id);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -421,8 +421,8 @@ public interface SGL {
 	 * @param border
 	 */
 	public void glCopyTexImage2D(int	target, int level, int internalFormat,
-			 							int x, int y, int width, int height, int border);
-	
+			int x, int y, int width, int height, int border);
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -435,8 +435,8 @@ public interface SGL {
 	 * @param pixels
 	 */
 	public void glReadPixels(int x, int y, int width, int height, int format, int type,
-		     						ByteBuffer pixels);
-	
+			ByteBuffer pixels);
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
@@ -445,7 +445,7 @@ public interface SGL {
 	 * @param value
 	 */
 	public void glTexParameteri(int target, int param, int value);
-	
+
 	/**
 	 * Get the current colour being rendered
 	 * 
@@ -460,28 +460,28 @@ public interface SGL {
 	 * @param count
 	 */
 	public void glDeleteLists(int list, int count);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
 	 * @param mask
 	 */
 	public void glDepthMask(boolean mask);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
 	 * @param value
 	 */
 	public void glClearDepth(float value);
-	
+
 	/**
 	 * OpenGL Method - @url http://www.opengl.org/documentation/
 	 * 
 	 * @param func
 	 */
 	public void glDepthFunc(int func);
-	
+
 	/**
 	 * Set the scaling we'll apply to any colour binds in this renderer
 	 * 

@@ -20,25 +20,25 @@ public class ParticleTest extends BasicGame {
 	private ParticleSystem system;
 	/** The particle blending mode */
 	private int mode = ParticleSystem.BLEND_COMBINE;
-	
+
 	/**
 	 * Create a new test of graphics context rendering
 	 */
 	public ParticleTest() {
 		super("Particle Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
 		Image image = new Image("testdata/particle.tga", true);
 		system = new ParticleSystem(image);
-		
+
 		system.addEmitter(new FireEmitter(400,300,45));
 		system.addEmitter(new FireEmitter(200,300,60));
 		system.addEmitter(new FireEmitter(600,300,30));
-		
+
 		//system.setUsePoints(true);
 	}
 
@@ -74,7 +74,7 @@ public class ParticleTest extends BasicGame {
 			system.setBlendingMode(mode);
 		}
 	}
-	
+
 	/**
 	 * Entry point to our test
 	 * 

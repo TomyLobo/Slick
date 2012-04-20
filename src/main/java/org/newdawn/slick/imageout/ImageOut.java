@@ -8,7 +8,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /**
- * A static hook to access all the Image output utilities. The list of format strings 
+ * A static hook to access all the Image output utilities. The list of format strings
  * provided is not the limit of capability. These are provided for utility, use @see {@link #getSupportedFormats()}
  * for a full list of supported formats.
  *
@@ -17,14 +17,14 @@ import org.newdawn.slick.SlickException;
 public class ImageOut {
 	/** The default setting for writing out the alpha channel */
 	private static final boolean  DEFAULT_ALPHA_WRITE = false;
-	
+
 	/** The format string for TGA */
 	public static String TGA = "tga";
 	/** The format string for PNG */
 	public static String PNG = "png";
 	/** The format string for JPG */
 	public static String JPG = "jpg";
-	
+
 	/**
 	 * Get a list of supported formats
 	 * 
@@ -46,7 +46,7 @@ public class ImageOut {
 	public static void write(Image image, String format, OutputStream out) throws SlickException {
 		write(image, format, out, DEFAULT_ALPHA_WRITE);
 	}
-	
+
 	/**
 	 * Write an image out to a specified output stream
 	 * 
@@ -76,7 +76,7 @@ public class ImageOut {
 	public static void write(Image image, String dest) throws SlickException {
 		write(image, dest, DEFAULT_ALPHA_WRITE);
 	}
-	
+
 	/**
 	 * Write an image out to a file on the local file system. The format of the output
 	 * is determined based on the file name extension
@@ -92,16 +92,16 @@ public class ImageOut {
 			if (ext < 0) {
 				throw new SlickException("Unable to determine format from: "+dest);
 			}
-			
+
 			String format = dest.substring(ext+1);
 			write(image, format, new FileOutputStream(dest), writeAlpha);
 		} catch (IOException e) {
 			throw new SlickException("Unable to write to the destination: "+dest, e);
 		}
 	}
-	
+
 	/**
-	 * Write an image out to a file on the local file system. 
+	 * Write an image out to a file on the local file system.
 	 * 
 	 * @param image The image to be written out
 	 * @param format The format to write the image out in
@@ -111,9 +111,9 @@ public class ImageOut {
 	public static void write(Image image, String format, String dest) throws SlickException {
 		write(image, format, dest, DEFAULT_ALPHA_WRITE);
 	}
-	
+
 	/**
-	 * Write an image out to a file on the local file system. 
+	 * Write an image out to a file on the local file system.
 	 * 
 	 * @param image The image to be written out
 	 * @param format The format to write the image out in

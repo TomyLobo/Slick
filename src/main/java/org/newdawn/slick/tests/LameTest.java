@@ -19,14 +19,14 @@ public class LameTest extends BasicGame {
 	private Polygon poly = new Polygon();
 	/** The image being textured */
 	private Image image;
-	
+
 	/**
 	 * Create the test
 	 */
 	public LameTest() {
 		super("Lame Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
@@ -35,7 +35,7 @@ public class LameTest extends BasicGame {
 		poly.addPoint(120, 100);
 		poly.addPoint(120, 120);
 		poly.addPoint(100, 120);
-	
+
 		image = new Image("testdata/rocks.png");
 	}
 

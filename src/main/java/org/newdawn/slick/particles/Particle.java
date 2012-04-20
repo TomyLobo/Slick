@@ -14,7 +14,7 @@ import org.newdawn.slick.opengl.renderer.SGL;
 public class Particle {
 	/** The renderer to use for all GL operations */
 	protected static SGL GL = Renderer.get();
-	
+
 	/** Indicates the particle should inherit it's use of points */
 	public static final int INHERIT_POINTS = 1;
 	/** Indicates the particle should explicitly use points */
@@ -80,7 +80,7 @@ public class Particle {
 	public float getY() {
 		return y;
 	}
-	
+
 	/**
 	 * Move this particle a fixed amount
 	 * 
@@ -192,7 +192,7 @@ public class Particle {
 	public void update(int delta) {
 		emitter.updateParticle(this, delta);
 		life -= delta;
-		
+
 		if (life > 0) {
 			x += delta * velx;
 			y += delta * vely;
@@ -366,7 +366,7 @@ public class Particle {
 		velx /= currentSpeed;
 		vely /= currentSpeed;
 	}
-	
+
 	/**
 	 * Set the velocity of the particle
 	 * 
@@ -376,7 +376,7 @@ public class Particle {
 	public void setVelocity(float velx, float vely) {
 		setVelocity(velx,vely,1);
 	}
-	
+
 	/**
 	 * Adjust (add) the position of this particle
 	 * 
@@ -405,7 +405,7 @@ public class Particle {
 	public void adjustColor(float r, float g, float b, float a) {
 		if (color == Color.white) {
 			color = new Color(1,1,1,1f);
-		} 
+		}
 		color.r += r;
 		color.g += g;
 		color.b += b;
@@ -427,8 +427,8 @@ public class Particle {
 	public void adjustColor(int r, int g, int b, int a) {
 		if (color == Color.white) {
 			color = new Color(1,1,1,1f);
-		} 
-		
+		}
+
 		color.r += (r / 255.0f);
 		color.g += (g / 255.0f);
 		color.b += (b / 255.0f);

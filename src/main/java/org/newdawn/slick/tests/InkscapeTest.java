@@ -25,7 +25,7 @@ public class InkscapeTest extends BasicGame {
 	private float x;
 	/** The y location */
 	private float y;
-	
+
 	/**
 	 * Create a new test for inkscape loading
 	 */
@@ -38,15 +38,15 @@ public class InkscapeTest extends BasicGame {
 	 */
 	public void init(GameContainer container) throws SlickException {
 		container.getGraphics().setBackground(Color.white);
-		
+
 		InkscapeLoader.RADIAL_TRIANGULATION_LEVEL = 2;
-		
-//		renderer[0] = new SimpleDiagramRenderer(InkscapeLoader.load("testdata/svg/orc.svg"));
-//		renderer[1] = new SimpleDiagramRenderer(InkscapeLoader.load("testdata/svg/head2.svg"));
-//		renderer[2] = new SimpleDiagramRenderer(InkscapeLoader.load("testdata/svg/head3.svg"));
+
+		//		renderer[0] = new SimpleDiagramRenderer(InkscapeLoader.load("testdata/svg/orc.svg"));
+		//		renderer[1] = new SimpleDiagramRenderer(InkscapeLoader.load("testdata/svg/head2.svg"));
+		//		renderer[2] = new SimpleDiagramRenderer(InkscapeLoader.load("testdata/svg/head3.svg"));
 		renderer[3] = new SimpleDiagramRenderer(InkscapeLoader.load("testdata/svg/clonetest.svg"));
-//		renderer[4] = new SimpleDiagramRenderer(InkscapeLoader.load("testdata/svg/cow.svg"));
-		
+		//		renderer[4] = new SimpleDiagramRenderer(InkscapeLoader.load("testdata/svg/cow.svg"));
+
 		container.getGraphics().setBackground(new Color(0.5f,0.7f,1.0f));
 	}
 
@@ -95,19 +95,19 @@ public class InkscapeTest extends BasicGame {
 		g.scale(0.7f,0.7f);
 		//renderer[2].render(g);
 		g.scale(1/0.7f,1/0.7f);
-		
+
 		g.scale(0.5f,0.5f);
 		g.translate(-1100, -380);
 		renderer[3].render(g);
 		g.scale(1/0.5f,1/0.5f);
-		
-//		g.translate(280, 100);
-//		g.scale(0.5f,0.5f);
-//		renderer[4].render(g);
-		
+
+		//		g.translate(280, 100);
+		//		g.scale(0.5f,0.5f);
+		//		renderer[4].render(g);
+
 		g.resetTransform();
 	}
-	
+
 	/**
 	 * Entry point to our simple test
 	 * 
@@ -117,7 +117,7 @@ public class InkscapeTest extends BasicGame {
 		try {
 			Renderer.setRenderer(Renderer.VERTEX_ARRAY_RENDERER);
 			Renderer.setLineStripRenderer(Renderer.QUAD_BASED_LINE_STRIP_RENDERER);
-			
+
 			AppGameContainer container = new AppGameContainer(new InkscapeTest());
 			container.setDisplayMode(800,600,false);
 			container.start();

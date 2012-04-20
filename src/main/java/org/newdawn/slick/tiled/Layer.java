@@ -285,7 +285,7 @@ public class Layer {
 		if (index != out.length) {
 			throw new RuntimeException(
 					"Data length appears to be wrong (wrote " + index
-							+ " should be " + out.length + ")");
+					+ " should be " + out.length + ")");
 		}
 
 		return out;

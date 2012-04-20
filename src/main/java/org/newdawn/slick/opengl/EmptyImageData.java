@@ -14,7 +14,7 @@ public class EmptyImageData implements ImageData {
 	private int width;
 	/** The height of the data */
 	private int height;
-	
+
 	/**
 	 * Create an empty image data source
 	 * 
@@ -25,7 +25,7 @@ public class EmptyImageData implements ImageData {
 		this.width = width;
 		this.height = height;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.opengl.ImageData#getDepth()
 	 */

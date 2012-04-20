@@ -18,7 +18,7 @@ import org.newdawn.slick.util.Log;
  * @author kevin
  */
 public class CanvasSizeTest extends BasicGame {
-	
+
 	/**
 	 * Create test
 	 */
@@ -67,7 +67,7 @@ public class CanvasSizeTest extends BasicGame {
 				}
 			});
 			frame.setVisible(true);
-	
+
 			container.start();
 		} catch (Exception e) {
 			Log.error(e);

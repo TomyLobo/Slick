@@ -18,14 +18,14 @@ public class TransparentColorTest extends BasicGame {
 	private Image image;
 	/** The image we're currently displaying */
 	private Image timage;
-	
+
 	/**
 	 * Create a new image rendering test
 	 */
 	public TransparentColorTest() {
 		super("Transparent Color Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */

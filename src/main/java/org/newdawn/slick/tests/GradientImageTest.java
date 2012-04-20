@@ -35,26 +35,26 @@ public class GradientImageTest extends BasicGame {
 	private float ang;
 	/** True if we're rotating */
 	private boolean rotating = false;
-	
+
 	/**
 	 * Create a new image rendering test
 	 */
 	public GradientImageTest() {
 		super("Gradient Image Test");
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
 		this.container = container;
-		
+
 		image1 = new Image("testdata/grass.png");
 		image2 = new Image("testdata/rocks.png");
-		
+
 		fill = new GradientFill(-64,0,new Color(1,1,1,1f),64,0,new Color(0,0,0,0));
 		shape = new Rectangle(336,236,128,128);
-	    poly = new Polygon();
+		poly = new Polygon();
 		poly.addPoint(320,220);
 		poly.addPoint(350,200);
 		poly.addPoint(450,200);
@@ -70,13 +70,13 @@ public class GradientImageTest extends BasicGame {
 		g.drawString("R - Toggle Rotationg",10,50);
 		g.drawImage(image1, 100, 236);
 		g.drawImage(image2, 600, 236);
-		
+
 		g.translate(0, -150);
 		g.rotate(400, 300, ang);
 		g.texture(shape, image2);
 		g.texture(shape, image1, fill);
 		g.resetTransform();
-		
+
 		g.translate(0, 150);
 		g.rotate(400, 300, ang);
 		g.texture(poly, image2);

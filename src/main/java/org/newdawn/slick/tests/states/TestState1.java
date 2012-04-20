@@ -16,7 +16,7 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
 /**
- * A simple test state to display a message describing the test 
+ * A simple test state to display a message describing the test
  *
  * @author kevin
  */
@@ -65,12 +65,12 @@ public class TestState1 extends BasicGameState {
 	 * @see org.newdawn.slick.state.BasicGameState#keyReleased(int, char)
 	 */
 	public void keyReleased(int key, char c) {
-		
+
 		if (key == Input.KEY_2) {
 			GameState target = game.getState(TestState2.ID);
-			
+
 			final long start = System.currentTimeMillis();
-			CrossStateTransition t = new CrossStateTransition(target) {				
+			CrossStateTransition t = new CrossStateTransition(target) {
 				public boolean isComplete() {
 					return (System.currentTimeMillis() - start) > 2000;
 				}
@@ -78,7 +78,7 @@ public class TestState1 extends BasicGameState {
 				public void init(GameState firstState, GameState secondState) {
 				}
 			};
-			
+
 			game.enterState(TestState2.ID, t, new EmptyTransition());
 		}
 		if (key == Input.KEY_3) {

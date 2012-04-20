@@ -19,7 +19,7 @@ import com.jcraft.jorbis.Info;
 
 /**
  * An input stream that can extract ogg data. This class is a bit of an experiment with continuations
- * so uses thread where possibly not required. It's just a test to see if continuations make sense in 
+ * so uses thread where possibly not required. It's just a test to see if continuations make sense in
  * some cases.
  *
  * @author kevin
@@ -51,7 +51,7 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 	private DspState dspState = new DspState(); // central working state for the packet->PCM decoder
 	/** The OGG block we're currently working with to convert PCM */
 	private Block vorbisBlock = new Block(dspState); // local working space for packet->PCM decode
-	
+
 	/** Temporary scratch buffer */
 	byte[] buffer;
 	/** The number of bytes read */
@@ -62,14 +62,14 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 	boolean endOfBitStream = true;
 	/** True if we're initialise the OGG info block */
 	boolean inited = false;
-	
+
 	/** The index into the byte array we currently read from */
 	private int readIndex;
 	/** The byte array store used to hold the data read from the ogg */
 	private ByteBuffer pcmBuffer = BufferUtils.createByteBuffer(4096 * 500);
 	/** The total number of bytes */
 	private int total;
-	
+
 	/**
 	 * Create a new stream to decode OGG data
 	 * 
@@ -79,10 +79,10 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 	public OggInputStream(InputStream input) throws IOException {
 		this.input = input;
 		total = input.available();
-		
+
 		init();
 	}
-	
+
 	/**
 	 * Get the number of bytes on the stream
 	 * 
@@ -91,21 +91,21 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 	public int getLength() {
 		return total;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.openal.AudioInputStream#getChannels()
 	 */
 	public int getChannels() {
 		return oggInfo.channels;
 	}
-	
+
 	/**
 	 * @see org.newdawn.slick.openal.AudioInputStream#getRate()
 	 */
 	public int getRate() {
 		return oggInfo.rate;
 	}
-	
+
 	/**
 	 * Initialise the streams and thread involved in the streaming of OGG data
 	 * 
@@ -115,21 +115,21 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 		initVorbis();
 		readPCM();
 	}
-		
+
 	/**
 	 * @see java.io.InputStream#available()
 	 */
 	public int available() {
 		return endOfStream ? 0 : 1;
 	}
-	
+
 	/**
 	 * Initialise the vorbis decoding
 	 */
 	private void initVorbis() {
 		syncState.init();
 	}
-	
+
 	/**
 	 * Get a page and packet from that page
 	 *
@@ -143,13 +143,13 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 
 		// submit a 4k block to libvorbis' Ogg layer
 		int index = syncState.buffer(4096);
-		
+
 		buffer = syncState.data;
 		if (buffer == null) {
 			endOfStream = true;
 			return false;
 		}
-		
+
 		try {
 			bytes = input.read(buffer, index, 4096);
 		} catch (Exception e) {
@@ -242,7 +242,7 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 							endOfStream = true;
 							return false;
 						}
-						
+
 						oggInfo.synthesis_headerin(comment, packet);
 						i++;
 					}
@@ -277,10 +277,10 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 		// proceed in parallel.  We could init
 		// multiple vorbis_block structures
 		// for vd here
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * Decode the OGG file as shown in the jogg/jorbis examples
 	 * 
@@ -288,7 +288,7 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 	 */
 	private void readPCM() throws IOException {
 		boolean wrote = false;
-		
+
 		while (true) { // we repeat if the bitstream is chained
 			if (endOfBitStream) {
 				if (!getPageAndPacket()) {
@@ -301,18 +301,18 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 				inited = true;
 				return;
 			}
-			
+
 			float[][][] _pcm = new float[1][][];
 			int[] _index = new int[oggInfo.channels];
 			// The rest is just a straight decode loop until end of stream
 			while (!endOfBitStream) {
 				while (!endOfBitStream) {
 					int result = syncState.pageout(page);
-					
+
 					if (result == 0) {
 						break; // need more data
 					}
-					
+
 					if (result == -1) { // missing or corrupt data at this page position
 						Log.error("Corrupt or missing data in bitstream; continuing...");
 					} else {
@@ -361,7 +361,7 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 											}
 											if (val < 0)
 												val = val | 0x8000;
-				
+
 											if (bigEndian) {
 												convbuffer[ptr] = (byte) (val >>> 8);
 												convbuffer[ptr + 1] = (byte) (val);
@@ -379,7 +379,7 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 									} else {
 										pcmBuffer.put(convbuffer, 0, bytesToWrite);
 									}
-									
+
 									wrote = true;
 									dspState.synthesis_read(bout); // tell libvorbis how
 									// many samples we
@@ -389,8 +389,8 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 						}
 						if (page.eos() != 0) {
 							endOfBitStream = true;
-						} 
-						
+						}
+
 						if ((!endOfBitStream) && (wrote)) {
 							return;
 						}
@@ -436,7 +436,7 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 		syncState.clear();
 		endOfStream = true;
 	}
-	
+
 	/**
 	 * @see java.io.InputStream#read()
 	 */
@@ -455,7 +455,7 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 			value = 256 + value;
 		}
 		readIndex++;
-		
+
 		return value;
 	}
 
@@ -476,7 +476,7 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 				if (value >= 0) {
 					b[i] = (byte) value;
 				} else {
-					if (i == 0) {						
+					if (i == 0) {
 						return -1;
 					} else {
 						return i;
@@ -487,7 +487,7 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 				return i;
 			}
 		}
-		
+
 		return len;
 	}
 
@@ -497,7 +497,7 @@ public class OggInputStream extends InputStream implements AudioInputStream {
 	public int read(byte[] b) throws IOException {
 		return read(b, 0, b.length);
 	}
-	
+
 	/**
 	 * @see java.io.InputStream#close()
 	 */
