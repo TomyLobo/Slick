@@ -10,7 +10,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<!-- Project information -->
-	<groupId>slick</groupId>
+	<groupId>org.spout</groupId>
 	<artifactId>slick</artifactId>
 	<version>0.4-SNAPSHOT</version>
 	<name>Slick</name>
