@@ -1,9 +1,8 @@
 <!--
 	Maven build file for Slick
 
-	Copyright (c) 2007, Slick 2D
-	Slick is licensed under BSD License
-	All rights reserved.
+	Copyright (c) 2007 Slick 2D <http://slick.cokeandcode.com>
+	Slick is licensed under BSD License. All rights reserved.
 -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -20,8 +19,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<lwjglVersion>2.8.3</lwjglVersion>
-		<phys2dVersion>060408</phys2dVersion>
-		<buildNumber>Unknown</buildNumber>
+		<buildNumber>0</buildNumber>
 	</properties>
 
 	<!-- License -->
@@ -43,7 +41,7 @@
 	<!-- Continuous integration -->
 	<ciManagement>
 		<system>jenkins</system>
-		<url>http://ci.spout.org</url>
+		<url>http://build.spout.org</url>
 	</ciManagement>
 
 	<!-- Repository locations -->
@@ -63,7 +61,7 @@
 		<dependency>
 			<groupId>phys2d</groupId>
 			<artifactId>phys2d</artifactId>
-			<version>${phys2dVersion}</version>
+			<version>060408</version>
 		</dependency>
 		<dependency>
 			<groupId>net.java.jinput</groupId>
@@ -94,7 +92,6 @@
 
 	<build>
 		<defaultGoal>clean package install</defaultGoal>
-		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
 		<!-- Resources -->
 		<resources>
 			<resource>
@@ -120,10 +117,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>2.4</version>
 				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
+					<source>1.6</source>
+					<target>1.6</target>
 				</configuration>
 			</plugin>
 		</plugins>
