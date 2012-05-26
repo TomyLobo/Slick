@@ -331,8 +331,8 @@ public class InternalTextureLoader {
 			texture.setTextureData(srcPixelFormat, componentCount, minFilter, magFilter, textureBuffer);
 		}
 
-		GL.glTexParameteri(target, GL.GL_TEXTURE_MIN_FILTER, minFilter);
-		GL.glTexParameteri(target, GL.GL_TEXTURE_MAG_FILTER, magFilter);
+		GL.glTexParameteri(target, SGL.GL_TEXTURE_MIN_FILTER, minFilter);
+		GL.glTexParameteri(target, SGL.GL_TEXTURE_MAG_FILTER, magFilter);
 
 		// produce a texture from the byte buffer
 		GL.glTexImage2D(target,
