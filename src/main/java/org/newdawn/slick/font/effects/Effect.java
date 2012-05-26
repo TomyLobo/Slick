@@ -21,5 +21,5 @@ public interface Effect {
 	 * @param unicodeFont The font being rendered
 	 * @param glyph The particular glyph being rendered
 	 */
-	public void draw (BufferedImage image, Graphics2D g, UnicodeFont unicodeFont, Glyph glyph);
+	public void draw(BufferedImage image, Graphics2D g, UnicodeFont unicodeFont, Glyph glyph);
 }

@@ -8,8 +8,7 @@ import org.newdawn.slick.geom.Transform;
  * 
  * @author Kova
  */
-public class Point extends Shape
-{
+public class Point extends Shape {
 	/**
 	 * Create a new point
 	 * 

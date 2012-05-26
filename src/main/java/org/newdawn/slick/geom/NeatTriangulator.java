@@ -6,8 +6,7 @@ package org.newdawn.slick.geom;
  * 
  * @author Online examples
  */
-public class NeatTriangulator implements Triangulator
-{
+public class NeatTriangulator implements Triangulator {
 	/** The error factor */
 	static final float EPSILON = 1E-006F;
 

@@ -495,7 +495,7 @@ public abstract class Shape implements Serializable {
 		}
 
 		// x1 = thatPoints[j]
-				// x2 = thatPoints[j + 2]
+		// x2 = thatPoints[j + 2]
 		// y1 = thatPoints[j + 1]
 		// y2 = thatPoints[j + 3]
 		// x3 = points[i]

@@ -28,26 +28,26 @@ public interface ConfigurableEffect extends Effect {
 		/**
 		 * Returns the name of the value.
 		 */
-		public String getName ();
+		public String getName();
 
 		/**
 		 * Sets the string representation of the value.
 		 */
-		public void setString (String value);
+		public void setString(String value);
 
 		/**
 		 * Gets the string representation of the value.
 		 */
-		public String getString ();
+		public String getString();
 
 		/**
 		 * Gets the object representation of the value.
 		 */
-		public Object getObject ();
+		public Object getObject();
 
 		/**
 		 * Shows a dialog allowing a user to configure this value.
 		 */
-		public void showDialog ();
+		public void showDialog();
 	}
 }
