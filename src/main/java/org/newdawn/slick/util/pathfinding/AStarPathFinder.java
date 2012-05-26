@@ -1,8 +1,8 @@
 package org.newdawn.slick.util.pathfinding;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.newdawn.slick.util.pathfinding.heuristics.ClosestHeuristic;
 
@@ -14,9 +14,9 @@ import org.newdawn.slick.util.pathfinding.heuristics.ClosestHeuristic;
  */
 public class AStarPathFinder implements PathFinder, PathFindingContext {
 	/** The set of nodes that have been searched through */
-	private ArrayList closed = new ArrayList();
+	private ArrayList<Node> closed = new ArrayList<Node>();
 	/** The set of nodes that we do not yet consider fully searched */
-	private PriorityList open = new PriorityList();
+	private SortedSet<Node> open = new TreeSet<Node>();
 
 	/** The map being searched */
 	private TileBasedMap map;
@@ -241,7 +241,7 @@ public class AStarPathFinder implements PathFinder, PathFindingContext {
 	 * @return The first element in the open list
 	 */
 	protected Node getFirstInOpen() {
-		return (Node) open.first();
+		return open.first();
 	}
 
 	/**
@@ -361,92 +361,9 @@ public class AStarPathFinder implements PathFinder, PathFindingContext {
 	}
 
 	/**
-	 * A list that sorts any element provided into the list
-	 *
-	 * @author kevin
-	 */
-	private class PriorityList {
-		/** The list of elements */
-		private List list = new LinkedList();
-
-		/**
-		 * Retrieve the first element from the list
-		 * 
-		 * @return The first element from the list
-		 */
-		public Object first() {
-			return list.get(0);
-		}
-
-		/**
-		 * Empty the list
-		 */
-		public void clear() {
-			list.clear();
-		}
-
-		/**
-		 * Add an element to the list - causes sorting
-		 * 
-		 * @param o The element to add
-		 */
-		public void add(Object o) {
-			// float the new entry
-			for (int i=0;i<list.size();i++) {
-				if (((Comparable) list.get(i)).compareTo(o) > 0) {
-					list.add(i, o);
-					break;
-				}
-			}
-			if (!list.contains(o)) {
-				list.add(o);
-			}
-			//Collections.sort(list);
-		}
-
-		/**
-		 * Remove an element from the list
-		 * 
-		 * @param o The element to remove
-		 */
-		public void remove(Object o) {
-			list.remove(o);
-		}
-
-		/**
-		 * Get the number of elements in the list
-		 * 
-		 * @return The number of element in the list
-		 */
-		public int size() {
-			return list.size();
-		}
-
-		/**
-		 * Check if an element is in the list
-		 * 
-		 * @param o The element to search for
-		 * @return True if the element is in the list
-		 */
-		public boolean contains(Object o) {
-			return list.contains(o);
-		}
-
-		public String toString() {
-			String temp = "{";
-			for (int i=0;i<size();i++) {
-				temp += list.get(i).toString()+",";
-			}
-			temp += "}";
-
-			return temp;
-		}
-	}
-
-	/**
 	 * A single node in the search graph
 	 */
-	private class Node implements Comparable {
+	private class Node implements Comparable<Node> {
 		/** The x coordinate of the node */
 		private int x;
 		/** The y coordinate of the node */
@@ -491,11 +408,9 @@ public class AStarPathFinder implements PathFinder, PathFindingContext {
 		/**
 		 * @see Comparable#compareTo(Object)
 		 */
-		public int compareTo(Object other) {
-			Node o = (Node) other;
-
+		public int compareTo(Node other) {
 			float f = heuristic + cost;
-			float of = o.heuristic + o.cost;
+			float of = other.heuristic + other.cost;
 
 			if (f < of) {
 				return -1;

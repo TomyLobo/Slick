@@ -132,11 +132,11 @@ public class TestUtils {
 			// or setting up a stream to read from. Note that the argument becomes
 			// a URL here so it can be reopened when the stream is complete. Probably
 			// should have reset the stream by thats not how the original stuff worked
-			oggStream = AudioLoader.getStreamingAudio("OGG", new File("testdata/bongos.ogg").toURL());
+			oggStream = AudioLoader.getStreamingAudio("OGG", new File("testdata/bongos.ogg").toURI().toURL());
 
 			// can load mods (XM, MOD) using ibxm which is then played through OpenAL. MODs
 			// are always streamed based on the way IBXM works
-			modStream = AudioLoader.getStreamingAudio("MOD", new File("testdata/SMB-X.XM").toURL());
+			modStream = AudioLoader.getStreamingAudio("MOD", new File("testdata/SMB-X.XM").toURI().toURL());
 
 			// playing as music uses that reserved source to play the sound. The first
 			// two arguments are pitch and gain, the boolean is whether to loop the content

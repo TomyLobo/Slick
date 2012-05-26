@@ -231,11 +231,7 @@ public class UnicodeFont implements org.newdawn.slick.Font {
 		attributes.put(TextAttribute.SIZE, new Float(size));
 		attributes.put(TextAttribute.WEIGHT, bold ? TextAttribute.WEIGHT_BOLD : TextAttribute.WEIGHT_REGULAR);
 		attributes.put(TextAttribute.POSTURE, italic ? TextAttribute.POSTURE_OBLIQUE : TextAttribute.POSTURE_REGULAR);
-		try {
-			attributes.put(TextAttribute.class.getDeclaredField("KERNING").get(null), TextAttribute.class.getDeclaredField(
-					"KERNING_ON").get(null));
-		} catch (Exception ignored) {
-		}
+		attributes.put(TextAttribute.KERNING, TextAttribute.KERNING_ON);
 		font = baseFont.deriveFont(attributes);
 
 		FontMetrics metrics = GlyphPage.getScratchGraphics().getFontMetrics(font);
