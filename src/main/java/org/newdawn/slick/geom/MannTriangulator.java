@@ -37,6 +37,8 @@ import java.util.List;
  * @author Matthias Mann
  */
 public class MannTriangulator implements Triangulator {
+	private static final long serialVersionUID = 1L;
+
 	/** The allowed error value */
 	private static final double EPSILON = 1e-5;
 
@@ -295,6 +297,8 @@ public class MannTriangulator implements Triangulator {
 	 * @author Matthias Mann
 	 */
 	private static class Point implements Serializable {
+		private static final long serialVersionUID = 1L;
+
 		/** The location of the point */
 		protected Vector2f pt;
 		/** The previous point in the contour */
@@ -463,6 +467,8 @@ public class MannTriangulator implements Triangulator {
 	 * @author kevin
 	 */
 	protected class PointBag implements Serializable {
+		private static final long serialVersionUID = 1L;
+
 		/** The first point in the bag - head of the list */
 		protected Point first;
 		/** The next bag in the list of bags */

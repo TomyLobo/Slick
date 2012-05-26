@@ -9,6 +9,8 @@ import java.io.Serializable;
  * @author Mark
  */
 public abstract class Shape implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	/** The points representing this polygon. */
 	protected float points[];
 	/** Center point of the polygon. */

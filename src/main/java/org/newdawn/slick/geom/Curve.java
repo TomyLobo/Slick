@@ -8,6 +8,8 @@ package org.newdawn.slick.geom;
  * @author kevin
  */
 public class Curve extends Shape {
+	private static final long serialVersionUID = 1L;
+
 	/** The start point of the curve */
 	private Vector2f p1;
 	/** The first control point */

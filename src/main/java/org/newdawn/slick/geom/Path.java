@@ -9,6 +9,8 @@ import java.util.ArrayList;
  * @author kevin
  */
 public class Path extends Shape {
+	private static final long serialVersionUID = 1L;
+
 	/** The local list of points */
 	private ArrayList<float[]> localPoints = new ArrayList<float[]>();
 	/** The current x coordinate */

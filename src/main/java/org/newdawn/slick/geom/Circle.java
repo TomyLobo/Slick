@@ -6,6 +6,8 @@ package org.newdawn.slick.geom;
  * @author Kevin Glass
  */
 public strictfp class Circle extends Ellipse {
+	private static final long serialVersionUID = 1L;
+
 	/** The radius of the circle */
 	public float radius;
 

@@ -8,6 +8,8 @@ package org.newdawn.slick.geom;
  * @author Kevin Glass
  */
 public class Line extends Shape {
+	private static final long serialVersionUID = 1L;
+
 	/** The start point of the line */
 	private Vector2f start;
 	/** The end point of the line */

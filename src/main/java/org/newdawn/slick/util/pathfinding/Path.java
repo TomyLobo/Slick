@@ -101,6 +101,8 @@ public class Path implements Serializable {
 	 * @author Kevin Glass
 	 */
 	public class Step implements Serializable {
+		private static final long serialVersionUID = 1L;
+
 		/** The x coordinate at the given step */
 		private int x;
 		/** The y coordinate at the given step */

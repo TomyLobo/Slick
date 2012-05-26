@@ -6,6 +6,8 @@ package org.newdawn.slick.geom;
  * @author Kevin Glass
  */
 public class Rectangle extends Shape {
+	private static final long serialVersionUID = 1L;
+
 	/** The width of the box */
 	protected float width;
 	/** The height of the box */

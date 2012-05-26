@@ -8,6 +8,8 @@ import java.util.ArrayList;
  * @author kevin
  */
 public class MorphShape extends Shape {
+	private static final long serialVersionUID = 1L;
+
 	/** The shapes to morph between */
 	private ArrayList<Shape> shapes = new ArrayList<Shape>();
 	/** The offset between the shapes */

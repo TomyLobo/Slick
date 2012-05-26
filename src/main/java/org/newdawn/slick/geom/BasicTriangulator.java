@@ -9,6 +9,8 @@ import java.util.ArrayList;
  * @author Based on Public Source from FlipCode
  */
 public class BasicTriangulator implements Triangulator {
+	private static final long serialVersionUID = 1L;
+
 	/** The accepted error value */
 	private static final float EPSILON = 0.0000000001f;
 	/** The list of points to be triangulated */

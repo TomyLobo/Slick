@@ -35,6 +35,8 @@ import org.newdawn.slick.util.Log;
  * @author kevin
  */
 public class AppletGameContainer extends Applet {
+	private static final long serialVersionUID = 1L;
+
 	/** The GL Canvas used for this container */
 	protected ContainerPanel canvas;
 	/** The actual container implementation */
@@ -126,6 +128,8 @@ public class AppletGameContainer extends Applet {
 			container = new Container(game);
 			canvas = new ContainerPanel(container);
 			displayParent = new Canvas() {
+				private static final long serialVersionUID = 1L;
+
 				public final void addNotify() {
 					super.addNotify();
 					startLWJGL();
@@ -532,6 +536,8 @@ public class AppletGameContainer extends Applet {
 	 * be viewed and copied.
 	 */
 	public class ConsolePanel extends Panel {
+		private static final long serialVersionUID = 1L;
+
 		/** The area display the console output */
 		TextArea textArea = new TextArea();
 

@@ -14,6 +14,8 @@ import org.newdawn.slick.util.Log;
  * @author kevin
  */
 public class CanvasGameContainer extends Canvas {
+	private static final long serialVersionUID = 1L;
+
 	/** The actual container implementation */
 	protected Container container;
 	/** The game being held in this container */

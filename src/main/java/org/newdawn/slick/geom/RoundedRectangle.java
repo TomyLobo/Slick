@@ -11,6 +11,8 @@ import org.newdawn.slick.util.FastTrig;
  * @author Mark Bernard
  */
 public class RoundedRectangle extends Rectangle {
+	private static final long serialVersionUID = 1L;
+
 	/** Indicates the top left corner should be rounded */
 	public static final int TOP_LEFT  = 1;
 	/** Indicates the top right corner should be rounded */

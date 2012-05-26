@@ -293,6 +293,8 @@ public class EffectUtil {
 	 * Provides generic functionality for a dialog to configure a value.
 	 */
 	static private class ValueDialog extends JDialog {
+		private static final long serialVersionUID = 1L;
+
 		/** True if OK was pressed */
 		public boolean okPressed = false;
 
