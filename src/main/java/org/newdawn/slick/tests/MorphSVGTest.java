@@ -20,8 +20,6 @@ public class MorphSVGTest extends BasicGame {
 	private SVGMorph morph;
 	/** First shape of the morph */
 	private Diagram base;
-	/** The time index of the morph being display */
-	private float time;
 	/** The current x position */
 	private float x = -300;
 

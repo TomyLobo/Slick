@@ -26,9 +26,6 @@ public class SelectTransition implements Transition {
 	private GameState prev;
 	/** True if the state has finished */
 	private boolean finish;
-	/** The background applied under the previous state if any */
-	private Color background;
-
 	/** The scale of the first state */
 	private float scale1 = 1;
 	/** The x coordinate to render the first state */
@@ -62,7 +59,6 @@ public class SelectTransition implements Transition {
 	 * @param background The background colour to draw under the previous state
 	 */
 	public SelectTransition(Color background) {
-		this.background = background;
 	}
 
 	/**

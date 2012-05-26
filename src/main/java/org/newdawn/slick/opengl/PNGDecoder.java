@@ -507,7 +507,6 @@ public class PNGDecoder {
 	}
 
 	private void unfilterUp(byte[] curLine, byte[] prevLine) {
-		final int bpp = this.bytesPerPixel;
 		for(int i=1,n=curLine.length ; i<n ; ++i) {
 			curLine[i] += prevLine[i];
 		}

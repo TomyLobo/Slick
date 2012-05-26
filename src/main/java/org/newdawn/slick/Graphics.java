@@ -683,8 +683,6 @@ public class Graphics {
 	 *            The height of the rectangle to draw
 	 */
 	public void drawRect(float x1, float y1, float width, float height) {
-		float lineWidth = getLineWidth();
-
 		drawLine(x1,y1,x1+width,y1);
 		drawLine(x1+width,y1,x1+width,y1+height);
 		drawLine(x1+width,y1+height,x1,y1+height);

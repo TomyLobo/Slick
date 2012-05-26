@@ -223,8 +223,8 @@ public class GradientFill implements ShapeFill {
 
 		float ua = (dx2 * (start.getY() - y)) - (dy2 * (start.getX() - x));
 		ua /= denom;
-		float ub = (dx1 * (start.getY() - y)) - (dy1 * (start.getX() - x));
-		ub /= denom;
+		//float ub = (dx1 * (start.getY() - y)) - (dy1 * (start.getX() - x));
+		//ub /= denom;
 		float u = ua;
 		if (u < 0) {
 			u = 0;

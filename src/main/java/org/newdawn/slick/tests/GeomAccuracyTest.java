@@ -18,9 +18,6 @@ import org.newdawn.slick.geom.RoundedRectangle;
  * @author kevin
  */
 public class GeomAccuracyTest extends BasicGame {
-	/** The container holding this test */
-	private GameContainer container;
-
 	/** The Geometry color */
 	private Color geomColor;
 
@@ -53,8 +50,6 @@ public class GeomAccuracyTest extends BasicGame {
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
-		this.container = container;
-
 		geomColor = Color.magenta;
 		overlayColor = Color.white;
 

@@ -307,8 +307,6 @@ public class MannTriangulator implements Triangulator {
 		protected double ny;
 		/** The angle at this point in the path */
 		protected double angle;
-		/** The distance of this point from */
-		protected double dist;
 
 		/**
 		 * Create a new point

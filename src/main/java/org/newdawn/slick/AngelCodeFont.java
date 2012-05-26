@@ -556,8 +556,6 @@ public class AngelCodeFont implements Font {
 		public short xadvance;
 		/** The image containing the character */
 		public Image image;
-		/** The display list index for this character */
-		public short dlIndex;
 		/** The kerning info for this character */
 		public short[] kerning;
 

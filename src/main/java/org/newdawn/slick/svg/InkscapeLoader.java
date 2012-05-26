@@ -122,19 +122,6 @@ public class InkscapeLoader implements Loader {
 	 * 
 	 * @param in
 	 *            The input stream from which to read the SVG
-	 * @return The diagram loaded
-	 * @throws SlickException
-	 *             Indicates a failure to process the document
-	 */
-	private Diagram loadDiagram(InputStream in) throws SlickException {
-		return loadDiagram(in, false);
-	}
-
-	/**
-	 * Load a SVG document into a diagram
-	 * 
-	 * @param in
-	 *            The input stream from which to read the SVG
 	 * @param offset
 	 *            Offset the diagram for the height of the document
 	 * @return The diagram loaded

@@ -20,8 +20,6 @@ public class PNGImageData implements LoadableImageData {
 	private int texHeight;
 	/** The texture width */
 	private int texWidth;
-	/** The decoder used to load the PNG */
-	private PNGDecoder decoder;
 	/** The bit depth of the image */
 	private int bitDepth;
 	/** The scratch buffer storing the image data */
@@ -137,6 +135,7 @@ public class PNGImageData implements LoadableImageData {
 			scratch = temp;
 		}
 
+		/*
 		if (transparent != null) {
 			for (int i=0;i<texWidth*texHeight*4;i+=4) {
 				boolean match = true;
@@ -151,6 +150,7 @@ public class PNGImageData implements LoadableImageData {
 				}
 			}
 		}
+		 */
 
 		scratch.position(0);
 

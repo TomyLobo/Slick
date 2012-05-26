@@ -22,13 +22,6 @@ import org.newdawn.slick.geom.Vector2f;
  * @author Kevin Glass
  */
 public class GeomUtilTileTest extends BasicGame implements GeomUtilListener {
-	/** The shape we're cutting out of */
-	private Shape source;
-	/** The shape we're cutting */
-	private Shape cut;
-	/** The resulting shape */
-	private Shape[] result;
-
 	/** The util under test */
 	private GeomUtil util = new GeomUtil();
 

@@ -16,13 +16,8 @@ import org.newdawn.slick.openal.SoundStore;
  * @author kevin
  */
 public class SoundPositionTest extends BasicGame {
-	/** the GameContainer instance for this game/testcase */
-	private GameContainer myContainer;
 	/** The music to be played */
 	private Music music;
-
-	/** The IDs of the sources used for each engine noise */
-	private int[] engines = new int[3];
 
 	/**
 	 * Create a new test for sounds
@@ -37,7 +32,6 @@ public class SoundPositionTest extends BasicGame {
 	public void init(GameContainer container) throws SlickException {
 		SoundStore.get().setMaxSources(32);
 
-		myContainer = container;
 		music = new Music("testdata/kirby.ogg", true);
 		music.play();
 	}

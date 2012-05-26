@@ -25,9 +25,6 @@ public class GraphicsTest extends BasicGame {
 	private Image image;
 	/** A polygon to be rendered */
 	private Polygon poly;
-	/** The container holding this test */
-	private GameContainer container;
-
 	/**
 	 * Create a new test of graphics context rendering
 	 */
@@ -39,8 +36,6 @@ public class GraphicsTest extends BasicGame {
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
-		this.container = container;
-
 		image = new Image("testdata/logo.tga", true);
 
 		Image temp = new Image("testdata/palette_tool.png");

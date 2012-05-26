@@ -238,7 +238,7 @@ public class BasicTriangulator implements Triangulator {
 		/*  remove nv-2 Vertices, creating 1 triangle every time */
 		int count = 2 * nv; /* error detection */
 
-		for (int m = 0, v = nv - 1; nv > 2;) {
+		for (int v = nv - 1; nv > 2;) {
 			/* if we loop, it is probably a non-simple polygon */
 			if (0 >= (count--)) {
 				//** Triangulator4: ERROR - probable bad polygon!
@@ -268,8 +268,6 @@ public class BasicTriangulator implements Triangulator {
 				result.add(contour.get(a));
 				result.add(contour.get(b));
 				result.add(contour.get(c));
-
-				m++;
 
 				/* remove v from remaining polygon */
 				for (s = v, t = v + 1; t < nv; s++, t++) {

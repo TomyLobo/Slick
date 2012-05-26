@@ -54,7 +54,6 @@ public class ImageDataFactory {
 	 * @return The image data that can be used to retrieve the data for that resource
 	 */
 	public static LoadableImageData getImageDataFor(String ref) {
-		LoadableImageData imageData;
 		checkProperty();
 
 		ref = ref.toLowerCase();

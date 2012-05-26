@@ -541,8 +541,6 @@ public class ConfigurableEmitter implements ParticleEmitter {
 	public class SimpleValue implements Value {
 		/** The value configured */
 		private float value;
-		/** The next value */
-		private float next;
 
 		/**
 		 * Create a new configurable new value

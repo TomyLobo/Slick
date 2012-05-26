@@ -124,8 +124,6 @@ public class UnicodeFont implements org.newdawn.slick.Font {
 	private int baseDisplayListID = -1;
 	/** The ID of the display list that has been around the longest time */
 	private int eldestDisplayListID;
-	/** The eldest display list  */
-	private DisplayList eldestDisplayList;
 
 	/** The map fo the display list generated and cached - modified to allow removal of the oldest entry */
 	private final LinkedHashMap<String, DisplayList> displayLists = new LinkedHashMap<String, DisplayList>(DISPLAY_LIST_CACHE_SIZE, 1, true) {

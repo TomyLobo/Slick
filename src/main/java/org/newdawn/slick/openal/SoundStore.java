@@ -43,8 +43,6 @@ public class SoundStore {
 	private int currentMusic = -1;
 	/** The OpenGL AL sound sources in use */
 	private IntBuffer sources;
-	/** The next source to be used for sound effects */
-	private int nextSource;
 	/** True if the sound system has been initialise */
 	private boolean inited = false;
 	/** The MODSound to be updated */

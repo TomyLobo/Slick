@@ -1,7 +1,5 @@
 package org.newdawn.slick;
 
-import java.io.IOException;
-import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
@@ -490,21 +488,6 @@ public class AppGameContainer extends GameContainer {
 	public void destroy() {
 		Display.destroy();
 		AL.destroy();
-	}
-
-	/**
-	 * A null stream to clear out those horrid errors
-	 *
-	 * @author kevin
-	 */
-	private class NullOutputStream extends OutputStream {
-		/**
-		 * @see java.io.OutputStream#write(int)
-		 */
-		public void write(int b) throws IOException {
-			// null implemetnation
-		}
-
 	}
 
 	/**

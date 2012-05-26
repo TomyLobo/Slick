@@ -15,10 +15,6 @@ public class RadialGradientFill implements TexCoordGenerator {
 	private Vector2f centre;
 	/** The radius before the gradient is complete */
 	private float radius;
-	/** The gradient to apply */
-	private Gradient gradient;
-	/** The shape being filled */
-	private Shape shape;
 
 	/**
 	 * Create a new fill for a radial gradient
@@ -28,8 +24,6 @@ public class RadialGradientFill implements TexCoordGenerator {
 	 * @param gradient The gradient to apply across the shape
 	 */
 	public RadialGradientFill(Shape shape, Transform trans, Gradient gradient) {
-		this.gradient = gradient;
-
 		radius = gradient.getR();
 		float x = gradient.getX1();
 		float y = gradient.getY1();

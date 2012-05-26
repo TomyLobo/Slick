@@ -26,8 +26,6 @@ public class GUITest extends BasicGame implements ComponentListener {
 	private Image image;
 	/** The areas defined */
 	private MouseOverArea[] areas = new MouseOverArea[4];
-	/** The game container */
-	private GameContainer container;
 	/** The message to display */
 	private String message = "Demo Menu System with stock images";
 	/** The text field */
@@ -71,8 +69,6 @@ public class GUITest extends BasicGame implements ComponentListener {
 			}
 		});
 		field2.setBorderColor(Color.red);
-
-		this.container = container;
 
 		image = new Image("testdata/logo.tga");
 		background = new Image("testdata/dungeontiles.gif");

@@ -16,7 +16,6 @@ public class FastTrig {
 	 * @return The reduced Sin angle
 	 */
 	private static double reduceSinAngle(double radians) {
-		double orig = radians;
 		radians %= Math.PI * 2.0; // put us in -2PI to +2PI space
 		if (Math.abs(radians) > Math.PI) { // put us in -PI to +PI space
 			radians = radians - (Math.PI * 2.0);

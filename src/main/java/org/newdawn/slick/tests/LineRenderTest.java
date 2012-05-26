@@ -21,8 +21,6 @@ public class LineRenderTest extends BasicGame {
 	private Polygon polygon = new Polygon();
 	/** The path to be rendered */
 	private Path path = new Path(100,100);
-	/** The line width to render to */
-	private float width = 10;
 	/** True if antialiasing */
 	private boolean antialias = true;
 

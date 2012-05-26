@@ -1,6 +1,5 @@
 package org.newdawn.slick.svg.inkscape;
 
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import org.newdawn.slick.geom.Path;
@@ -29,9 +28,6 @@ public class PathProcessor implements ElementProcessor {
 	 * @throws ParsingException Indicates an invalid token in the path
 	 */
 	private static Path processPoly(Element element, StringTokenizer tokens) throws ParsingException {
-		int count = 0;
-
-		ArrayList pts = new ArrayList();
 		boolean moved = false;
 		boolean reasonToBePath = false;
 		Path path = null;

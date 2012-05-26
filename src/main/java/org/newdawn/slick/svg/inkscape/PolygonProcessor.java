@@ -1,6 +1,5 @@
 package org.newdawn.slick.svg.inkscape;
 
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import org.newdawn.slick.geom.Polygon;
@@ -32,7 +31,6 @@ public class PolygonProcessor implements ElementProcessor {
 	private static int processPoly(Polygon poly, Element element, StringTokenizer tokens) throws ParsingException {
 		int count = 0;
 
-		ArrayList pts = new ArrayList();
 		boolean moved = false;
 		boolean closed = false;
 

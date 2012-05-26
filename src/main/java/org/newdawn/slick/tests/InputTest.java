@@ -31,8 +31,6 @@ public class InputTest extends BasicGame {
 	private Color[] cols = new Color[] {Color.red, Color.green, Color.blue, Color.white, Color.magenta, Color.cyan};
 	/** The current color index */
 	private int index;
-	/** The input syste being polled */
-	private Input input;
 	/** The scroll box */
 	private int ypos;
 	/** The container holding this test */
@@ -60,7 +58,6 @@ public class InputTest extends BasicGame {
 			app = (AppGameContainer) container;
 		}
 
-		input = container.getInput();
 		x = 300;
 		y = 300;
 	}

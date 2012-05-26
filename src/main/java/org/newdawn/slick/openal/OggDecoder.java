@@ -12,9 +12,9 @@ import java.nio.ByteBuffer;
  */
 public class OggDecoder {
 	/** The conversion buffer size */
-	private int convsize = 4096 * 4;
+	//private int convsize = 4096 * 4;
 	/** The buffer used to read OGG file */
-	private byte[] convbuffer = new byte[convsize]; // take 8k out of the data segment, not the stack
+	//private byte[] convbuffer = new byte[convsize]; // take 8k out of the data segment, not the stack
 
 	/**
 	 * Create a new OGG decoder
@@ -310,7 +310,6 @@ public class OggDecoder {
 
 		OggInputStream oggInput = new OggInputStream(input);
 
-		boolean done = false;
 		while (!oggInput.atEnd()) {
 			dataout.write(oggInput.read());
 		}

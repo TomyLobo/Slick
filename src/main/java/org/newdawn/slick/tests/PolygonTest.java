@@ -18,8 +18,6 @@ public class PolygonTest extends BasicGame {
 	private Polygon poly;
 	/** True if the mouse is in the polygon */
 	private boolean in;
-	/** The y offset */
-	private float y;
 
 	/**
 	 * Create the test

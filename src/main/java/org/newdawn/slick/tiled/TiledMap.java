@@ -32,18 +32,7 @@ import org.xml.sax.SAXException;
  */
 public class TiledMap {
 	/** Indicates if we're running on a headless system */
-	private static boolean headless;
-
-	/**
-	 * Indicate if we're running on a headless system where we'd just like to
-	 * load the data model.
-	 * 
-	 * @param h
-	 *            True if we're running on a headless system
-	 */
-	private static void setHeadless(boolean h) {
-		headless = h;
-	}
+	private static final boolean headless = false;
 
 	/** The width of the map */
 	protected int width;
@@ -167,8 +156,6 @@ public class TiledMap {
 	 * @return The index of the layer or -1 if there is no layer with given name
 	 */
 	public int getLayerIndex(String name) {
-		int idx = 0;
-
 		for (int i = 0; i < layers.size(); i++) {
 			Layer layer = layers.get(i);
 

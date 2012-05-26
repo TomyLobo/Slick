@@ -211,8 +211,6 @@ public class BigImage extends Image {
 
 		for (int x=0;x<xcount;x++) {
 			for (int y=0;y<ycount;y++) {
-				int finalX = ((x+1) * tileSize);
-				int finalY = ((y+1) * tileSize);
 				final int imageWidth = Math.min((realWidth - (x*tileSize)), tileSize);
 				final int imageHeight = Math.min((realHeight - (y*tileSize)), tileSize);
 
@@ -385,9 +383,6 @@ public class BigImage extends Image {
 	 * @see org.newdawn.slick.Image#drawEmbedded(float, float, float, float)
 	 */
 	public void drawEmbedded(float x, float y, float width, float height) {
-		float sx = width / realWidth;
-		float sy = height / realHeight;
-
 		float xp = 0;
 		float yp = 0;
 

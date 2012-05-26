@@ -13,8 +13,6 @@ import org.newdawn.slick.geom.Transform;
  * @author kevin
  */
 public class Gradient {
-	/** The name/id given to the gradient */
-	private String name;
 	/** The steps in colour of the gradient */
 	private ArrayList<Step> steps = new ArrayList<Step>();
 	/** The first x coordiante given in the gradient (cx in radial) */
@@ -43,7 +41,6 @@ public class Gradient {
 	 * @param radial True if the gradient is radial
 	 */
 	public Gradient(String name, boolean radial) {
-		this.name = name;
 		this.radial = radial;
 	}
 
