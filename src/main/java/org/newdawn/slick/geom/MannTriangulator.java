@@ -411,6 +411,7 @@ public class MannTriangulator implements Triangulator {
 		 * @param p The other point
 		 * @return The angle between this point and another
 		 */
+		@SuppressWarnings("unused")
 		public double getAngle(Point p) {
 			double dx = p.pt.x - pt.x;
 			double dy = p.pt.y - pt.y;
@@ -424,6 +425,7 @@ public class MannTriangulator implements Triangulator {
 		 * 
 		 * @return True if this point remains concave
 		 */
+		@SuppressWarnings("unused")
 		public boolean isConcave() {
 			return angle < 0;
 		}

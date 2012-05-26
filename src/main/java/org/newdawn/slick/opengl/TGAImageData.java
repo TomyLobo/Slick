@@ -114,12 +114,18 @@ public class TGAImageData implements LoadableImageData {
 
 		// Read in the Header
 		short idLength = (short) dis.read();
+		@SuppressWarnings("unused")
 		short colorMapType = (short) dis.read();
 		short imageType = (short) dis.read();
+		@SuppressWarnings("unused")
 		short cMapStart = flipEndian(dis.readShort());
+		@SuppressWarnings("unused")
 		short cMapLength = flipEndian(dis.readShort());
+		@SuppressWarnings("unused")
 		short cMapDepth = (short) dis.read();
+		@SuppressWarnings("unused")
 		short xOffset = flipEndian(dis.readShort());
+		@SuppressWarnings("unused")
 		short yOffset = flipEndian(dis.readShort());
 
 		if (imageType != 2) {

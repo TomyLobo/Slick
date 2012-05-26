@@ -20,6 +20,7 @@ public class Entity {
 	 * 
 	 * @param inventory The inventory to be added
 	 */
+	@SuppressWarnings("unused")
 	private void add(Inventory inventory) {
 		this.invent = inventory;
 	}
@@ -29,6 +30,7 @@ public class Entity {
 	 * 
 	 * @param stats The statistics to be added
 	 */
+	@SuppressWarnings("unused")
 	private void add(Stats stats) {
 		this.stats = stats;
 	}

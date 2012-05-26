@@ -126,6 +126,7 @@ public strictfp class Circle extends Ellipse {
 	 * @param line Line to check against
 	 * @return True if line inside circle
 	 */
+	@SuppressWarnings("unused")
 	private boolean contains(Line line) {
 		return contains(line.getX1(), line.getY1()) && contains(line.getX2(), line.getY2());
 	}
@@ -190,6 +191,7 @@ public strictfp class Circle extends Ellipse {
 	 * @param other The line to check against
 	 * @return True if they touch
 	 */
+	@SuppressWarnings("unused")
 	private boolean intersects(Line other) {
 		// put it nicely into vectors
 		Vector2f lineSegmentStart = new Vector2f(other.getX1(), other.getY1());

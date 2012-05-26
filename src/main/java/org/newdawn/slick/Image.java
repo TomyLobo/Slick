@@ -78,8 +78,10 @@ public class Image implements Renderable {
 	private int filter = SGL.GL_LINEAR;
 
 	/** True if the image should be flipped vertically */
+	@SuppressWarnings("unused")
 	private boolean flipped;
 	/** The transparent colour set if any */
+	@SuppressWarnings("unused")
 	private Color transparent;
 
 	/**

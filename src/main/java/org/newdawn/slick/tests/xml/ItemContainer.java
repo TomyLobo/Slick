@@ -16,6 +16,7 @@ public class ItemContainer extends Item {
 	 * 
 	 * @param item The item to be added
 	 */
+	@SuppressWarnings("unused")
 	private void add(Item item) {
 		items.add(item);
 	}
@@ -27,6 +28,7 @@ public class ItemContainer extends Item {
 	 * 
 	 * @param name The value to set
 	 */
+	@SuppressWarnings("unused")
 	private void setName(String name) {
 		this.name = name;
 	}
@@ -38,6 +40,7 @@ public class ItemContainer extends Item {
 	 * 
 	 * @param condition The value to set
 	 */
+	@SuppressWarnings("unused")
 	private void setCondition(int condition) {
 		this.condition = condition;
 	}

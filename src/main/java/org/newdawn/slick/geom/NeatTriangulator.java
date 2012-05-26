@@ -393,6 +393,7 @@ public class NeatTriangulator implements Triangulator
 	 * 
 	 * @throws InternalException Indicates an invalid polygon
 	 */
+	@SuppressWarnings("unused")
 	private void optimize() throws InternalException
 	{
 		do

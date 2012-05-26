@@ -207,8 +207,11 @@ public class AngelCodeFont implements Font {
 			// now parse the font file
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					fntFile));
+			@SuppressWarnings("unused")
 			String info = in.readLine();
+			@SuppressWarnings("unused")
 			String common = in.readLine();
+			@SuppressWarnings("unused")
 			String page = in.readLine();
 
 			Map<Short, List<Short>> kerning = new HashMap<Short, List<Short>>(64);

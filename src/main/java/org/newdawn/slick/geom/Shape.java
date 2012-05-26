@@ -597,7 +597,6 @@ public abstract class Shape implements Serializable {
 			return;
 		}
 		if (points.length >= 6) {
-			boolean clockwise = true;
 			float area = 0;
 			for (int i=0;i<(points.length/2)-1;i++) {
 				float x1 = points[(i*2)];
@@ -608,7 +607,8 @@ public abstract class Shape implements Serializable {
 				area += (x1 * y2) - (y1 * x2);
 			}
 			area /= 2;
-			clockwise = area > 0;
+			@SuppressWarnings("unused")
+			boolean clockwise = area > 0;
 
 			tris = new NeatTriangulator();
 			for (int i=0;i<points.length;i+=2) {

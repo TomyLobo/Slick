@@ -16,6 +16,7 @@ public class Inventory {
 	 * 
 	 * @param item The item to be added
 	 */
+	@SuppressWarnings("unused")
 	private void add(Item item) {
 		items.add(item);
 	}

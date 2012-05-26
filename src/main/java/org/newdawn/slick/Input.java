@@ -291,22 +291,31 @@ public class Input {
 	/** Control index */
 	private static final int BUTTON1 = 4;
 	/** Control index */
+	@SuppressWarnings("unused")
 	private static final int BUTTON2 = 5;
 	/** Control index */
+	@SuppressWarnings("unused")
 	private static final int BUTTON3 = 6;
 	/** Control index */
+	@SuppressWarnings("unused")
 	private static final int BUTTON4 = 7;
 	/** Control index */
+	@SuppressWarnings("unused")
 	private static final int BUTTON5 = 8;
 	/** Control index */
+	@SuppressWarnings("unused")
 	private static final int BUTTON6 = 9;
 	/** Control index */
+	@SuppressWarnings("unused")
 	private static final int BUTTON7 = 10;
 	/** Control index */
+	@SuppressWarnings("unused")
 	private static final int BUTTON8 = 11;
 	/** Control index */
+	@SuppressWarnings("unused")
 	private static final int BUTTON9 = 12;
 	/** Control index */
+	@SuppressWarnings("unused")
 	private static final int BUTTON10 = 13;
 
 	/** The left mouse button indicator */
@@ -354,6 +363,7 @@ public class Input {
 	/** The listener to nofiy of controller events */
 	protected ArrayList<ControllerListener> controllerListeners = new ArrayList<ControllerListener>();
 	/** The current value of the wheel */
+	@SuppressWarnings("unused")
 	private int wheel;
 	/** The height of the display */
 	private int height;
@@ -385,8 +395,10 @@ public class Input {
 	private long doubleClickTimeout = 0;
 
 	/** The clicked x position */
+	@SuppressWarnings("unused")
 	private int clickX;
 	/** The clicked y position */
+	@SuppressWarnings("unused")
 	private int clickY;
 	/** The clicked button */
 	private int clickButton;

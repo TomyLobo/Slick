@@ -154,6 +154,7 @@ public class BufferedImageUtil {
 	 * @param dx The transform on the x axis
 	 * @param dy The transform on the y axis
 	 */
+	@SuppressWarnings("unused")
 	private static void copyArea(BufferedImage image, int x, int y, int width, int height, int dx, int dy) {
 		Graphics2D g = (Graphics2D) image.getGraphics();
 

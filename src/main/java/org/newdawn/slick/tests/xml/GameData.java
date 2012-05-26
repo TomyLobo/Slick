@@ -16,6 +16,7 @@ public class GameData {
 	 * 
 	 * @param entity The entity to be added
 	 */
+	@SuppressWarnings("unused")
 	private void add(Entity entity) {
 		entities.add(entity);
 	}

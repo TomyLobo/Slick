@@ -163,7 +163,8 @@ public class PNGImageData implements LoadableImageData {
 	 * @param b The byte to convert
 	 * @return The converted byte
 	 */
-	private int toInt(byte b) {
+	@SuppressWarnings("unused")
+	private static int toInt(byte b) {
 		if (b < 0) {
 			return 256+b;
 		}
@@ -177,7 +178,7 @@ public class PNGImageData implements LoadableImageData {
 	 * @param fold The target number
 	 * @return The power of 2
 	 */
-	private int get2Fold(int fold) {
+	private static int get2Fold(int fold) {
 		int ret = 2;
 		while (ret < fold) {
 			ret *= 2;
