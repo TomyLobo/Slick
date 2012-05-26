@@ -31,7 +31,7 @@ public class TrueTypeFont implements org.newdawn.slick.Font {
 	private IntObject[] charArray = new IntObject[256];
 
 	/** Map of user defined font characters (Character <-> IntObject) */
-	private Map customChars = new HashMap();
+	private Map<Character, IntObject> customChars = new HashMap<Character, IntObject>();
 
 	/** Boolean flag on whether AntiAliasing is enabled or not */
 	private boolean antiAlias;
@@ -302,7 +302,7 @@ public class TrueTypeFont implements org.newdawn.slick.Font {
 			if (currentChar < 256) {
 				intObject = charArray[currentChar];
 			} else {
-				intObject = (IntObject)customChars.get( new Character( (char) currentChar ) );
+				intObject = customChars.get( new Character( (char) currentChar ) );
 			}
 
 			if( intObject != null )
@@ -374,7 +374,7 @@ public class TrueTypeFont implements org.newdawn.slick.Font {
 			if (charCurrent < 256) {
 				intObject = charArray[charCurrent];
 			} else {
-				intObject = (IntObject)customChars.get( new Character( (char) charCurrent ) );
+				intObject = customChars.get( new Character( (char) charCurrent ) );
 			}
 
 			if( intObject != null ) {

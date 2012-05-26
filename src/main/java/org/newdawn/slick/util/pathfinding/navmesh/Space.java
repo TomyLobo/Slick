@@ -19,9 +19,9 @@ public class Space {
 	private float height;
 
 	/** A map from spaces to the links that connect them to this space */
-	private HashMap links = new HashMap();
+	private HashMap<Space, Link> links = new HashMap<Space, Link>();
 	/** A list of the links from this space to others */
-	private ArrayList linksList = new ArrayList();
+	private ArrayList<Link> linksList = new ArrayList<Link>();
 	/** The cost to get to this node */
 	private float cost;
 
@@ -226,7 +226,7 @@ public class Space {
 	 * @return The link from this space to another
 	 */
 	public Link getLink(int index) {
-		return (Link) linksList.get(index);
+		return linksList.get(index);
 	}
 
 	/**

@@ -6,7 +6,6 @@ import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.newdawn.slick.UnicodeFont;
@@ -161,8 +160,8 @@ public class GradientEffect implements ConfigurableEffect {
 	/**
 	 * @see org.newdawn.slick.font.effects.ConfigurableEffect#getValues()
 	 */
-	public List getValues() {
-		List values = new ArrayList();
+	public List<Value> getValues() {
+		List<Value> values = new ArrayList<Value>();
 		values.add(EffectUtil.colorValue("Top color", topColor));
 		values.add(EffectUtil.colorValue("Bottom color", bottomColor));
 		values.add(EffectUtil.intValue("Offset", offset,
@@ -176,9 +175,8 @@ public class GradientEffect implements ConfigurableEffect {
 	/**
 	 * @see org.newdawn.slick.font.effects.ConfigurableEffect#setValues(java.util.List)
 	 */
-	public void setValues(List values) {
-		for (Iterator iter = values.iterator(); iter.hasNext();) {
-			Value value = (Value)iter.next();
+	public void setValues(List<Value> values) {
+		for (Value value : values) {
 			if (value.getName().equals("Top color")) {
 				topColor = (Color)value.getObject();
 			} else if (value.getName().equals("Bottom color")) {

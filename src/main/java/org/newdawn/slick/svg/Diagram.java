@@ -10,13 +10,13 @@ import java.util.HashMap;
  */
 public class Diagram {
 	/** The figures in the diagram */
-	private ArrayList figures = new ArrayList();
+	private ArrayList<Figure> figures = new ArrayList<Figure>();
 	/** The pattern definitions */
-	private HashMap patterns = new HashMap();
+	private HashMap<String, String> patterns = new HashMap<String, String>();
 	/** The linear gradients defined within the diagram */
-	private HashMap gradients = new HashMap();
+	private HashMap<String, Gradient> gradients = new HashMap<String, Gradient>();
 	/** The figures mapping */
-	private HashMap figureMap = new HashMap();
+	private HashMap<String, Figure> figureMap = new HashMap<String, Figure>();
 
 	/** The width of the diagram */
 	private float width;
@@ -79,7 +79,7 @@ public class Diagram {
 	 * @return The href to the image that was specified for the given pattern
 	 */
 	public String getPatternDef(String name) {
-		return (String) patterns.get(name);
+		return patterns.get(name);
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class Diagram {
 	 * @return The gradient definition
 	 */
 	public Gradient getGradient(String name) {
-		return (Gradient) gradients.get(name);
+		return gradients.get(name);
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class Diagram {
 	 * @return The names of the pattern
 	 */
 	public String[] getPatternDefNames() {
-		return (String[]) patterns.keySet().toArray(new String[0]);
+		return patterns.keySet().toArray(new String[0]);
 	}
 
 	/**
@@ -108,7 +108,7 @@ public class Diagram {
 	 * @return The figure with the given ID
 	 */
 	public Figure getFigureByID(String id) {
-		return (Figure) figureMap.get(id);
+		return figureMap.get(id);
 	}
 
 	/**
@@ -147,7 +147,7 @@ public class Diagram {
 	 * @return The figure at the given index
 	 */
 	public Figure getFigure(int index) {
-		return (Figure) figures.get(index);
+		return figures.get(index);
 	}
 
 	/**

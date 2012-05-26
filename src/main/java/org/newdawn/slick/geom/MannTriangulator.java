@@ -49,7 +49,7 @@ public class MannTriangulator implements Triangulator {
 	/** The next available point */
 	private Point nextFreePoint;
 	/** The list of triangles created (or rather points in triangles, 3xn) */
-	private List triangles = new ArrayList();
+	private List<Vector2f> triangles = new ArrayList<Vector2f>();
 
 	/** Creates a new instance of Triangulator0 */
 	public MannTriangulator() {
@@ -609,7 +609,7 @@ public class MannTriangulator implements Triangulator {
 	 * @see org.newdawn.slick.geom.Triangulator#getTrianglePoint(int, int)
 	 */
 	public float[] getTrianglePoint(int tri, int i) {
-		Vector2f pt = (Vector2f) triangles.get((tri * 3) + i);
+		Vector2f pt = triangles.get((tri * 3) + i);
 
 		return new float[] { pt.x, pt.y };
 	}

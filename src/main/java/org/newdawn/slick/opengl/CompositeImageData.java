@@ -16,7 +16,7 @@ import org.newdawn.slick.util.Log;
  */
 public class CompositeImageData implements LoadableImageData  {
 	/** The list of images sources in order of preference to try loading the data with */
-	private ArrayList sources = new ArrayList();
+	private ArrayList<LoadableImageData> sources = new ArrayList<LoadableImageData>();
 	/** The data source that worked and was used - or null if no luck */
 	private LoadableImageData picked;
 
@@ -57,7 +57,7 @@ public class CompositeImageData implements LoadableImageData  {
 		for (int i=0;i<sources.size();i++) {
 			in.reset();
 			try {
-				LoadableImageData data = (LoadableImageData) sources.get(i);
+				LoadableImageData data = sources.get(i);
 
 				buffer = data.loadImage(in, flipped, forceAlpha, transparent);
 				picked = data;
@@ -144,7 +144,7 @@ public class CompositeImageData implements LoadableImageData  {
 	 */
 	public void configureEdging(boolean edging) {
 		for (int i=0;i<sources.size();i++) {
-			((LoadableImageData) sources.get(i)).configureEdging(edging);
+			sources.get(i).configureEdging(edging);
 		}
 	}
 

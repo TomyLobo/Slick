@@ -2,9 +2,8 @@ package org.newdawn.slick.command;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
 
 import org.newdawn.slick.Input;
 import org.newdawn.slick.util.InputAdapter;
@@ -19,16 +18,16 @@ import org.newdawn.slick.util.InputAdapter;
  */
 public class InputProvider {
 	/** The commands that have been defined */
-	private HashMap commands;
+	private HashMap<Control, Command> commands;
 
 	/** The list of listeners that may be listening */
-	private ArrayList listeners = new ArrayList();
+	private ArrayList<InputProviderListener> listeners = new ArrayList<InputProviderListener>();
 
 	/** The input context we're responding to */
 	private Input input;
 
 	/** The command input states */
-	private HashMap commandState = new HashMap();
+	private HashMap<Command, CommandState> commandState = new HashMap<Command, CommandState>();
 
 	/** True if this provider is actively sending events */
 	private boolean active = true;
@@ -43,8 +42,8 @@ public class InputProvider {
 	public InputProvider(Input input) {
 		this.input = input;
 
-		input.addListener(new InputListenerImpl());
-		commands = new HashMap();
+		this.input.addListener(new InputListenerImpl());
+		commands = new HashMap<Control, Command>();
 	}
 
 	/**
@@ -54,12 +53,10 @@ public class InputProvider {
 	 * @return The list of commands (@see Command) that can be issued from this
 	 *         provider
 	 */
-	public List getUniqueCommands() {
-		List uniqueCommands = new ArrayList();
+	public List<Command> getUniqueCommands() {
+		List<Command> uniqueCommands = new ArrayList<Command>();
 
-		for (Iterator it = commands.values().iterator(); it.hasNext();) {
-			Command command = (Command) it.next();
-
+		for (Command command : commands.values()) {
 			if (!uniqueCommands.contains(command)) {
 				uniqueCommands.add(command);
 			}
@@ -76,11 +73,10 @@ public class InputProvider {
 	 *            The command to be invoked
 	 * @return The list of controls that can cause the command (@see Control)
 	 */
-	public List getControlsFor(Command command) {
-		List controlsForCommand = new ArrayList();
+	public List<Control> getControlsFor(Command command) {
+		List<Control> controlsForCommand = new ArrayList<Control>();
 
-		for (Iterator it = commands.entrySet().iterator(); it.hasNext();) {
-			Map.Entry entry = (Map.Entry) it.next();
+		for (Entry<Control, Command> entry : commands.entrySet()) {
 			Control key = (Control) entry.getKey();
 			Command value = (Command) entry.getValue();
 
@@ -154,10 +150,10 @@ public class InputProvider {
 	 * @param command The command whose controls should be unbound
 	 */
 	public void clearCommand(Command command) {
-		List controls = getControlsFor(command);
+		List<Control> controls = getControlsFor(command);
 
 		for (int i=0;i<controls.size();i++) {
-			unbindCommand((Control) controls.get(i));
+			unbindCommand(controls.get(i));
 		}
 	}
 
@@ -168,7 +164,7 @@ public class InputProvider {
 	 *            The control to remove
 	 */
 	public void unbindCommand(Control control) {
-		Command command = (Command) commands.remove(control);
+		Command command = commands.remove(control);
 		if (command != null) {
 			if (!commands.keySet().contains(command)) {
 				commandState.remove(command);
@@ -184,7 +180,7 @@ public class InputProvider {
 	 * @return The given command state
 	 */
 	private CommandState getState(Command command) {
-		return (CommandState) commandState.get(command);
+		return commandState.get(command);
 	}
 
 	/**
@@ -227,7 +223,7 @@ public class InputProvider {
 		}
 
 		for (int i = 0; i < listeners.size(); i++) {
-			((InputProviderListener) listeners.get(i)).controlPressed(command);
+			listeners.get(i).controlPressed(command);
 		}
 	}
 
@@ -246,7 +242,7 @@ public class InputProvider {
 		}
 
 		for (int i = 0; i < listeners.size(); i++) {
-			((InputProviderListener) listeners.get(i)).controlReleased(command);
+			listeners.get(i).controlReleased(command);
 		}
 	}
 
@@ -304,7 +300,7 @@ public class InputProvider {
 		 * @see org.newdawn.slick.util.InputAdapter#keyPressed(int, char)
 		 */
 		public void keyPressed(int key, char c) {
-			Command command = (Command) commands.get(new KeyControl(key));
+			Command command = commands.get(new KeyControl(key));
 			if (command != null) {
 				firePressed(command);
 			}
@@ -314,7 +310,7 @@ public class InputProvider {
 		 * @see org.newdawn.slick.util.InputAdapter#keyReleased(int, char)
 		 */
 		public void keyReleased(int key, char c) {
-			Command command = (Command) commands.get(new KeyControl(key));
+			Command command = commands.get(new KeyControl(key));
 			if (command != null) {
 				fireReleased(command);
 			}
@@ -324,7 +320,7 @@ public class InputProvider {
 		 * @see org.newdawn.slick.util.InputAdapter#mousePressed(int, int, int)
 		 */
 		public void mousePressed(int button, int x, int y) {
-			Command command = (Command) commands.get(new MouseButtonControl(
+			Command command = commands.get(new MouseButtonControl(
 					button));
 			if (command != null) {
 				firePressed(command);
@@ -335,7 +331,7 @@ public class InputProvider {
 		 * @see org.newdawn.slick.util.InputAdapter#mouseReleased(int, int, int)
 		 */
 		public void mouseReleased(int button, int x, int y) {
-			Command command = (Command) commands.get(new MouseButtonControl(
+			Command command = commands.get(new MouseButtonControl(
 					button));
 			if (command != null) {
 				fireReleased(command);
@@ -346,7 +342,7 @@ public class InputProvider {
 		 * @see org.newdawn.slick.util.InputAdapter#controllerLeftPressed(int)
 		 */
 		public void controllerLeftPressed(int controller) {
-			Command command = (Command) commands
+			Command command = commands
 					.get(new ControllerDirectionControl(controller,
 							ControllerDirectionControl.LEFT));
 			if (command != null) {
@@ -358,7 +354,7 @@ public class InputProvider {
 		 * @see org.newdawn.slick.util.InputAdapter#controllerLeftReleased(int)
 		 */
 		public void controllerLeftReleased(int controller) {
-			Command command = (Command) commands
+			Command command = commands
 					.get(new ControllerDirectionControl(controller,
 							ControllerDirectionControl.LEFT));
 			if (command != null) {
@@ -370,7 +366,7 @@ public class InputProvider {
 		 * @see org.newdawn.slick.util.InputAdapter#controllerRightPressed(int)
 		 */
 		public void controllerRightPressed(int controller) {
-			Command command = (Command) commands
+			Command command = commands
 					.get(new ControllerDirectionControl(controller,
 							ControllerDirectionControl.RIGHT));
 			if (command != null) {
@@ -382,7 +378,7 @@ public class InputProvider {
 		 * @see org.newdawn.slick.util.InputAdapter#controllerRightReleased(int)
 		 */
 		public void controllerRightReleased(int controller) {
-			Command command = (Command) commands
+			Command command = commands
 					.get(new ControllerDirectionControl(controller,
 							ControllerDirectionControl.RIGHT));
 			if (command != null) {
@@ -394,7 +390,7 @@ public class InputProvider {
 		 * @see org.newdawn.slick.util.InputAdapter#controllerUpPressed(int)
 		 */
 		public void controllerUpPressed(int controller) {
-			Command command = (Command) commands
+			Command command = commands
 					.get(new ControllerDirectionControl(controller,
 							ControllerDirectionControl.UP));
 			if (command != null)
@@ -405,7 +401,7 @@ public class InputProvider {
 		 * @see org.newdawn.slick.util.InputAdapter#controllerUpReleased(int)
 		 */
 		public void controllerUpReleased(int controller) {
-			Command command = (Command) commands
+			Command command = commands
 					.get(new ControllerDirectionControl(controller,
 							ControllerDirectionControl.UP));
 			if (command != null) {
@@ -417,7 +413,7 @@ public class InputProvider {
 		 * @see org.newdawn.slick.util.InputAdapter#controllerDownPressed(int)
 		 */
 		public void controllerDownPressed(int controller) {
-			Command command = (Command) commands
+			Command command = commands
 					.get(new ControllerDirectionControl(controller,
 							ControllerDirectionControl.DOWN));
 			if (command != null) {
@@ -429,7 +425,7 @@ public class InputProvider {
 		 * @see org.newdawn.slick.util.InputAdapter#controllerDownReleased(int)
 		 */
 		public void controllerDownReleased(int controller) {
-			Command command = (Command) commands
+			Command command = commands
 					.get(new ControllerDirectionControl(controller,
 							ControllerDirectionControl.DOWN));
 			if (command != null) {
@@ -442,7 +438,7 @@ public class InputProvider {
 		 *      int)
 		 */
 		public void controllerButtonPressed(int controller, int button) {
-			Command command = (Command) commands
+			Command command = commands
 					.get(new ControllerButtonControl(controller, button));
 			if (command != null) {
 				firePressed(command);
@@ -454,7 +450,7 @@ public class InputProvider {
 		 *      int)
 		 */
 		public void controllerButtonReleased(int controller, int button) {
-			Command command = (Command) commands
+			Command command = commands
 					.get(new ControllerButtonControl(controller, button));
 			if (command != null) {
 				fireReleased(command);

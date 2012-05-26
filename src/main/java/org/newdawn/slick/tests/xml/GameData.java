@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class GameData {
 	/** The list of entities added */
-	private ArrayList entities = new ArrayList();
+	private ArrayList<Entity> entities = new ArrayList<Entity>();
 
 	/**
 	 * Called by XML parser to add a configured entity to the GameData
@@ -28,7 +28,7 @@ public class GameData {
 	public void dump(String prefix) {
 		System.out.println(prefix+"GameData");
 		for (int i=0;i<entities.size();i++) {
-			((Entity) entities.get(i)).dump(prefix+"\t");
+			entities.get(i).dump(prefix+"\t");
 		}
 	}
 }

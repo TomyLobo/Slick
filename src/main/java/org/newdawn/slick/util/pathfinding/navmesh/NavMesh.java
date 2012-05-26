@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class NavMesh {
 	/** The list of spaces that build up this navigation mesh */
-	private ArrayList spaces = new ArrayList();
+	private ArrayList<Space> spaces = new ArrayList<Space>();
 
 	/**
 	 * Create a new empty mesh
@@ -27,7 +27,7 @@ public class NavMesh {
 	 * 
 	 * @param spaces The spaces included in the mesh
 	 */
-	public NavMesh(ArrayList spaces) {
+	public NavMesh(ArrayList<Space> spaces) {
 		this.spaces.addAll(spaces);
 	}
 
@@ -47,7 +47,7 @@ public class NavMesh {
 	 * @return The space at the given index
 	 */
 	public Space getSpace(int index) {
-		return (Space) spaces.get(index);
+		return spaces.get(index);
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class NavMesh {
 		}
 
 		for (int i=0;i<spaces.size();i++) {
-			((Space) spaces.get(i)).clearCost();
+			spaces.get(i).clearCost();
 		}
 		target.fill(source,tx, ty, 0);
 		if (target.getCost() == Float.MAX_VALUE) {

@@ -9,7 +9,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.newdawn.slick.SlickException;
@@ -47,7 +46,7 @@ public class HieroSettings {
 	/** The height of the glyph page generated */
 	private int glyphPageHeight = 512;
 	/** The list of effects applied */
-	private final List effects = new ArrayList();
+	private final List<ConfigurableEffect> effects = new ArrayList<ConfigurableEffect>();
 
 	/**
 	 * Default constructor for injection
@@ -106,7 +105,8 @@ public class HieroSettings {
 					glyphPageHeight = Integer.parseInt(value);
 				} else if (name.equals("effect.class")) {
 					try {
-						effects.add(Class.forName(value).newInstance());
+						Class<? extends ConfigurableEffect> effectClass = Class.forName(value).asSubclass(ConfigurableEffect.class);
+						effects.add(effectClass.newInstance());
 					} catch (Exception ex) {
 						throw new SlickException("Unable to create effect instance: " + value, ex);
 					}
@@ -114,9 +114,8 @@ public class HieroSettings {
 					// Set an effect value on the last added effect.
 					name = name.substring(7);
 					ConfigurableEffect effect = (ConfigurableEffect)effects.get(effects.size() - 1);
-					List values = effect.getValues();
-					for (Iterator iter = values.iterator(); iter.hasNext();) {
-						Value effectValue = (Value)iter.next();
+					List<Value> values = effect.getValues();
+					for (Value effectValue : values) {
 						if (effectValue.getName().equals(name)) {
 							effectValue.setString(value);
 							break;
@@ -340,7 +339,7 @@ public class HieroSettings {
 	 * 
 	 * @return The list of effects applied to the text
 	 */
-	public List getEffects() {
+	public List<ConfigurableEffect> getEffects() {
 		return effects;
 	}
 
@@ -366,11 +365,9 @@ public class HieroSettings {
 		out.println("glyph.page.width=" + glyphPageWidth);
 		out.println("glyph.page.height=" + glyphPageHeight);
 		out.println();
-		for (Iterator iter = effects.iterator(); iter.hasNext();) {
-			ConfigurableEffect effect = (ConfigurableEffect)iter.next();
+		for (ConfigurableEffect effect: effects) {
 			out.println("effect.class=" + effect.getClass().getName());
-			for (Iterator iter2 = effect.getValues().iterator(); iter2.hasNext();) {
-				Value value = (Value)iter2.next();
+			for (Value value : effect.getValues()) {
 				out.println("effect." + value.getName() + "=" + value.getString());
 			}
 			out.println();

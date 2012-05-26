@@ -20,7 +20,6 @@ import java.awt.Stroke;
 import java.awt.geom.FlatteningPathIterator;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.PathIterator;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -99,8 +98,8 @@ public class OutlineWobbleEffect extends OutlineEffect {
 	/**
 	 * @see org.newdawn.slick.font.effects.OutlineEffect#getValues()
 	 */
-	public List getValues() {
-		List values = super.getValues();
+	public List<Value> getValues() {
+		List<Value> values = super.getValues();
 		values.remove(2); // Remove "Join".
 		values.add(EffectUtil.floatValue("Detail", detail, 1, 50, "This setting controls how detailed the outline will be. "
 				+ "Smaller numbers cause the outline to have more detail."));
@@ -111,10 +110,9 @@ public class OutlineWobbleEffect extends OutlineEffect {
 	/**
 	 * @see org.newdawn.slick.font.effects.OutlineEffect#setValues(java.util.List)
 	 */
-	public void setValues(List values) {
+	public void setValues(List<Value> values) {
 		super.setValues(values);
-		for (Iterator iter = values.iterator(); iter.hasNext();) {
-			Value value = (Value)iter.next();
+		for (Value value : values) {
 			if (value.getName().equals("Detail")) {
 				detail = ((Float)value.getObject()).floatValue();
 			} else if (value.getName().equals("Amplitude")) {

@@ -1,7 +1,6 @@
 package org.newdawn.slick.gui;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 import org.newdawn.slick.Graphics;
@@ -24,7 +23,7 @@ public abstract class AbstractComponent extends InputAdapter {
 	protected GUIContext container;
 
 	/** Listeners for the component to notify */
-	protected Set listeners;
+	protected Set<ComponentListener> listeners;
 
 	/** True if this component currently has focus */
 	private boolean focus = false;
@@ -41,7 +40,7 @@ public abstract class AbstractComponent extends InputAdapter {
 	public AbstractComponent(GUIContext container) {
 		this.container = container;
 
-		listeners = new HashSet();
+		listeners = new HashSet<ComponentListener>();
 
 		input = container.getInput();
 		input.addPrimaryListener(this);
@@ -77,9 +76,8 @@ public abstract class AbstractComponent extends InputAdapter {
 	 * Notify all the listeners.
 	 */
 	protected void notifyListeners() {
-		Iterator it = listeners.iterator();
-		while (it.hasNext()) {
-			((ComponentListener) it.next()).componentActivated(this);
+		for (ComponentListener listener : listeners) {
+			listener.componentActivated(this);
 		}
 	}
 

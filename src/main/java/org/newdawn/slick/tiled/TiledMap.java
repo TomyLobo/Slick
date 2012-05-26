@@ -61,11 +61,11 @@ public class TiledMap {
 	protected Properties props;
 
 	/** The list of tilesets defined in the map */
-	protected ArrayList tileSets = new ArrayList();
+	protected ArrayList<TileSet> tileSets = new ArrayList<TileSet>();
 	/** The list of layers defined in the map */
-	protected ArrayList layers = new ArrayList();
+	protected ArrayList<Layer> layers = new ArrayList<Layer>();
 	/** The list of object-groups defined in the map */
-	protected ArrayList objectGroups = new ArrayList();
+	protected ArrayList<ObjectGroup> objectGroups = new ArrayList<ObjectGroup>();
 
 	/** Indicates a orthogonal map */
 	protected static final int ORTHOGONAL = 1;
@@ -170,7 +170,7 @@ public class TiledMap {
 		int idx = 0;
 
 		for (int i = 0; i < layers.size(); i++) {
-			Layer layer = (Layer) layers.get(i);
+			Layer layer = layers.get(i);
 
 			if (layer.name.equals(name)) {
 				return i;
@@ -194,11 +194,11 @@ public class TiledMap {
 	 *         image for the specified tile.
 	 */
 	public Image getTileImage(int x, int y, int layerIndex) {
-		Layer layer = (Layer) layers.get(layerIndex);
+		Layer layer = layers.get(layerIndex);
 
 		int tileSetIndex = layer.data[x][y][0];
 		if ((tileSetIndex >= 0) && (tileSetIndex < tileSets.size())) {
-			TileSet tileSet = (TileSet) tileSets.get(tileSetIndex);
+			TileSet tileSet = tileSets.get(tileSetIndex);
 
 			int sheetX = tileSet.getTileX(layer.data[x][y][1]);
 			int sheetY = tileSet.getTileY(layer.data[x][y][1]);
@@ -257,7 +257,7 @@ public class TiledMap {
 	 * @return The global ID of the tile
 	 */
 	public int getTileId(int x, int y, int layerIndex) {
-		Layer layer = (Layer) layers.get(layerIndex);
+		Layer layer = layers.get(layerIndex);
 		return layer.getTileID(x, y);
 	}
 
@@ -274,7 +274,7 @@ public class TiledMap {
 	 *            The tileid to be set
 	 */
 	public void setTileId(int x, int y, int layerIndex, int tileid) {
-		Layer layer = (Layer) layers.get(layerIndex);
+		Layer layer = layers.get(layerIndex);
 		layer.setTileID(x, y, tileid);
 	}
 
@@ -312,7 +312,7 @@ public class TiledMap {
 	 */
 	public String getLayerProperty(int layerIndex, String propertyName,
 			String def) {
-		Layer layer = (Layer) layers.get(layerIndex);
+		Layer layer = layers.get(layerIndex);
 		if (layer == null || layer.props == null)
 			return def;
 		return layer.props.getProperty(propertyName, def);
@@ -416,7 +416,7 @@ public class TiledMap {
 	 */
 	public void render(int x, int y, int sx, int sy, int width, int height,
 			int l, boolean lineByLine) {
-		Layer layer = (Layer) layers.get(l);
+		Layer layer = layers.get(l);
 
 		switch (orientation) {
 		case ORTHOGONAL:
@@ -459,7 +459,7 @@ public class TiledMap {
 		case ORTHOGONAL:
 			for (int ty = 0; ty < height; ty++) {
 				for (int i = 0; i < layers.size(); i++) {
-					Layer layer = (Layer) layers.get(i);
+					Layer layer = layers.get(i);
 					layer.render(x, y, sx, sy, width, ty, lineByLine,
 							tileWidth, tileHeight);
 				}
@@ -501,9 +501,9 @@ public class TiledMap {
 	 */
 	protected void renderIsometricMap(int x, int y, int sx, int sy, int width,
 			int height, Layer layer, boolean lineByLine) {
-		ArrayList drawLayers = layers;
+		ArrayList<Layer> drawLayers = layers;
 		if (layer != null) {
-			drawLayers = new ArrayList();
+			drawLayers = new ArrayList<Layer>();
 			drawLayers.add(layer);
 		}
 
@@ -535,7 +535,7 @@ public class TiledMap {
 
 			for (int burner = 0; burner <= min; currentTileX++, currentTileY--, burner++) {
 				for (int layerIdx = 0; layerIdx < drawLayers.size(); layerIdx++) {
-					Layer currentLayer = (Layer) drawLayers.get(layerIdx);
+					Layer currentLayer = drawLayers.get(layerIdx);
 					currentLayer.render(currentLineX, initialLineY,
 							currentTileX, currentTileY, 1, 0, lineByLine,
 							tileWidth, tileHeight);
@@ -713,7 +713,7 @@ public class TiledMap {
 	 * @return The TileSet requested
 	 */
 	public TileSet getTileSet(int index) {
-		return (TileSet) tileSets.get(index);
+		return tileSets.get(index);
 	}
 
 	/**
@@ -725,7 +725,7 @@ public class TiledMap {
 	 */
 	public TileSet getTileSetByGID(int gid) {
 		for (int i = 0; i < tileSets.size(); i++) {
-			TileSet set = (TileSet) tileSets.get(i);
+			TileSet set = tileSets.get(i);
 
 			if (set.contains(gid)) {
 				return set;
@@ -745,7 +745,7 @@ public class TiledMap {
 	 */
 	public TileSet findTileSet(int gid) {
 		for (int i = 0; i < tileSets.size(); i++) {
-			TileSet set = (TileSet) tileSets.get(i);
+			TileSet set = tileSets.get(i);
 
 			if (set.contains(gid)) {
 				return set;
@@ -788,7 +788,7 @@ public class TiledMap {
 	 */
 	public int getObjectCount(int groupID) {
 		if (groupID >= 0 && groupID < objectGroups.size()) {
-			ObjectGroup grp = (ObjectGroup) objectGroups.get(groupID);
+			ObjectGroup grp = objectGroups.get(groupID);
 			return grp.objects.size();
 		}
 		return -1;
@@ -805,9 +805,9 @@ public class TiledMap {
 	 */
 	public String getObjectName(int groupID, int objectID) {
 		if (groupID >= 0 && groupID < objectGroups.size()) {
-			ObjectGroup grp = (ObjectGroup) objectGroups.get(groupID);
+			ObjectGroup grp = objectGroups.get(groupID);
 			if (objectID >= 0 && objectID < grp.objects.size()) {
-				GroupObject object = (GroupObject) grp.objects.get(objectID);
+				GroupObject object = grp.objects.get(objectID);
 				return object.name;
 			}
 		}
@@ -825,9 +825,9 @@ public class TiledMap {
 	 */
 	public String getObjectType(int groupID, int objectID) {
 		if (groupID >= 0 && groupID < objectGroups.size()) {
-			ObjectGroup grp = (ObjectGroup) objectGroups.get(groupID);
+			ObjectGroup grp = objectGroups.get(groupID);
 			if (objectID >= 0 && objectID < grp.objects.size()) {
-				GroupObject object = (GroupObject) grp.objects.get(objectID);
+				GroupObject object = grp.objects.get(objectID);
 				return object.type;
 			}
 		}
@@ -845,9 +845,9 @@ public class TiledMap {
 	 */
 	public int getObjectX(int groupID, int objectID) {
 		if (groupID >= 0 && groupID < objectGroups.size()) {
-			ObjectGroup grp = (ObjectGroup) objectGroups.get(groupID);
+			ObjectGroup grp = objectGroups.get(groupID);
 			if (objectID >= 0 && objectID < grp.objects.size()) {
-				GroupObject object = (GroupObject) grp.objects.get(objectID);
+				GroupObject object = grp.objects.get(objectID);
 				return object.x;
 			}
 		}
@@ -865,9 +865,9 @@ public class TiledMap {
 	 */
 	public int getObjectY(int groupID, int objectID) {
 		if (groupID >= 0 && groupID < objectGroups.size()) {
-			ObjectGroup grp = (ObjectGroup) objectGroups.get(groupID);
+			ObjectGroup grp = objectGroups.get(groupID);
 			if (objectID >= 0 && objectID < grp.objects.size()) {
-				GroupObject object = (GroupObject) grp.objects.get(objectID);
+				GroupObject object = grp.objects.get(objectID);
 				return object.y;
 			}
 		}
@@ -885,9 +885,9 @@ public class TiledMap {
 	 */
 	public int getObjectWidth(int groupID, int objectID) {
 		if (groupID >= 0 && groupID < objectGroups.size()) {
-			ObjectGroup grp = (ObjectGroup) objectGroups.get(groupID);
+			ObjectGroup grp = objectGroups.get(groupID);
 			if (objectID >= 0 && objectID < grp.objects.size()) {
-				GroupObject object = (GroupObject) grp.objects.get(objectID);
+				GroupObject object = grp.objects.get(objectID);
 				return object.width;
 			}
 		}
@@ -905,9 +905,9 @@ public class TiledMap {
 	 */
 	public int getObjectHeight(int groupID, int objectID) {
 		if (groupID >= 0 && groupID < objectGroups.size()) {
-			ObjectGroup grp = (ObjectGroup) objectGroups.get(groupID);
+			ObjectGroup grp = objectGroups.get(groupID);
 			if (objectID >= 0 && objectID < grp.objects.size()) {
-				GroupObject object = (GroupObject) grp.objects.get(objectID);
+				GroupObject object = grp.objects.get(objectID);
 				return object.height;
 			}
 		}
@@ -925,9 +925,9 @@ public class TiledMap {
 	 */
 	public String getObjectImage(int groupID, int objectID) {
 		if (groupID >= 0 && groupID < objectGroups.size()) {
-			ObjectGroup grp = (ObjectGroup) objectGroups.get(groupID);
+			ObjectGroup grp = objectGroups.get(groupID);
 			if (objectID >= 0 && objectID < grp.objects.size()) {
-				GroupObject object = (GroupObject) grp.objects.get(objectID);
+				GroupObject object = grp.objects.get(objectID);
 
 				if (object == null) {
 					return null;
@@ -958,9 +958,9 @@ public class TiledMap {
 	public String getObjectProperty(int groupID, int objectID,
 			String propertyName, String def) {
 		if (groupID >= 0 && groupID < objectGroups.size()) {
-			ObjectGroup grp = (ObjectGroup) objectGroups.get(groupID);
+			ObjectGroup grp = objectGroups.get(groupID);
 			if (objectID >= 0 && objectID < grp.objects.size()) {
-				GroupObject object = (GroupObject) grp.objects.get(objectID);
+				GroupObject object = grp.objects.get(objectID);
 
 				if (object == null) {
 					return def;
@@ -986,7 +986,7 @@ public class TiledMap {
 		/** The name of this group - read from the XML */
 		public String name;
 		/** The Objects of this group */
-		public ArrayList objects;
+		public ArrayList<GroupObject> objects;
 		/** The width of this layer */
 		public int width;
 		/** The height of this layer */
@@ -1007,7 +1007,7 @@ public class TiledMap {
 			name = element.getAttribute("name");
 			width = Integer.parseInt(element.getAttribute("width"));
 			height = Integer.parseInt(element.getAttribute("height"));
-			objects = new ArrayList();
+			objects = new ArrayList<GroupObject>();
 
 			// now read the layer properties
 			Element propsElement = (Element) element.getElementsByTagName(

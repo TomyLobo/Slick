@@ -13,7 +13,7 @@ import org.newdawn.slick.SlickException;
  */
 public class ImageWriterFactory {
 	/** The map from format names to image writer instances */
-	private static HashMap writers = new HashMap();
+	private static HashMap<String, ImageWriter> writers = new HashMap<String, ImageWriter>();
 
 	// Initialise the list of writers based on the classes we know about
 	static {
@@ -44,7 +44,7 @@ public class ImageWriterFactory {
 	 * @return The list of support format strings for this factory
 	 */
 	public static String[] getSupportedFormats() {
-		return (String[]) writers.keySet().toArray(new String[0]);
+		return writers.keySet().toArray(new String[0]);
 	}
 
 	/**
@@ -56,17 +56,17 @@ public class ImageWriterFactory {
 	 */
 	public static ImageWriter getWriterForFormat(String format) throws SlickException
 	{
-		ImageWriter writer = (ImageWriter) writers.get(format);
+		ImageWriter writer = writers.get(format);
 		if (writer != null) {
 			return writer;
 		}
 
-		writer = (ImageWriter) writers.get(format.toLowerCase());
+		writer = writers.get(format.toLowerCase());
 		if (writer != null) {
 			return writer;
 		}
 
-		writer = (ImageWriter) writers.get(format.toUpperCase());
+		writer = writers.get(format.toUpperCase());
 		if (writer != null) {
 			return writer;
 		}

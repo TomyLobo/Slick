@@ -20,7 +20,7 @@ import org.newdawn.slick.util.Log;
  */
 public class TestBox extends BasicGame {
 	/** The games that have been added */
-	private ArrayList games = new ArrayList();
+	private ArrayList<Class<?>> games = new ArrayList<Class<?>>();
 	/** The current game */
 	private BasicGame currentGame;
 	/** The index of the current game */
@@ -40,7 +40,7 @@ public class TestBox extends BasicGame {
 	 * 
 	 * @param game The game to add to the test box
 	 */
-	public void addGame(Class game) {
+	public void addGame(Class<?> game) {
 		games.add(game);
 	}
 
@@ -65,7 +65,7 @@ public class TestBox extends BasicGame {
 	 */
 	private void startGame() {
 		try {
-			currentGame = (BasicGame) ((Class) games.get(index)).newInstance();
+			currentGame = (BasicGame) games.get(index).newInstance();
 			container.getGraphics().setBackground(Color.black);
 			currentGame.init(container);
 			currentGame.render(container, container.getGraphics());

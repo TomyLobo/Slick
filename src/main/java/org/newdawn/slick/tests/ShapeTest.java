@@ -34,7 +34,7 @@ public class ShapeTest extends BasicGame {
 	/** polygon to display */
 	private Polygon polygon;
 	/** list for drawing the shapes*/
-	private ArrayList shapes;
+	private ArrayList<Shape> shapes;
 	/** track key presses */
 	private boolean keys[];
 	/** since no modifiers, use this for shifted characters */
@@ -69,7 +69,7 @@ public class ShapeTest extends BasicGame {
 	 * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
 	 */
 	public void init(GameContainer container) throws SlickException {
-		shapes = new ArrayList();
+		shapes = new ArrayList<Shape>();
 		rect = new Rectangle(10, 10, 100, 80);
 		shapes.add(rect);
 		roundRect = new RoundedRectangle(150, 10, 60, 80, 20);
@@ -93,7 +93,7 @@ public class ShapeTest extends BasicGame {
 		g.setColor(Color.green);
 
 		for(int i=0;i<shapes.size();i++) {
-			g.fill((Shape)shapes.get(i));
+			g.fill(shapes.get(i));
 		}
 		g.fill(randomShape);
 		g.setColor(Color.black);

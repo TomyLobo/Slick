@@ -16,7 +16,7 @@ public interface Muffin {
 	 * @param fileName The name of the file to store it against
 	 * @throws IOException Indicates a failure to save the state
 	 */
-	public abstract void saveFile(HashMap data, String fileName) throws IOException;
+	public abstract void saveFile(HashMap<String, ?> data, String fileName) throws IOException;
 
 	/**
 	 * Load a file of data from the store
@@ -25,5 +25,5 @@ public interface Muffin {
 	 * @return The data retrieved
 	 * @throws IOException Indicates a failure to load the state
 	 */
-	public abstract HashMap loadFile(String fileName) throws IOException;
+	public abstract HashMap<?, ?> loadFile(String fileName) throws IOException;
 }

@@ -32,11 +32,11 @@ public class GeomUtilTest extends BasicGame implements GeomUtilListener {
 	private Shape[] result;
 
 	/** The points used */
-	private ArrayList points = new ArrayList();
+	private ArrayList<Vector2f> points = new ArrayList<Vector2f>();
 	/** The points intersected */
-	private ArrayList marks = new ArrayList();
+	private ArrayList<Vector2f> marks = new ArrayList<Vector2f>();
 	/** The points excluded */
-	private ArrayList exclude = new ArrayList();
+	private ArrayList<Vector2f> exclude = new ArrayList<Vector2f>();
 
 	/** True if we're moving the shape around */
 	private boolean dynamic;
@@ -176,17 +176,17 @@ public class GeomUtilTest extends BasicGame implements GeomUtilListener {
 
 		g.setColor(Color.white);
 		for (int i=0;i<exclude.size();i++) {
-			Vector2f pt = (Vector2f) exclude.get(i);
+			Vector2f pt = exclude.get(i);
 			g.drawOval(pt.x-3, pt.y-3, 7,7);
 		}
 		g.setColor(Color.yellow);
 		for (int i=0;i<points.size();i++) {
-			Vector2f pt = (Vector2f) points.get(i);
+			Vector2f pt = points.get(i);
 			g.fillOval(pt.x-1, pt.y-1, 3,3);
 		}
 		g.setColor(Color.white);
 		for (int i=0;i<marks.size();i++) {
-			Vector2f pt = (Vector2f) marks.get(i);
+			Vector2f pt = marks.get(i);
 			g.fillOval(pt.x-1, pt.y-1, 3,3);
 		}
 

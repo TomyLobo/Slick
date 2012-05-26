@@ -16,7 +16,7 @@ public class Gradient {
 	/** The name/id given to the gradient */
 	private String name;
 	/** The steps in colour of the gradient */
-	private ArrayList steps = new ArrayList();
+	private ArrayList<Step> steps = new ArrayList<Step>();
 	/** The first x coordiante given in the gradient (cx in radial) */
 	private float x1;
 	/** The second x coordiante given in the gradient (fx in radial) */
@@ -235,15 +235,15 @@ public class Gradient {
 	 */
 	public Color getColorAt(float p) {
 		if (p <= 0) {
-			return ((Step) steps.get(0)).col;
+			return steps.get(0).col;
 		}
 		if (p > 1) {
-			return ((Step) steps.get(steps.size()-1)).col;
+			return steps.get(steps.size()-1).col;
 		}
 
 		for (int i=1;i<steps.size();i++) {
-			Step prev = ((Step) steps.get(i-1));
-			Step current = ((Step) steps.get(i));
+			Step prev = steps.get(i-1);
+			Step current = steps.get(i);
 
 			if (p <= current.location) {
 				float dis = current.location - prev.location;

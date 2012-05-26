@@ -20,7 +20,7 @@ public class InputTest extends BasicGame {
 	/** The message to be displayed */
 	private String message = "Press any key, mouse button, or drag the mouse";
 	/** The lines to be drawn on the screen */
-	private ArrayList lines = new ArrayList();
+	private ArrayList<Line> lines = new ArrayList<Line>();
 	/** True if the mouse button is down */
 	private boolean buttonDown;
 	/** The x position of our controlled stuff */
@@ -79,7 +79,7 @@ public class InputTest extends BasicGame {
 		g.drawString("Use the primary gamepad to control the blob, and hit a gamepad button to change the color", 10, 90);
 
 		for (int i=0;i<lines.size();i++) {
-			Line line = (Line) lines.get(i);
+			Line line = lines.get(i);
 			line.draw(g);
 		}
 

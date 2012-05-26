@@ -7,7 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.newdawn.slick.UnicodeFont;
@@ -148,8 +147,8 @@ public class OutlineEffect implements ConfigurableEffect {
 	/**
 	 * @see org.newdawn.slick.font.effects.ConfigurableEffect#getValues()
 	 */
-	public List getValues () {
-		List values = new ArrayList();
+	public List<Value> getValues () {
+		List<Value> values = new ArrayList<Value>();
 		values.add(EffectUtil.colorValue("Color", color));
 		values.add(EffectUtil.floatValue("Width", width, 0.1f, 999, "This setting controls the width of the outline. "
 				+ "The glyphs will need padding so the outline doesn't get clipped."));
@@ -163,9 +162,8 @@ public class OutlineEffect implements ConfigurableEffect {
 	/**
 	 * @see org.newdawn.slick.font.effects.ConfigurableEffect#setValues(java.util.List)
 	 */
-	public void setValues (List values) {
-		for (Iterator iter = values.iterator(); iter.hasNext();) {
-			Value value = (Value)iter.next();
+	public void setValues (List<Value> values) {
+		for (Value value : values) {
 			if (value.getName().equals("Color")) {
 				color = (Color)value.getObject();
 			} else if (value.getName().equals("Width")) {

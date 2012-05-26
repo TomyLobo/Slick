@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Inventory {
 	/** The items held in the inventory */
-	private ArrayList items = new ArrayList();
+	private ArrayList<Item> items = new ArrayList<Item>();
 
 	/**
 	 * Called by XML parser to add a configured item to the entity
@@ -28,7 +28,7 @@ public class Inventory {
 	public void dump(String prefix) {
 		System.out.println(prefix+"Inventory");
 		for (int i=0;i<items.size();i++) {
-			((Item) items.get(i)).dump(prefix+"\t");
+			items.get(i).dump(prefix+"\t");
 		}
 	}
 }

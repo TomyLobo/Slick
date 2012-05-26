@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class Path extends Shape {
 	/** The local list of points */
-	private ArrayList localPoints = new ArrayList();
+	private ArrayList<float[]> localPoints = new ArrayList<float[]>();
 	/** The current x coordinate */
 	private float cx;
 	/** The current y coordiante */
@@ -18,9 +18,9 @@ public class Path extends Shape {
 	/** True if the path has been closed */
 	private boolean closed;
 	/** The list of holes placed */
-	private ArrayList holes = new ArrayList();
+	private ArrayList<ArrayList<float[]>> holes = new ArrayList<ArrayList<float[]>>();
 	/** The current hole being built */
-	private ArrayList hole;
+	private ArrayList<float[]> hole;
 
 	/**
 	 * Create a new path
@@ -42,7 +42,7 @@ public class Path extends Shape {
 	 * @param sy The start point of the hole
 	 */
 	public void startHole(float sx, float sy) {
-		hole = new ArrayList();
+		hole = new ArrayList<float[]>();
 		holes.add(hole);
 	}
 
@@ -125,7 +125,7 @@ public class Path extends Shape {
 	protected void createPoints() {
 		points = new float[localPoints.size() * 2];
 		for (int i=0;i<localPoints.size();i++) {
-			float[] p = (float[]) localPoints.get(i);
+			float[] p = localPoints.get(i);
 			points[(i*2)] = p[0];
 			points[(i*2)+1] = p[1];
 		}
@@ -138,7 +138,7 @@ public class Path extends Shape {
 		Path p = new Path(cx,cy);
 		p.localPoints = transform(localPoints, transform);
 		for (int i=0;i<holes.size();i++) {
-			p.holes.add(transform((ArrayList) holes.get(i), transform));
+			p.holes.add(transform(holes.get(i), transform));
 		}
 		p.closed = this.closed;
 
@@ -152,17 +152,17 @@ public class Path extends Shape {
 	 * @param t The transform to apply
 	 * @return The transformed points
 	 */
-	private ArrayList transform(ArrayList pts, Transform t) {
+	private ArrayList<float[]> transform(ArrayList<float[]> pts, Transform t) {
 		float[] in = new float[pts.size()*2];
 		float[] out = new float[pts.size()*2];
 
 		for (int i=0;i<pts.size();i++) {
-			in[i*2] = ((float[]) pts.get(i))[0];
-			in[(i*2)+1] = ((float[]) pts.get(i))[1];
+			in[i*2] = pts.get(i)[0];
+			in[(i*2)+1] = pts.get(i)[1];
 		}
 		t.transform(in, 0, out, 0, pts.size());
 
-		ArrayList outList = new ArrayList();
+		ArrayList<float[]> outList = new ArrayList<float[]>();
 		for (int i=0;i<pts.size();i++) {
 			outList.add(new float[] {out[(i*2)],out[(i*2)+1]});
 		}

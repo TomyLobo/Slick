@@ -23,7 +23,7 @@ public class FileMuffin implements Muffin {
 	 * @see org.newdawn.slick.muffin.Muffin#saveFile(java.util.HashMap,
 	 *      java.lang.String)
 	 */
-	public void saveFile(HashMap scoreMap, String fileName) throws IOException {
+	public void saveFile(HashMap<String, ?> scoreMap, String fileName) throws IOException {
 		String userHome = System.getProperty("user.home");
 		File file = new File(userHome);
 		file = new File(file, ".java");
@@ -44,31 +44,31 @@ public class FileMuffin implements Muffin {
 	/**
 	 * @see org.newdawn.slick.muffin.Muffin#loadFile(java.lang.String)
 	 */
-	public HashMap loadFile(String fileName) throws IOException {
-		HashMap hashMap = new HashMap();
+	public HashMap<?, ?> loadFile(String fileName) throws IOException {
 		String userHome = System.getProperty("user.home");
 
 		File file = new File(userHome);
 		file = new File(file, ".java");
 		file = new File(file, fileName);
 
-		if (file.exists()) {
-			try {
-				FileInputStream fis = new FileInputStream(file);
-				ObjectInputStream ois = new ObjectInputStream(fis);
+		if (!file.exists())
+			return new HashMap<String, Object>();
 
-				hashMap = (HashMap) ois.readObject();
+		try {
+			FileInputStream fis = new FileInputStream(file);
+			ObjectInputStream ois = new ObjectInputStream(fis);
 
-				ois.close();
+			HashMap<?, ?> hashMap = (HashMap<?, ?>) ois.readObject();
 
-			} catch (EOFException e) {
-				// End of the file reached, do nothing
-			} catch (ClassNotFoundException e) {
-				Log.error(e);
-				throw new IOException("Failed to pull state from store - class not found");
-			}
+			ois.close();
+
+			return hashMap;
+		} catch (EOFException e) {
+			// End of the file reached, return empty map
+			return new HashMap<String, Object>();
+		} catch (ClassNotFoundException e) {
+			Log.error(e);
+			throw new IOException("Failed to pull state from store - class not found");
 		}
-
-		return hashMap;
 	}
 }

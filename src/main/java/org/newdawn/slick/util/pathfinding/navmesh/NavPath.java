@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class NavPath {
 	/** The list of links that form this path */
-	private ArrayList links = new ArrayList();
+	private ArrayList<Link> links = new ArrayList<Link>();
 
 	/**
 	 * Create a new path
@@ -42,7 +42,7 @@ public class NavPath {
 	 * @return The x coordinate at the given step index
 	 */
 	public float getX(int step) {
-		return ((Link) links.get(step)).getX();
+		return links.get(step).getX();
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class NavPath {
 	 * @return The y coordinate at the given step index
 	 */
 	public float getY(int step) {
-		return ((Link) links.get(step)).getY();
+		return links.get(step).getY();
 	}
 
 	/**

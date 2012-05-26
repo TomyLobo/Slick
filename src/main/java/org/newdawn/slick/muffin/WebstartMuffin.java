@@ -6,7 +6,6 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Set;
 
 import javax.jnlp.BasicService;
@@ -27,7 +26,7 @@ public class WebstartMuffin implements Muffin {
 	/**
 	 * @see org.newdawn.slick.muffin.Muffin#saveFile(java.util.HashMap, java.lang.String)
 	 */
-	public void saveFile(HashMap scoreMap, String fileName) throws IOException {
+	public void saveFile(HashMap<String, ?> scoreMap, String fileName) throws IOException {
 
 		PersistenceService ps;
 		BasicService bs;
@@ -60,12 +59,10 @@ public class WebstartMuffin implements Muffin {
 					.getOutputStream(false));
 
 			// scroll through hashMap and write key and value to file
-			Set keys = scoreMap.keySet(); // get the keys
+			Set<String> keys = scoreMap.keySet(); // get the keys
 
 			// get values using keys
-			for (Iterator i = keys.iterator(); i.hasNext();) {
-				String key = (String) i.next();
-
+			for (String key : keys) {
 				oos.writeUTF(key);
 
 				if (fileName.endsWith("Number")) {
@@ -88,8 +85,8 @@ public class WebstartMuffin implements Muffin {
 	/**
 	 * @see org.newdawn.slick.muffin.Muffin#loadFile(java.lang.String)
 	 */
-	public HashMap loadFile(String fileName) throws IOException {
-		HashMap hashMap = new HashMap();
+	public HashMap<String, Object> loadFile(String fileName) throws IOException {
+		HashMap<String, Object> hashMap = new HashMap<String, Object>();
 
 		try {
 			PersistenceService ps = (PersistenceService) ServiceManager

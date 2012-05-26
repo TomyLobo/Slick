@@ -15,7 +15,7 @@ public class Path implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/** The list of steps building up this path */
-	private ArrayList steps = new ArrayList();
+	private ArrayList<Step> steps = new ArrayList<Step>();
 
 	/**
 	 * Create an empty path
@@ -41,7 +41,7 @@ public class Path implements Serializable {
 	 * @return The step information, the position on the map.
 	 */
 	public Step getStep(int index) {
-		return (Step) steps.get(index);
+		return steps.get(index);
 	}
 
 	/**

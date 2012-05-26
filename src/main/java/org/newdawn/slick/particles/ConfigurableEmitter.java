@@ -70,7 +70,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 	 * 
 	 * @see ColorRecord
 	 */
-	public ArrayList colors = new ArrayList();
+	public ArrayList<ColorRecord> colors = new ArrayList<ColorRecord>();
 	/** The starting alpha value */
 	public SimpleValue startAlpha = new SimpleValue(255);
 	/** The ending alpha value */
@@ -150,22 +150,22 @@ public class ConfigurableEmitter implements ParticleEmitter {
 		colors.add(new ColorRecord(0, Color.white));
 		colors.add(new ColorRecord(1, Color.red));
 
-		ArrayList curve = new ArrayList();
+		ArrayList<Vector2f> curve = new ArrayList<Vector2f>();
 		curve.add(new Vector2f(0.0f, 0.0f));
 		curve.add(new Vector2f(1.0f, 255.0f));
 		alpha = new LinearInterpolator(curve, 0, 255);
 
-		curve = new ArrayList();
+		curve = new ArrayList<Vector2f>();
 		curve.add(new Vector2f(0.0f, 0.0f));
 		curve.add(new Vector2f(1.0f, 255.0f));
 		size = new LinearInterpolator(curve, 0, 255);
 
-		curve = new ArrayList();
+		curve = new ArrayList<Vector2f>();
 		curve.add(new Vector2f(0.0f, 0.0f));
 		curve.add(new Vector2f(1.0f, 1.0f));
 		velocity = new LinearInterpolator(curve, 0, 1);
 
-		curve = new ArrayList();
+		curve = new ArrayList<Vector2f>();
 		curve.add(new Vector2f(0.0f, 0.0f));
 		curve.add(new Vector2f(1.0f, 1.0f));
 		scaleY = new LinearInterpolator(curve, 0, 1);
@@ -352,7 +352,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 					p.setImage(image);
 				}
 
-				ColorRecord start = (ColorRecord) colors.get(0);
+				ColorRecord start = colors.get(0);
 				p.setColor(start.col.r, start.col.g, start.col.b, startAlpha
 						.getValue(0) / 255.0f);
 				p.setUsePoint(usePoints);
@@ -390,8 +390,8 @@ public class ConfigurableEmitter implements ParticleEmitter {
 		Color startColor = null;
 		Color endColor = null;
 		for (int i = 0; i < colors.size() - 1; i++) {
-			ColorRecord rec1 = (ColorRecord) colors.get(i);
-			ColorRecord rec2 = (ColorRecord) colors.get(i + 1);
+			ColorRecord rec1 = colors.get(i);
+			ColorRecord rec2 = colors.get(i + 1);
 
 			if ((inv >= rec1.pos) && (inv <= rec2.pos)) {
 				startColor = rec1.col;
@@ -629,7 +629,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 	 */
 	public class LinearInterpolator implements Value {
 		/** The list of points to interpolate between */
-		private ArrayList curve;
+		private ArrayList<Vector2f> curve;
 		/** True if this interpolation value is active */
 		private boolean active;
 		/** The minimum value in the data set */
@@ -644,7 +644,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 		 * @param min The minimum value in the dataset
 		 * @param max The maximum value possible in the dataset
 		 */
-		public LinearInterpolator(ArrayList curve, int min, int max) {
+		public LinearInterpolator(ArrayList<Vector2f> curve, int min, int max) {
 			this.curve = curve;
 			this.min = min;
 			this.max = max;
@@ -656,7 +656,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 		 * 
 		 * @param curve The list of data points to interpolate between
 		 */
-		public void setCurve(ArrayList curve) {
+		public void setCurve(ArrayList<Vector2f> curve) {
 			this.curve = curve;
 		}
 
@@ -665,7 +665,7 @@ public class ConfigurableEmitter implements ParticleEmitter {
 		 * 
 		 * @return A list of Vector2f of the data points to interpolate between
 		 */
-		public ArrayList getCurve() {
+		public ArrayList<Vector2f> getCurve() {
 			return curve;
 		}
 
@@ -677,9 +677,9 @@ public class ConfigurableEmitter implements ParticleEmitter {
 		 */
 		public float getValue(float t) {
 			// first: determine the segment we are in
-			Vector2f p0 = (Vector2f) curve.get(0);
+			Vector2f p0 = curve.get(0);
 			for (int i = 1; i < curve.size(); i++) {
-				Vector2f p1 = (Vector2f) curve.get(i);
+				Vector2f p1 = curve.get(i);
 
 				if (t >= p0.getX() && t <= p1.getX()) {
 					// found the segment

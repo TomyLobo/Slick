@@ -7,8 +7,6 @@ import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -37,7 +35,7 @@ public class ParticleSystem {
 	private static final int DEFAULT_PARTICLES = 100;
 
 	/** List of emitters to be removed */
-	private ArrayList removeMe = new ArrayList();
+	private ArrayList<ParticleEmitter> removeMe = new ArrayList<ParticleEmitter>();
 
 	/**
 	 * Set the path from which images should be loaded
@@ -59,7 +57,7 @@ public class ParticleSystem {
 		/** The particles being rendered and maintained */
 		public Particle[] particles;
 		/** The list of particles left to be used, if this size() == 0 then the particle engine was too small for the effect */
-		public ArrayList available;
+		public ArrayList<Particle> available;
 
 		/**
 		 * Create a new particle pool contiaining a set of particles
@@ -70,7 +68,7 @@ public class ParticleSystem {
 		public ParticlePool( ParticleSystem system, int maxParticles )
 		{
 			particles = new Particle[ maxParticles ];
-			available = new ArrayList();
+			available = new ArrayList<Particle>();
 
 			for( int i=0; i<particles.length; i++ )
 			{
@@ -101,12 +99,12 @@ public class ParticleSystem {
 	 * each emitter. actually this is used to allow setting an individual blend mode for
 	 * each emitter
 	 */
-	protected HashMap particlesByEmitter = new HashMap();
+	protected HashMap<ParticleEmitter, ParticlePool> particlesByEmitter = new HashMap<ParticleEmitter, ParticlePool>();
 	/** The maximum number of particles allows per emitter */
 	protected int maxParticlesPerEmitter;
 
 	/** The list of emittered producing and controlling particles */
-	protected ArrayList emitters = new ArrayList();
+	protected ArrayList<ParticleEmitter> emitters = new ArrayList<ParticleEmitter>();
 
 	/** The dummy particle to return should no more particles be available */
 	protected Particle dummy;
@@ -154,14 +152,12 @@ public class ParticleSystem {
 	 * Reset the state of the system
 	 */
 	public void reset() {
-		Iterator pools = particlesByEmitter.values().iterator();
-		while (pools.hasNext()) {
-			ParticlePool pool = (ParticlePool) pools.next();
+		for (ParticlePool pool : particlesByEmitter.values()) {
 			pool.reset(this);
 		}
 
 		for (int i=0;i<emitters.size();i++) {
-			ParticleEmitter emitter = (ParticleEmitter) emitters.get(i);
+			ParticleEmitter emitter = emitters.get(i);
 			emitter.resetState();
 		}
 	}
@@ -308,7 +304,7 @@ public class ParticleSystem {
 	 * @return The particle emitter
 	 */
 	public ParticleEmitter getEmitter(int index) {
-		return (ParticleEmitter) emitters.get(index);
+		return emitters.get(index);
 	}
 
 	/**
@@ -338,7 +334,7 @@ public class ParticleSystem {
 	 */
 	public void removeAllEmitters() {
 		for (int i=0;i<emitters.size();i++) {
-			removeEmitter((ParticleEmitter) emitters.get(i));
+			removeEmitter(emitters.get(i));
 			i--;
 		}
 	}
@@ -409,7 +405,7 @@ public class ParticleSystem {
 		for( int emitterIdx=0; emitterIdx<emitters.size(); emitterIdx++ )
 		{
 			// get emitter
-			ParticleEmitter emitter = (ParticleEmitter) emitters.get(emitterIdx);
+			ParticleEmitter emitter = emitters.get(emitterIdx);
 
 			if (!emitter.isEnabled()) {
 				continue;
@@ -421,7 +417,7 @@ public class ParticleSystem {
 			}
 
 			// now get the particle pool for this emitter and render all particles that are in use
-			ParticlePool pool = (ParticlePool) particlesByEmitter.get(emitter);
+			ParticlePool pool = particlesByEmitter.get(emitter);
 			Image image = emitter.getImage();
 			if (image == null) {
 				image = this.sprite;
@@ -462,7 +458,7 @@ public class ParticleSystem {
 	 * Load the system particle image as the extension permissions
 	 */
 	private void loadSystemParticleImage() {
-		AccessController.doPrivileged(new PrivilegedAction() {
+		AccessController.doPrivileged(new PrivilegedAction<Object>() {
 			public Object run() {
 				try {
 					if (mask != null) {
@@ -490,9 +486,9 @@ public class ParticleSystem {
 		}
 
 		removeMe.clear();
-		ArrayList emitters = new ArrayList(this.emitters);
+		ArrayList<ParticleEmitter> emitters = new ArrayList<ParticleEmitter>(this.emitters);
 		for (int i=0;i<emitters.size();i++) {
-			ParticleEmitter emitter = (ParticleEmitter) emitters.get(i);
+			ParticleEmitter emitter = emitters.get(i);
 			if (emitter.isEnabled()) {
 				emitter.update(this, delta);
 				if (removeCompletedEmitters) {
@@ -507,14 +503,10 @@ public class ParticleSystem {
 
 		pCount = 0;
 
-		if (!particlesByEmitter.isEmpty())
-		{
-			Iterator it= particlesByEmitter.keySet().iterator();
-			while (it.hasNext())
-			{
-				ParticleEmitter emitter = (ParticleEmitter) it.next();
+		if (!particlesByEmitter.isEmpty()) {
+			for (ParticleEmitter emitter : particlesByEmitter.keySet()) {
 				if (emitter.isEnabled()) {
-					ParticlePool pool = (ParticlePool) particlesByEmitter.get(emitter);
+					ParticlePool pool = particlesByEmitter.get(emitter);
 					for (int i=0;i<pool.particles.length;i++) {
 						if (pool.particles[i].life > 0) {
 							pool.particles[i].update(delta);
@@ -545,11 +537,11 @@ public class ParticleSystem {
 	 */
 	public Particle getNewParticle(ParticleEmitter emitter, float life)
 	{
-		ParticlePool pool = (ParticlePool) particlesByEmitter.get(emitter);
-		ArrayList available = pool.available;
+		ParticlePool pool = particlesByEmitter.get(emitter);
+		ArrayList<Particle> available = pool.available;
 		if (available.size() > 0)
 		{
-			Particle p = (Particle) available.remove(available.size()-1);
+			Particle p = available.remove(available.size()-1);
 			p.init(emitter, life);
 			p.setImage(sprite);
 
@@ -568,7 +560,7 @@ public class ParticleSystem {
 	public void release(Particle particle) {
 		if (particle != dummy)
 		{
-			ParticlePool pool = (ParticlePool)particlesByEmitter.get( particle.getEmitter() );
+			ParticlePool pool = particlesByEmitter.get( particle.getEmitter() );
 			pool.available.add(particle);
 		}
 	}
@@ -579,12 +571,8 @@ public class ParticleSystem {
 	 * @param emitter The emitter owning the particles that should be released
 	 */
 	public void releaseAll(ParticleEmitter emitter) {
-		if( !particlesByEmitter.isEmpty() )
-		{
-			Iterator it= particlesByEmitter.values().iterator();
-			while( it.hasNext())
-			{
-				ParticlePool pool= (ParticlePool)it.next();
+		if (!particlesByEmitter.isEmpty()) {
+			for (ParticlePool pool : particlesByEmitter.values()) {
 				for (int i=0;i<pool.particles.length;i++) {
 					if (pool.particles[i].inUse()) {
 						if (pool.particles[i].getEmitter() == emitter) {
@@ -605,7 +593,7 @@ public class ParticleSystem {
 	 * @param y The amount on the y axis to move the particles
 	 */
 	public void moveAll(ParticleEmitter emitter, float x, float y) {
-		ParticlePool pool = (ParticlePool) particlesByEmitter.get(emitter);
+		ParticlePool pool = particlesByEmitter.get(emitter);
 		for (int i=0;i<pool.particles.length;i++) {
 			if (pool.particles[i].inUse()) {
 				pool.particles[i].move(x, y);

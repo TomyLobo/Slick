@@ -650,7 +650,7 @@ public class ParticleIO {
 				emitter.scaleY));
 
 		Element color = document.createElement("color");
-		ArrayList list = emitter.colors;
+		ArrayList<ColorRecord> list = emitter.colors;
 		for (int i = 0; i < list.size(); i++) {
 			ColorRecord record = (ColorRecord) list.get(i);
 			Element step = document.createElement("step");
@@ -708,20 +708,24 @@ public class ParticleIO {
 			element.setAttribute("type", "simple");
 			element.setAttribute("value", "" + value.getValue(0));
 		} else if (value instanceof RandomValue) {
+			final RandomValue randomValue = (RandomValue) value;
+
 			element.setAttribute("type", "random");
 			element
 			.setAttribute("value", ""
-					+ ((RandomValue) value).getValue());
+					+ randomValue.getValue());
 		} else if (value instanceof LinearInterpolator) {
+			final LinearInterpolator linearInterpolator = (LinearInterpolator) value;
+
 			element.setAttribute("type", "linear");
 			element.setAttribute("min", ""
-					+ ((LinearInterpolator) value).getMin());
+					+ linearInterpolator.getMin());
 			element.setAttribute("max", ""
-					+ ((LinearInterpolator) value).getMax());
+					+ linearInterpolator.getMax());
 			element.setAttribute("active", ""
-					+ ((LinearInterpolator) value).isActive());
+					+ linearInterpolator.isActive());
 
-			ArrayList curve = ((LinearInterpolator) value).getCurve();
+			ArrayList<Vector2f> curve = linearInterpolator.getCurve();
 			for (int i = 0; i < curve.size(); i++) {
 				Vector2f point = (Vector2f) curve.get(i);
 
@@ -795,7 +799,7 @@ public class ParticleIO {
 
 				NodeList points = element.getElementsByTagName("point");
 
-				ArrayList curve = new ArrayList();
+				ArrayList<Vector2f> curve = new ArrayList<Vector2f>();
 				for (int i = 0; i < points.getLength(); i++) {
 					Element point = (Element) points.item(i);
 

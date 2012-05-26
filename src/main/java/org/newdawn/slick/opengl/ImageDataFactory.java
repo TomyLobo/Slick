@@ -30,7 +30,7 @@ public class ImageDataFactory {
 			pngLoaderPropertyChecked = true;
 
 			try {
-				AccessController.doPrivileged(new PrivilegedAction() {
+				AccessController.doPrivileged(new PrivilegedAction<Object>() {
 					public Object run() {
 						String val = System.getProperty(PNG_LOADER);
 						if ("false".equalsIgnoreCase(val)) {

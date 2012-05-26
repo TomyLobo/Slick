@@ -117,7 +117,7 @@ public class Ellipse extends Shape {
 	 *
 	 */
 	protected void createPoints() {
-		ArrayList tempPoints = new ArrayList();
+		ArrayList<Float> tempPoints = new ArrayList<Float>();
 
 		maxX = -Float.MIN_VALUE;
 		maxY = -Float.MIN_VALUE;
@@ -158,7 +158,7 @@ public class Ellipse extends Shape {
 		}
 		points = new float[tempPoints.size()];
 		for(int i=0;i<points.length;i++) {
-			points[i] = ((Float)tempPoints.get(i)).floatValue();
+			points[i] = tempPoints.get(i).floatValue();
 		}
 	}
 

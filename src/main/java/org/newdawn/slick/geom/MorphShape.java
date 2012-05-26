@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class MorphShape extends Shape {
 	/** The shapes to morph between */
-	private ArrayList shapes = new ArrayList();
+	private ArrayList<Shape> shapes = new ArrayList<Shape>();
 	/** The offset between the shapes */
 	private float offset;
 
@@ -42,7 +42,7 @@ public class MorphShape extends Shape {
 			throw new RuntimeException("Attempt to morph between two shapes with different vertex counts");
 		}
 
-		Shape prev = (Shape) shapes.get(shapes.size()-1);
+		Shape prev = shapes.get(shapes.size()-1);
 		if (equalShapes(prev, shape)) {
 			shapes.add(prev);
 		} else {
@@ -50,7 +50,7 @@ public class MorphShape extends Shape {
 		}
 
 		if (shapes.size() == 2) {
-			next = (Shape) shapes.get(1);
+			next = shapes.get(1);
 		}
 	}
 
@@ -128,7 +128,7 @@ public class MorphShape extends Shape {
 	 */
 	public void setExternalFrame(Shape current) {
 		this.current = current;
-		next = (Shape) shapes.get(0);
+		next = shapes.get(0);
 		offset = 0;
 	}
 
@@ -157,8 +157,8 @@ public class MorphShape extends Shape {
 	 * @param offset The offset between the two shapes to represent
 	 */
 	private void setFrame(int a, int b, float offset) {
-		current = (Shape) shapes.get(a);
-		next = (Shape) shapes.get(b);
+		current = shapes.get(a);
+		next = shapes.get(b);
 		this.offset = offset;
 		pointsDirty = true;
 	}

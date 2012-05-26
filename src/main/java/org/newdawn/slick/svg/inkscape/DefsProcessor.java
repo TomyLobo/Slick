@@ -51,7 +51,7 @@ public class DefsProcessor implements ElementProcessor {
 		}
 
 		NodeList linear = element.getElementsByTagName("linearGradient");
-		ArrayList toResolve = new ArrayList();
+		ArrayList<Gradient> toResolve = new ArrayList<Gradient>();
 
 		for (int i=0;i<linear.getLength();i++) {
 			Element lin = (Element) linear.item(i);
@@ -150,8 +150,8 @@ public class DefsProcessor implements ElementProcessor {
 		}
 
 		for (int i=0;i<toResolve.size();i++) {
-			((Gradient) toResolve.get(i)).resolve(diagram);
-			((Gradient) toResolve.get(i)).getImage();
+			toResolve.get(i).resolve(diagram);
+			toResolve.get(i).getImage();
 		}
 	}
 

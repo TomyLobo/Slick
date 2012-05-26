@@ -10,7 +10,6 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 import java.util.HashMap;
-import java.util.Iterator;
 
 import org.lwjgl.BufferUtils;
 import org.newdawn.slick.opengl.renderer.Renderer;
@@ -41,9 +40,9 @@ public class InternalTextureLoader {
 	}
 
 	/** The table of textures that have been loaded in this loader */
-	private HashMap texturesLinear = new HashMap();
+	private HashMap<String, Object> texturesLinear = new HashMap<String, Object>();
 	/** The table of textures that have been loaded in this loader */
-	private HashMap texturesNearest = new HashMap();
+	private HashMap<String, Object> texturesNearest = new HashMap<String, Object>();
 	/** The destination pixel format */
 	private int dstPixelFormat = SGL.GL_RGBA8;
 	/** True if we're using deferred loading */
@@ -216,7 +215,7 @@ public class InternalTextureLoader {
 			return new DeferredTexture(in, resourceName, flipped, filter, transparent);
 		}
 
-		HashMap hash = texturesLinear;
+		HashMap<String, Object> hash = texturesLinear;
 		if (filter == SGL.GL_NEAREST) {
 			hash = texturesNearest;
 		}
@@ -233,7 +232,8 @@ public class InternalTextureLoader {
 				return tex;
 			}
 		} else {
-			SoftReference ref = (SoftReference) hash.get(resName);
+			@SuppressWarnings("unchecked")
+			SoftReference<TextureImpl> ref = (SoftReference<TextureImpl>) hash.get(resName);
 			if (ref != null) {
 				TextureImpl tex = (TextureImpl) ref.get();
 				if (tex != null) {
@@ -260,7 +260,7 @@ public class InternalTextureLoader {
 		if (holdTextureData) {
 			hash.put(resName, tex);
 		} else {
-			hash.put(resName, new SoftReference(tex));
+			hash.put(resName, new SoftReference<TextureImpl>(tex));
 		}
 
 		return tex;
@@ -484,13 +484,11 @@ public class InternalTextureLoader {
 	 * Reload all the textures loaded in this loader
 	 */
 	public void reload() {
-		Iterator texs = texturesLinear.values().iterator();
-		while (texs.hasNext()) {
-			((TextureImpl) texs.next()).reload();
+		for (Object texture : texturesLinear.values()) {
+			((TextureImpl) texture).reload();
 		}
-		texs = texturesNearest.values().iterator();
-		while (texs.hasNext()) {
-			((TextureImpl) texs.next()).reload();
+		for (Object texture : texturesNearest.values()) {
+			((TextureImpl) texture).reload();
 		}
 	}
 

@@ -27,7 +27,7 @@ public class TrueTypeFontPerformanceTest extends BasicGame {
 	/** The test text */
 	private String text = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin bibendum. Aliquam ac sapien a elit congue iaculis. Quisque et justo quis mi mattis euismod. Donec elementum, mi quis aliquet varius, nisi leo volutpat magna, quis ultricies eros augue at risus. Integer non magna at lorem sodales molestie. Integer diam nulla, ornare sit amet, mattis quis, euismod et, mauris. Proin eget tellus non nisl mattis laoreet. Nunc at nunc id elit pretium tempor. Duis vulputate, nibh eget rhoncus eleifend, tellus lectus sollicitudin mi, rhoncus tincidunt nisi massa vitae ipsum. Praesent tellus diam, luctus ut, eleifend nec, auctor et, orci. Praesent eu elit. Pellentesque ante orci, volutpat placerat, ornare eget, cursus sit amet, eros. Duis pede sapien, euismod a, volutpat pellentesque, convallis eu, mauris. Nunc eros. Ut eu risus et felis laoreet viverra. Curabitur a metus.";
 	/** The text broken into lines */
-	private ArrayList lines = new ArrayList();
+	private ArrayList<String> lines = new ArrayList<String>();
 	/** True if the text is visible */
 	private boolean visible = true;
 
@@ -67,7 +67,7 @@ public class TrueTypeFontPerformanceTest extends BasicGame {
 
 		if (visible) {
 			for (int i = 0; i < lines.size(); i++) {
-				font.drawString(10, 50 + (i * 20), (String) lines.get(i),
+				font.drawString(10, 50 + (i * 20), lines.get(i),
 						i > 10 ? Color.red : Color.green);
 			}
 		}

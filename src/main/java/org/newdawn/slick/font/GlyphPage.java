@@ -13,8 +13,6 @@ import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -23,6 +21,7 @@ import org.newdawn.slick.font.effects.Effect;
 import org.newdawn.slick.opengl.TextureImpl;
 import org.newdawn.slick.opengl.renderer.Renderer;
 import org.newdawn.slick.opengl.renderer.SGL;
+import org.newdawn.slick.util.ReverseListIterator;
 
 /**
  * Stores a number of glyphs on a single texture.
@@ -87,7 +86,7 @@ public class GlyphPage {
 	/** True if the glyphs are ordered */
 	private boolean orderAscending;
 	/** The list of glyphs on this page */
-	private final List pageGlyphs = new ArrayList(32);
+	private final List<Glyph> pageGlyphs = new ArrayList<Glyph>(32);
 
 	/**
 	 * Create a new page of glyphs
@@ -116,13 +115,13 @@ public class GlyphPage {
 	 * @return The number of glyphs that were actually loaded.
 	 * @throws SlickException if the glyph could not be rendered.
 	 */
-	public int loadGlyphs (List glyphs, int maxGlyphsToLoad) throws SlickException {
+	public int loadGlyphs (List<Glyph> glyphs, int maxGlyphsToLoad) throws SlickException {
 		if (rowHeight != 0 && maxGlyphsToLoad == -1) {
 			// If this page has glyphs and we are not loading incrementally, return zero if any of the glyphs don't fit.
 			int testX = pageX;
 			int testY = pageY;
 			int testRowHeight = rowHeight;
-			for (Iterator iter = getIterator(glyphs); iter.hasNext();) {
+			for (Iterator<Glyph> iter = getIterator(glyphs); iter.hasNext();) {
 				Glyph glyph = (Glyph)iter.next();
 				int width = glyph.getWidth();
 				int height = glyph.getHeight();
@@ -142,7 +141,7 @@ public class GlyphPage {
 		pageImage.bind();
 
 		int i = 0;
-		for (Iterator iter = getIterator(glyphs); iter.hasNext();) {
+		for (Iterator<Glyph> iter = getIterator(glyphs); iter.hasNext();) {
 			Glyph glyph = (Glyph)iter.next();
 			int width = Math.min(MAX_GLYPH_SIZE, glyph.getWidth());
 			int height = Math.min(MAX_GLYPH_SIZE, glyph.getHeight());
@@ -199,8 +198,9 @@ public class GlyphPage {
 		scratchGraphics.fillRect(0, 0, MAX_GLYPH_SIZE, MAX_GLYPH_SIZE);
 		scratchGraphics.setComposite(AlphaComposite.SrcOver);
 		scratchGraphics.setColor(java.awt.Color.white);
-		for (Iterator iter = unicodeFont.getEffects().iterator(); iter.hasNext();)
-			((Effect)iter.next()).draw(scratchImage, scratchGraphics, unicodeFont, glyph);
+		for (Effect effect : unicodeFont.getEffects()) {
+			effect.draw(scratchImage, scratchGraphics, unicodeFont, glyph);
+		}
 		glyph.setShape(null); // The shape will never be needed again.
 
 		WritableRaster raster = scratchImage.getRaster();
@@ -222,22 +222,9 @@ public class GlyphPage {
 	 * @param glyphs The glyphs to return if present
 	 * @return An iterator of the sorted list of glyphs
 	 */
-	private Iterator getIterator(List glyphs) {
+	private Iterator<Glyph> getIterator(List<Glyph> glyphs) {
 		if (orderAscending) return glyphs.iterator();
-		final ListIterator iter = glyphs.listIterator(glyphs.size());
-		return new Iterator() {
-			public boolean hasNext () {
-				return iter.hasPrevious();
-			}
-
-			public Object next () {
-				return iter.previous();
-			}
-
-			public void remove () {
-				iter.remove();
-			}
-		};
+		return new ReverseListIterator<Glyph>(glyphs.listIterator(glyphs.size()));
 	}
 
 	/**
@@ -245,7 +232,7 @@ public class GlyphPage {
 	 * 
 	 * @return A list of {@link Glyph} elements on this page
 	 */
-	public List getGlyphs () {
+	public List<Glyph> getGlyphs () {
 		return pageGlyphs;
 	}
 

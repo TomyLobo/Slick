@@ -22,7 +22,7 @@ public class PackedSpriteSheet {
 	/** The base path where the image is expected to be found based on the original definition file */
 	private String basePath;
 	/** The section definitions */
-	private HashMap sections = new HashMap();
+	private HashMap<String, Section> sections = new HashMap<String, Section>();
 	/** The filter used when loading the image */
 	private int filter = Image.FILTER_NEAREST;
 
@@ -94,7 +94,7 @@ public class PackedSpriteSheet {
 	 * @return The sprite requested (image of)
 	 */
 	public Image getSprite(String name) {
-		Section section = (Section) sections.get(name);
+		Section section = sections.get(name);
 
 		if (section == null) {
 			throw new RuntimeException("Unknown sprite from packed sheet: "+name);
@@ -111,7 +111,7 @@ public class PackedSpriteSheet {
 	 */
 	public SpriteSheet getSpriteSheet(String name) {
 		Image image = getSprite(name);
-		Section section = (Section) sections.get(name);
+		Section section = sections.get(name);
 
 		return new SpriteSheet(image, section.width / section.tilesx, section.height / section.tilesy);
 	}

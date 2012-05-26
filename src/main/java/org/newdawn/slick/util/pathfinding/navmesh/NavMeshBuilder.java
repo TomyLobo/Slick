@@ -44,7 +44,7 @@ public class NavMeshBuilder implements PathFindingContext {
 	public NavMesh build(TileBasedMap map, boolean tileBased) {
 		this.tileBased = tileBased;
 
-		ArrayList spaces = new ArrayList();
+		ArrayList<Space> spaces = new ArrayList<Space>();
 
 		if (tileBased) {
 			for (int x=0;x<map.getWidthInTiles();x++) {
@@ -74,12 +74,12 @@ public class NavMeshBuilder implements PathFindingContext {
 	 * @return True if a merge occured and we'll have to start the merge
 	 * process again
 	 */
-	private boolean mergeSpaces(ArrayList spaces) {
+	private boolean mergeSpaces(ArrayList<Space> spaces) {
 		for (int source=0;source<spaces.size();source++) {
-			Space a = (Space) spaces.get(source);
+			Space a = spaces.get(source);
 
 			for (int target=source+1;target<spaces.size();target++) {
-				Space b = (Space) spaces.get(target);
+				Space b = spaces.get(target);
 
 				if (a.canMerge(b)) {
 					spaces.remove(a);
@@ -98,12 +98,12 @@ public class NavMeshBuilder implements PathFindingContext {
 	 * 
 	 * @param spaces The spaces to link up
 	 */
-	private void linkSpaces(ArrayList spaces) {
+	private void linkSpaces(ArrayList<Space> spaces) {
 		for (int source=0;source<spaces.size();source++) {
-			Space a = (Space) spaces.get(source);
+			Space a = spaces.get(source);
 
 			for (int target=source+1;target<spaces.size();target++) {
-				Space b = (Space) spaces.get(target);
+				Space b = spaces.get(target);
 
 				if (a.hasJoinedEdge(b)) {
 					a.link(b);
@@ -166,7 +166,7 @@ public class NavMeshBuilder implements PathFindingContext {
 	 * @param space The space being sections
 	 * @param spaces The list of spaces that have been created
 	 */
-	private void subsection(TileBasedMap map, Space space, ArrayList spaces) {
+	private void subsection(TileBasedMap map, Space space, ArrayList<Space> spaces) {
 		if (!clear(map, space)) {
 			float width2 = space.getWidth()/2;
 			float height2 = space.getHeight()/2;

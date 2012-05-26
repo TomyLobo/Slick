@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,8 +61,10 @@ public class AngelCodeFont implements Font {
 	private DisplayList eldestDisplayList;
 
 	/** The display list cache for rendered lines */
-	private final LinkedHashMap displayLists = new LinkedHashMap(DISPLAY_LIST_CACHE_SIZE, 1, true) {
-		protected boolean removeEldestEntry(Entry eldest) {
+	private final LinkedHashMap<String, DisplayList> displayLists = new LinkedHashMap<String, DisplayList>(DISPLAY_LIST_CACHE_SIZE, 1, true) {
+		private static final long serialVersionUID = 1L;
+
+		protected boolean removeEldestEntry(Entry<String, DisplayList> eldest) {
 			eldestDisplayList = (DisplayList)eldest.getValue();
 			eldestDisplayListID = eldestDisplayList.id;
 
@@ -210,8 +211,8 @@ public class AngelCodeFont implements Font {
 			String common = in.readLine();
 			String page = in.readLine();
 
-			Map kerning = new HashMap(64);
-			List charDefs = new ArrayList(MAX_CHAR);
+			Map<Short, List<Short>> kerning = new HashMap<Short, List<Short>>(64);
+			List<CharDef> charDefs = new ArrayList<CharDef>(MAX_CHAR);
 			int maxChar = 0;
 			boolean done = false;
 			while (!done) {
@@ -239,9 +240,9 @@ public class AngelCodeFont implements Font {
 						int second = Integer.parseInt(tokens.nextToken()); // second value
 						tokens.nextToken(); // offset
 						int offset = Integer.parseInt(tokens.nextToken()); // offset value
-						List values = (List)kerning.get(new Short(first));
+						List<Short> values = kerning.get(new Short(first));
 						if (values == null) {
-							values = new ArrayList();
+							values = new ArrayList<Short>();
 							kerning.put(new Short(first), values);
 						}
 						// Pack the character and kerning offset into a short.
@@ -251,20 +252,20 @@ public class AngelCodeFont implements Font {
 			}
 
 			chars = new CharDef[maxChar + 1];
-			for (Iterator iter = charDefs.iterator(); iter.hasNext();) {
-				CharDef def = (CharDef)iter.next();
+			for (CharDef def : charDefs) {
 				chars[def.id] = def;
 			}
 
 			// Turn each list of kerning values into a short[] and set on the chardef.
-			for (Iterator iter = kerning.entrySet().iterator(); iter.hasNext(); ) {
-				Entry entry = (Entry)iter.next();
-				short first = ((Short)entry.getKey()).shortValue();
-				List valueList = (List)entry.getValue();
+			for (Entry<Short, List<Short>> entry : kerning.entrySet()) {
+				short first = entry.getKey();
+				List<Short> valueList = (List<Short>)entry.getValue();
 				short[] valueArray = new short[valueList.size()];
 				int i = 0;
-				for (Iterator valueIter = valueList.iterator(); valueIter.hasNext(); i++)
-					valueArray[i] = ((Short)valueIter.next()).shortValue();
+				for (Short value : valueList) {
+					valueArray[i] = value;
+					++i;
+				}
 				chars[first].kerning = valueArray;
 			}
 		} catch (IOException e) {
@@ -345,7 +346,7 @@ public class AngelCodeFont implements Font {
 
 		GL.glTranslatef(x, y, 0);
 		if (displayListCaching && startIndex == 0 && endIndex == text.length() - 1) {
-			DisplayList displayList = (DisplayList)displayLists.get(text);
+			DisplayList displayList = displayLists.get(text);
 			if (displayList != null) {
 				GL.glCallList(displayList.id);
 			} else {
@@ -422,7 +423,7 @@ public class AngelCodeFont implements Font {
 	public int getYOffset(String text) {
 		DisplayList displayList = null;
 		if (displayListCaching) {
-			displayList = (DisplayList)displayLists.get(text);
+			displayList = displayLists.get(text);
 			if (displayList != null && displayList.yOffset != null) return displayList.yOffset.intValue();
 		}
 
@@ -450,7 +451,7 @@ public class AngelCodeFont implements Font {
 	public int getHeight(String text) {
 		DisplayList displayList = null;
 		if (displayListCaching) {
-			displayList = (DisplayList)displayLists.get(text);
+			displayList = displayLists.get(text);
 			if (displayList != null && displayList.height != null) return displayList.height.intValue();
 		}
 
@@ -489,7 +490,7 @@ public class AngelCodeFont implements Font {
 	public int getWidth(String text) {
 		DisplayList displayList = null;
 		if (displayListCaching) {
-			displayList = (DisplayList)displayLists.get(text);
+			displayList = displayLists.get(text);
 			if (displayList != null && displayList.width != null) return displayList.width.intValue();
 		}
 

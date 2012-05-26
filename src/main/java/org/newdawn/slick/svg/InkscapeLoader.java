@@ -40,7 +40,7 @@ public class InkscapeLoader implements Loader {
 	public static int RADIAL_TRIANGULATION_LEVEL = 1;
 
 	/** The list of XML element processors */
-	private static ArrayList processors = new ArrayList();
+	private static ArrayList<ElementProcessor> processors = new ArrayList<ElementProcessor>();
 
 	/** The diagram loaded */
 	private Diagram diagram;
@@ -216,7 +216,7 @@ public class InkscapeLoader implements Loader {
 	private void loadElement(Element element, Transform t)
 			throws ParsingException {
 		for (int i = 0; i < processors.size(); i++) {
-			ElementProcessor processor = (ElementProcessor) processors.get(i);
+			ElementProcessor processor = processors.get(i);
 
 			if (processor.handles(element)) {
 				processor.process(this, element, diagram, t);

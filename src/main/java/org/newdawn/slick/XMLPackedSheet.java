@@ -19,7 +19,7 @@ public class XMLPackedSheet {
 	/** The full sheet image */
 	private Image image;
 	/** The sprites stored on the image */
-	private HashMap sprites = new HashMap();
+	private HashMap<String, Image> sprites = new HashMap<String, Image>();
 
 	/**
 	 * Create a new XML packed sheet from the XML output by the slick tool
@@ -60,6 +60,6 @@ public class XMLPackedSheet {
 	 * @return The sprite from the sheet or null if the name isn't used in this sheet
 	 */
 	public Image getSprite(String name) {
-		return (Image) sprites.get(name);
+		return sprites.get(name);
 	}
 }

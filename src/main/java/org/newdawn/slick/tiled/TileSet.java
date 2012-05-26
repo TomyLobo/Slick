@@ -46,7 +46,7 @@ public class TileSet {
 	public int tilesDown;
 
 	/** The properties for each tile */
-	private HashMap props = new HashMap();
+	private HashMap<Integer, Properties> props = new HashMap<Integer, Properties>();
 	/** The padding of the tiles */
 	protected int tileSpacing = 0;
 	/** The margin of the tileset */
@@ -217,7 +217,7 @@ public class TileSet {
 	 *         are defined
 	 */
 	public Properties getProperties(int globalID) {
-		return (Properties) props.get(new Integer(globalID));
+		return props.get(new Integer(globalID));
 	}
 
 	/**

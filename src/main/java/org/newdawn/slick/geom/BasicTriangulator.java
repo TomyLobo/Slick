@@ -12,9 +12,9 @@ public class BasicTriangulator implements Triangulator {
 	/** The accepted error value */
 	private static final float EPSILON = 0.0000000001f;
 	/** The list of points to be triangulated */
-	private PointList poly = new PointList();
+	private ArrayList<Point> poly = new ArrayList<Point>();
 	/** The list of points describing the triangles */
-	private PointList tris = new PointList();
+	private ArrayList<Point> tris = new ArrayList<Point>();
 	/** True if we've tried to triangulate */
 	private boolean tried;
 
@@ -104,7 +104,7 @@ public class BasicTriangulator implements Triangulator {
 	 * (Vector2f)
 	 * @return The area of the polygon defined
 	 */
-	private float area(PointList contour) {
+	private float area(ArrayList<Point> contour) {
 		int n = contour.size();
 
 		float A = 0.0f;
@@ -170,7 +170,7 @@ public class BasicTriangulator implements Triangulator {
 	 * @param V The array to populate with indicies of triangles
 	 * @return True if a triangle was found
 	 */
-	private boolean snip(PointList contour, int u, int v, int w, int n,
+	private boolean snip(ArrayList<Point> contour, int u, int v, int w, int n,
 			int[] V) {
 		int p;
 		float Ax, Ay, Bx, By, Cx, Cy, Px, Py;
@@ -212,7 +212,7 @@ public class BasicTriangulator implements Triangulator {
 	 * 
 	 * @return True if we succeeded in completing triangulation
 	 */
-	private boolean process(PointList contour, PointList result) {
+	private boolean process(ArrayList<Point> contour, ArrayList<Point> result) {
 		result.clear();
 
 		/* allocate and initialize list of Vertices in polygon */
@@ -354,76 +354,6 @@ public class BasicTriangulator implements Triangulator {
 			}
 
 			return false;
-		}
-	}
-
-	/**
-	 * A list of type <code>Point</code>
-	 * 
-	 * @author Kevin Glass
-	 */
-	private class PointList {
-		/** The list of points */
-		private ArrayList points = new ArrayList();
-
-		/**
-		 * Create a new empty list
-		 */
-		public PointList() {
-		}
-
-		/**
-		 * Check if the list contains a point
-		 * 
-		 * @param p The point to look for
-		 * @return True if the point is in the list
-		 */
-		public boolean contains(Point p) {
-			return points.contains(p);
-		}
-
-		/**
-		 * Add a point to the list
-		 * 
-		 * @param point The point to add
-		 */
-		public void add(Point point) {
-			points.add(point);
-		}
-
-		/**
-		 * Remove a point from the list
-		 * 
-		 * @param point The point to remove
-		 */
-		public void remove(Point point) {
-			points.remove(point);
-		}
-
-		/**
-		 * Get the size of the list
-		 * 
-		 * @return The size of the list
-		 */
-		public int size() {
-			return points.size();
-		}
-
-		/**
-		 * Get a point a specific index in the list
-		 * 
-		 * @param i The index of the point to retrieve
-		 * @return The point
-		 */
-		public Point get(int i) {
-			return (Point) points.get(i);
-		}
-
-		/**
-		 * Clear the list
-		 */
-		public void clear() {
-			points.clear();
 		}
 	}
 

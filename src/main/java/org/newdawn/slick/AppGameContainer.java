@@ -33,7 +33,7 @@ import org.newdawn.slick.util.ResourceLoader;
  */
 public class AppGameContainer extends GameContainer {
 	static {
-		AccessController.doPrivileged(new PrivilegedAction() {
+		AccessController.doPrivileged(new PrivilegedAction<Object>() {
 			public Object run() {
 				try {
 					Display.getDisplayMode();
@@ -345,7 +345,7 @@ public class AppGameContainer extends GameContainer {
 		Log.info("OriginalDisplayMode: "+originalDisplayMode);
 		Log.info("TargetDisplayMode: "+targetDisplayMode);
 
-		AccessController.doPrivileged(new PrivilegedAction() {
+		AccessController.doPrivileged(new PrivilegedAction<Object>() {
 			public Object run() {
 				try {
 					PixelFormat format = new PixelFormat(8,8,stencil ? 8 : 0,samples);

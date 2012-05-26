@@ -11,7 +11,7 @@ import org.newdawn.slick.geom.MorphShape;
  */
 public class SVGMorph extends Diagram {
 	/** The list of figures being morphed */
-	private ArrayList figures = new ArrayList();
+	private ArrayList<Figure> figures = new ArrayList<Figure>();
 
 	/**
 	 * Create a new morph with a first diagram base
@@ -43,7 +43,7 @@ public class SVGMorph extends Diagram {
 			String id = figure.getData().getMetaData();
 
 			for (int j=0;j<figures.size();j++) {
-				Figure existing = (Figure) figures.get(j);
+				Figure existing = figures.get(j);
 				if (existing.getData().getMetaData().equals(id)) {
 					MorphShape morph = (MorphShape) existing.getShape();
 					morph.addShape(figure.getShape());
@@ -62,7 +62,7 @@ public class SVGMorph extends Diagram {
 	 */
 	public void setExternalDiagram(Diagram diagram) {
 		for (int i=0;i<figures.size();i++) {
-			Figure figure = (Figure) figures.get(i);
+			Figure figure = figures.get(i);
 
 			for (int j=0;j<diagram.getFigureCount();j++) {
 				Figure newBase = diagram.getFigure(j);
@@ -82,7 +82,7 @@ public class SVGMorph extends Diagram {
 	 */
 	public void updateMorphTime(float delta) {
 		for (int i=0;i<figures.size();i++) {
-			Figure figure = (Figure) figures.get(i);
+			Figure figure = figures.get(i);
 			MorphShape shape = (MorphShape) figure.getShape();
 			shape.updateMorphTime(delta);
 		}
@@ -96,7 +96,7 @@ public class SVGMorph extends Diagram {
 	 */
 	public void setMorphTime(float time) {
 		for (int i=0;i<figures.size();i++) {
-			Figure figure = (Figure) figures.get(i);
+			Figure figure = figures.get(i);
 			MorphShape shape = (MorphShape) figure.getShape();
 			shape.setMorphTime(time);
 		}
@@ -113,6 +113,6 @@ public class SVGMorph extends Diagram {
 	 * @see Diagram#getFigure(int)
 	 */
 	public Figure getFigure(int index) {
-		return (Figure) figures.get(index);
+		return figures.get(index);
 	}
 }

@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.newdawn.slick.UnicodeFont;
@@ -72,8 +71,8 @@ public class ColorEffect implements ConfigurableEffect {
 	/**
 	 * @see org.newdawn.slick.font.effects.ConfigurableEffect#getValues()
 	 */
-	public List getValues() {
-		List values = new ArrayList();
+	public List<Value> getValues() {
+		List<Value> values = new ArrayList<Value>();
 		values.add(EffectUtil.colorValue("Color", color));
 		return values;
 	}
@@ -81,9 +80,9 @@ public class ColorEffect implements ConfigurableEffect {
 	/**
 	 * @see org.newdawn.slick.font.effects.ConfigurableEffect#setValues(java.util.List)
 	 */
-	public void setValues(List values) {
-		for (Iterator iter = values.iterator(); iter.hasNext();) {
-			Value value = (Value)iter.next();
+	@Override
+	public void setValues(List<Value> values) {
+		for (Value value : values) {
 			if (value.getName().equals("Color")) {
 				setColor((Color)value.getObject());
 			}

@@ -1,8 +1,6 @@
 package org.newdawn.slick.state;
 
 import java.util.HashMap;
-import java.util.Iterator;
-
 import org.newdawn.slick.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -20,7 +18,7 @@ import org.newdawn.slick.state.transition.Transition;
  */
 public abstract class StateBasedGame implements Game, InputListener {
 	/** The list of states making up this game */
-	private HashMap states = new HashMap();
+	private HashMap<Integer, GameState> states = new HashMap<Integer, GameState>();
 	/** The current state */
 	private GameState currentState;
 	/** The next state we're moving into */
@@ -119,7 +117,7 @@ public abstract class StateBasedGame implements Game, InputListener {
 	 * @return The state requested or null if no state with the specified ID exists
 	 */
 	public GameState getState(int id) {
-		return (GameState) states.get(new Integer(id));
+		return states.get(new Integer(id));
 	}
 
 	/**
@@ -163,11 +161,7 @@ public abstract class StateBasedGame implements Game, InputListener {
 		this.container = container;
 		initStatesList(container);
 
-		Iterator gameStates = states.values().iterator();
-
-		while (gameStates.hasNext()) {
-			GameState state = (GameState) gameStates.next();
-
+		for (GameState state : states.values() ) {
 			state.init(container, this);
 		}
 

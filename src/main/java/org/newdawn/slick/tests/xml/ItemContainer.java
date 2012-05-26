@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class ItemContainer extends Item {
 	/** The items held in this container */
-	private ArrayList items = new ArrayList();
+	private ArrayList<Item> items = new ArrayList<Item>();
 
 	/**
 	 * Called by XML parser to add a configured item to the entity
@@ -50,7 +50,7 @@ public class ItemContainer extends Item {
 	public void dump(String prefix) {
 		System.out.println(prefix+"Item Container "+name+","+condition);
 		for (int i=0;i<items.size();i++) {
-			((Item) items.get(i)).dump(prefix+"\t");
+			items.get(i).dump(prefix+"\t");
 		}
 	}
 }

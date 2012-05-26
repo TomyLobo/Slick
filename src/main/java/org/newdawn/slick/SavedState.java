@@ -23,9 +23,9 @@ public class SavedState {
 	/** Type of Muffin to use */
 	private Muffin muffin;
 	/** hash map where int data will be stored */
-	private HashMap numericData = new HashMap();
+	private HashMap<String, Double> numericData = new HashMap<String, Double>();
 	/** hash map where string data will be stored */
-	private HashMap stringData = new HashMap();
+	private HashMap<String, String> stringData = new HashMap<String, String>();
 
 	/**
 	 * Create and Test to see if the app is running
@@ -144,8 +144,8 @@ public class SavedState {
 	 * @throws IOException Indicates it wasn't possible to load the state
 	 */
 	public void load() throws IOException {
-		numericData = muffin.loadFile(fileName + "_Number");
-		stringData = muffin.loadFile(fileName + "_String");
+		numericData = (HashMap<String, Double>) muffin.loadFile(fileName + "_Number");
+		stringData = (HashMap<String, String>) muffin.loadFile(fileName + "_String");
 	}
 
 	/**

@@ -10,7 +10,6 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.newdawn.slick.UnicodeFont;
@@ -71,8 +70,7 @@ public class ShadowEffect implements ConfigurableEffect {
 		g.fill(glyph.getShape());
 
 		// Also shadow the outline, if one exists.
-		for (Iterator iter = unicodeFont.getEffects().iterator(); iter.hasNext();) {
-			Effect effect = (Effect)iter.next();
+		for (Effect effect : unicodeFont.getEffects()) {
 			if (effect instanceof OutlineEffect) {
 				Composite composite = g.getComposite();
 				g.setComposite(AlphaComposite.Src); // Prevent shadow and outline shadow alpha from combining.
@@ -230,8 +228,8 @@ public class ShadowEffect implements ConfigurableEffect {
 	/**
 	 * @see org.newdawn.slick.font.effects.ConfigurableEffect#getValues()
 	 */
-	public List getValues() {
-		List values = new ArrayList();
+	public List<Value> getValues() {
+		List<Value> values = new ArrayList<Value>();
 		values.add(EffectUtil.colorValue("Color", color));
 		values.add(EffectUtil.floatValue("Opacity", opacity, 0, 1, "This setting sets the translucency of the shadow."));
 		values.add(EffectUtil.floatValue("X distance", xDistance, Float.MIN_VALUE, Float.MAX_VALUE, "This setting is the amount of pixels to offset the shadow on the"
@@ -239,11 +237,11 @@ public class ShadowEffect implements ConfigurableEffect {
 		values.add(EffectUtil.floatValue("Y distance", yDistance, Float.MIN_VALUE, Float.MAX_VALUE, "This setting is the amount of pixels to offset the shadow on the"
 				+ " y axis. The glyphs will need padding so the shadow doesn't get clipped."));
 
-		List options = new ArrayList();
+		List<String[]> options = new ArrayList<String[]>();
 		options.add(new String[] {"None", "0"});
 		for (int i = 2; i < NUM_KERNELS; i++)
 			options.add(new String[] {String.valueOf(i)});
-		String[][] optionsArray = (String[][])options.toArray(new String[options.size()][]);
+		String[][] optionsArray = options.toArray(new String[options.size()][]);
 		values.add(EffectUtil.optionValue("Blur kernel size", String.valueOf(blurKernelSize), optionsArray,
 				"This setting controls how many neighboring pixels are used to blur the shadow. Set to \"None\" for no blur."));
 
@@ -255,9 +253,8 @@ public class ShadowEffect implements ConfigurableEffect {
 	/**
 	 * @see org.newdawn.slick.font.effects.ConfigurableEffect#setValues(java.util.List)
 	 */
-	public void setValues(List values) {
-		for (Iterator iter = values.iterator(); iter.hasNext();) {
-			Value value = (Value)iter.next();
+	public void setValues(List<Value> values) {
+		for (Value value : values) {
 			if (value.getName().equals("Color")) {
 				color = (Color)value.getObject();
 			} else if (value.getName().equals("Opacity")) {
